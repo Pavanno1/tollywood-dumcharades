@@ -1,0 +1,2216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎬 Tollywood Party Games</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&family=Kalam:wght@400;700&display=swap');
+:root{--ink:#1a1207;--paper:#fdf6e3;--saffron:#ff6b00;--gold:#f5a623;--teal:#00897b;--sky:#0288d1;--ok:#2e7d32;--err:#c62828;--shadow:rgba(26,18,7,.15)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Baloo 2',cursive;background:var(--paper);color:var(--ink);min-height:100vh}
+.scr{display:none;min-height:100vh}
+.scr.on{display:flex;flex-direction:column}
+
+/* HOME */
+#home{align-items:center;justify-content:center;padding:1.5rem;
+  background:radial-gradient(circle at 20% 30%,rgba(255,107,0,.08),transparent 50%),
+  radial-gradient(circle at 80% 70%,rgba(0,137,123,.08),transparent 50%)}
+.logo{text-align:center;margin-bottom:1rem}
+.logo h1{font-size:clamp(2rem,6vw,3.8rem);font-weight:800;color:var(--saffron);line-height:1;text-shadow:3px 3px 0 rgba(255,107,0,.15)}
+.logo p{font-family:'Kalam',cursive;color:#7a6a50;margin-top:4px;font-size:1rem}
+.badge{background:var(--saffron);color:#fff;padding:3px 14px;border-radius:20px;font-size:.78rem;font-weight:600;display:inline-block;margin-top:8px}
+.howto{background:rgba(255,107,0,.08);border:1.5px solid rgba(255,107,0,.2);border-radius:14px;padding:10px 16px;margin:.75rem 0;font-size:.8rem;color:#6b4c2a;line-height:1.7;max-width:540px;width:100%}
+.howto strong{color:var(--saffron)}
+.mrow{display:flex;gap:10px;justify-content:center;margin:.75rem 0;flex-wrap:wrap;width:100%;max-width:540px}
+.mbtn{background:#fff;border:2.5px solid #e8dcc8;border-radius:14px;padding:12px 16px;cursor:pointer;font-family:'Baloo 2',cursive;font-size:.88rem;font-weight:600;color:var(--ink);transition:all .18s;text-align:center;min-width:130px}
+.mbtn:hover{border-color:var(--saffron);background:#fff4e6;transform:translateY(-2px)}
+.mbtn.sel{border-color:var(--saffron);background:var(--saffron);color:#fff;box-shadow:0 4px 0 #c94f00}
+.mbtn .mi{font-size:1.5rem;display:block;margin-bottom:3px}
+.hgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;width:100%;max-width:540px}
+@media(max-width:500px){.hgrid{grid-template-columns:1fr}}
+.card{background:#fff;border-radius:18px;padding:1.4rem;box-shadow:0 6px 30px var(--shadow),0 2px 0 var(--gold) inset}
+.card h2{font-size:1.1rem;font-weight:800;margin-bottom:.9rem}
+.inp{width:100%;padding:9px 12px;border:2px solid #e8dcc8;border-radius:11px;font-family:'Baloo 2',cursive;font-size:.95rem;outline:none;background:#fdf9f0;transition:border .2s;margin-bottom:8px;display:block}
+.inp:focus{border-color:var(--saffron)}
+.btn{padding:10px 18px;border-radius:11px;border:none;cursor:pointer;font-family:'Baloo 2',cursive;font-weight:700;font-size:.95rem;transition:all .15s;width:100%}
+.btnp{background:var(--saffron);color:#fff;box-shadow:0 4px 0 #c94f00}
+.btnp:hover{transform:translateY(-1px)}
+.btnp:active{transform:translateY(2px);box-shadow:0 2px 0 #c94f00}
+.btnp:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.btns{background:#f0f4ff;color:var(--sky);border:1.5px solid #c5cae9}
+.btns:hover{background:var(--sky);color:#fff}
+.jerr{color:var(--err);font-size:.78rem;margin-top:4px;min-height:16px;text-align:center}
+.pstat{font-size:.72rem;color:#999;text-align:center;margin-top:4px;min-height:16px}
+
+/* LOBBY */
+#lobby{align-items:center;justify-content:center;padding:1.5rem;background:var(--ink);color:#fff}
+.linner{width:100%;max-width:520px}
+.linner h2{font-size:1.6rem;font-weight:800;color:var(--saffron);text-align:center;margin-bottom:.2rem}
+.lsub{font-family:'Kalam',cursive;color:#888;text-align:center;font-size:.88rem;margin-bottom:.9rem}
+.codebox{background:rgba(255,255,255,.05);border:2px dashed rgba(255,107,0,.5);border-radius:14px;padding:.9rem;text-align:center;margin-bottom:.9rem}
+.codebox .clbl{font-size:.65rem;letter-spacing:3px;color:#888;text-transform:uppercase;margin-bottom:4px}
+.codebox .cval{font-size:2.5rem;font-weight:800;color:var(--gold);letter-spacing:8px}
+.codebox .chint{font-family:'Kalam',cursive;font-size:.8rem;color:#888;margin-top:3px}
+.share-box{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:11px;padding:.65rem .9rem;margin-bottom:.9rem;display:flex;flex-direction:column;gap:8px}
+.share-box .share-lbl{font-size:.65rem;letter-spacing:2px;color:#888;text-transform:uppercase}
+.share-url{font-size:.72rem;color:#ccc;word-break:break-all;background:rgba(0,0,0,.2);border-radius:6px;padding:5px 8px;font-family:monospace;cursor:pointer;transition:background .2s}
+.share-url:hover{background:rgba(255,107,0,.15)}
+.share-btns{display:flex;gap:8px}
+.sbtn{flex:1;padding:7px 10px;border-radius:9px;border:none;cursor:pointer;font-family:'Baloo 2',cursive;font-size:.82rem;font-weight:700;transition:all .15s}
+.sbtn-copy{background:var(--saffron);color:#fff}
+.sbtn-copy:hover{background:#e05a00}
+.sbtn-wa{background:#25D366;color:#fff}
+.sbtn-wa:hover{background:#1da851}
+.copy-done{background:var(--ok) !important}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:8px;margin-bottom:.9rem}
+.ptile{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:11px;padding:8px;text-align:center;animation:popIn .2s}
+.ptile.host{border-color:rgba(255,107,0,.4);background:rgba(255,107,0,.08)}
+.ptile .pav{width:36px;height:36px;border-radius:50%;margin:0 auto 5px;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:800;color:#fff}
+.ptile .pnm{font-size:.75rem;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ptile .pbd{font-size:.58rem;color:var(--gold);margin-top:2px}
+.etile{border:1px dashed rgba(255,255,255,.1);border-radius:11px;min-height:68px;display:flex;align-items:center;justify-content:center}
+.etile p{font-size:.65rem;color:#444}
+.lset{background:rgba(255,255,255,.04);border-radius:11px;padding:.7rem;margin-bottom:.8rem}
+.lset .sr2{display:grid;grid-template-columns:1fr 1fr;gap:10px;align-items:start}
+.lset label{font-size:.65rem;letter-spacing:1px;color:#888;text-transform:uppercase;display:block;margin-bottom:3px}
+.lset select{width:100%;padding:7px 8px;border:1.5px solid rgba(255,255,255,.1);border-radius:8px;font-family:'Baloo 2',cursive;font-size:.82rem;background:rgba(255,255,255,.06);color:#fff;outline:none;cursor:pointer}
+.lset select option{background:#1a1207;color:#fff}
+.lset select option{background:#1a1207;color:#fff}
+.mtag{text-align:center;margin-bottom:.7rem}
+.mtag span{background:rgba(255,107,0,.2);border:1px solid rgba(255,107,0,.4);border-radius:20px;padding:3px 12px;font-size:.78rem;color:var(--saffron);font-weight:600}
+.lstatus{text-align:center;font-size:.8rem;color:#888;margin-bottom:.7rem;font-family:'Kalam',cursive}
+@keyframes popIn{from{transform:scale(.6);opacity:0}to{transform:scale(1);opacity:1}}
+.cstat{font-size:.72rem;padding:3px 10px;border-radius:20px;display:inline-block;margin-bottom:.5rem}
+.cstat.ok{background:rgba(46,125,50,.2);color:#81c784}
+.cstat.err{background:rgba(198,40,40,.2);color:#ef9a9a}
+.cstat.ing{background:rgba(2,136,209,.2);color:#81d4fa}
+
+/* GAME SHARED */
+.sidebar{width:190px;flex-shrink:0;background:var(--ink);color:#fff;display:flex;flex-direction:column;padding:.8rem;overflow-y:auto}
+.slogo{font-size:.9rem;font-weight:800;color:var(--saffron);margin-bottom:.6rem;padding-bottom:.5rem;border-bottom:1px solid rgba(255,255,255,.08)}
+.twrap{display:flex;align-items:center;justify-content:center;margin-bottom:.6rem;position:relative}
+.twrap .tnum{position:absolute;font-size:1.3rem;font-weight:800;color:#fff}
+.rbadge{text-align:center;margin-bottom:.6rem}
+.rbadge .rl{font-size:.58rem;letter-spacing:2px;color:#555;text-transform:uppercase}
+.rbadge .rv{font-size:.95rem;font-weight:800;color:var(--gold)}
+.slist{flex:1;overflow-y:auto}
+.slist .rl{font-size:.58rem;letter-spacing:2px;color:#555;text-transform:uppercase;margin-bottom:5px}
+.srow{display:flex;align-items:center;gap:6px;padding:5px 6px;border-radius:8px;margin-bottom:3px}
+.srow.drawing{background:rgba(255,107,0,.15);border:1px solid rgba(255,107,0,.3)}
+.srow.correct{background:rgba(46,125,50,.18)}
+.sav{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:800;color:#fff;flex-shrink:0}
+.snm{font-size:.75rem;font-weight:600;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.spt{font-size:.7rem;font-weight:800;color:var(--gold)}
+.sic{font-size:.6rem}
+.dtag{background:var(--saffron);color:#fff;padding:2px 10px;border-radius:50px;font-size:.7rem;font-weight:700}
+.ritag{background:#f0f4ff;color:var(--sky);padding:2px 10px;border-radius:50px;font-size:.7rem;font-weight:700}
+.btitle{display:flex;gap:3px;flex-wrap:wrap;align-items:center;flex:1;min-width:0}
+.lbox{width:18px;height:22px;border-bottom:2.5px solid var(--ink);display:flex;align-items:flex-end;justify-content:center;font-size:.8rem;font-weight:800;color:var(--saffron);transition:all .3s;font-family:'Kalam',cursive}
+.lbox.rev{color:var(--ok);border-color:var(--ok)}
+.lbox.sp{width:8px;border-bottom-color:transparent}
+.hright{margin-left:auto;flex-shrink:0}
+.skipbtn{padding:3px 9px;border-radius:8px;background:transparent;border:1.5px solid #ddd;font-family:'Baloo 2',cursive;font-size:.7rem;cursor:pointer;color:#999;white-space:nowrap}
+.skipbtn:hover{border-color:var(--err);color:var(--err)}
+.gzone{padding:6px 10px;background:#fff;border-top:2px solid #f0e8d5}
+.chat{height:70px;overflow-y:auto;margin-bottom:5px;display:flex;flex-direction:column;gap:2px}
+.cm{font-size:.72rem;display:flex;gap:4px}
+.cm .cn{font-weight:700}
+.cm.ok{color:var(--ok);font-weight:600}
+.cm.near{color:#b8860b}
+.cm.sys{color:#aaa;font-style:italic;font-size:.68rem}
+.grow{display:flex;gap:6px}
+.ginp{flex:1;padding:7px 11px;border:2px solid #e8dcc8;border-radius:50px;font-family:'Baloo 2',cursive;font-size:.9rem;outline:none;background:#fdf9f0;transition:border .2s;min-width:0}
+.ginp:focus{border-color:var(--saffron)}
+.ginp:disabled{opacity:.5;cursor:not-allowed}
+.gbtn{padding:7px 14px;border-radius:50px;background:var(--teal);color:#fff;border:none;font-family:'Baloo 2',cursive;font-weight:700;font-size:.88rem;cursor:pointer;box-shadow:0 3px 0 #005f52;white-space:nowrap;flex-shrink:0}
+.gbtn:active{transform:translateY(2px)}
+.gbtn:disabled{opacity:.4;cursor:not-allowed}
+
+/* GAME - DRAW */
+#game{flex-direction:row;height:100dvh;overflow:hidden}
+.gmain{flex:1;display:flex;flex-direction:column;overflow:hidden;background:var(--paper)}
+.dbar{background:linear-gradient(90deg,rgba(255,107,0,.12),rgba(245,166,35,.12));border-bottom:1.5px solid rgba(255,107,0,.2);padding:4px 10px;display:flex;align-items:center;gap:6px;font-size:.75rem;font-weight:600;flex-wrap:wrap}
+.dbar .dtitle{color:var(--saffron);font-size:.88rem;font-weight:800}
+.dsec{font-size:.62rem;color:#aaa;font-family:'Kalam',cursive}
+.gtop{padding:5px 10px;background:#fff;border-bottom:2px solid #f0e8d5;display:flex;align-items:center;gap:6px;flex-wrap:wrap;min-height:36px}
+.czone{flex:1;position:relative;overflow:hidden;display:flex;align-items:stretch;justify-content:center;padding:6px;gap:8px}
+#dc{border-radius:10px;box-shadow:0 3px 16px var(--shadow);background:#fff;cursor:crosshair;touch-action:none;flex:1;min-width:0;max-height:100%}
+#dc.nodraw{cursor:default;pointer-events:none}
+/* Hero panel for draw game */
+.hpanel{width:130px;flex-shrink:0;background:#fff;border-radius:12px;box-shadow:0 3px 16px var(--shadow);padding:.6rem;display:flex;flex-direction:column;align-items:center;gap:4px;align-self:center}
+.draw-hero-bar{display:none;align-items:center;gap:8px;padding:4px 10px;background:#fff4e6;border-bottom:1.5px solid rgba(255,107,0,.15);flex-shrink:0}
+.hav{width:80px;height:80px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2.2rem;border:3px solid #f0e8d5;background:linear-gradient(135deg,#fff4e6,#ffe0b2);overflow:hidden;flex-shrink:0}
+.hav img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+.hnm{font-size:.72rem;font-weight:800;color:var(--ink);text-align:center;line-height:1.3}
+.hlbl{font-size:.56rem;letter-spacing:1.5px;color:#aaa;text-transform:uppercase}
+.wlen{font-size:.65rem;color:#aaa;text-align:center;font-family:'Kalam',cursive;line-height:1.4}
+.hhint{font-size:.62rem;color:#b34400;background:#fff4e6;border-radius:6px;padding:3px 6px;text-align:center;line-height:1.4;width:100%}
+.tbar{padding:5px 10px;background:#fff;border-top:2px solid #f0e8d5;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.tbtn{width:32px;height:32px;border-radius:8px;border:2px solid #e8dcc8;background:#fdf9f0;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.85rem;transition:all .15s;flex-shrink:0}
+.tbtn:hover{border-color:var(--saffron);background:#fff4e6}
+.tbtn.on{border-color:var(--saffron);background:var(--saffron);color:#fff}
+.cbtn{width:26px;height:26px;border-radius:50%;border:3px solid transparent;cursor:pointer;transition:transform .15s;flex-shrink:0}
+.cbtn:hover,.cbtn.on{border-color:var(--ink);transform:scale(1.2)}
+.szsl{width:55px;accent-color:var(--saffron);cursor:pointer}
+.clrbtn{padding:4px 10px;border-radius:8px;background:#fff0f0;border:1.5px solid #ffcdd2;color:var(--err);font-family:'Baloo 2',cursive;font-size:.7rem;font-weight:600;cursor:pointer;margin-left:auto}
+.clrbtn:hover{background:var(--err);color:#fff}
+.undobtn{padding:4px 8px;border-radius:8px;background:#f0f4ff;border:1.5px solid #c5cae9;color:var(--sky);font-family:'Baloo 2',cursive;font-size:.7rem;font-weight:600;cursor:pointer}
+.undobtn:hover{background:var(--sky);color:#fff}
+
+/* GAME - IMG/SONG */
+#igame{flex-direction:row;height:100dvh;overflow:hidden}
+.imain{flex:1;display:flex;flex-direction:column;overflow:hidden;background:var(--paper)}
+.itop{padding:6px 12px;background:#fff;border-bottom:2px solid #f0e8d5;display:flex;align-items:center;gap:8px;flex-wrap:wrap;min-height:36px}
+/* Main content area: 3 clue cards + hero hint side by side */
+.igame-body{flex:1;display:flex;overflow:hidden;gap:0}
+.izone{flex:1;display:flex;align-items:center;justify-content:center;padding:10px;gap:10px;overflow:hidden}
+.icard{background:#fff;border-radius:12px;box-shadow:0 3px 16px var(--shadow);display:flex;flex-direction:column;align-items:center;justify-content:center;flex:1;max-width:200px;padding:10px 8px;gap:6px;min-height:0}
+/* Hero hint panel for img/song game */
+.ihero{width:120px;flex-shrink:0;background:#fff;border-right:none;border-left:2px solid #f0e8d5;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:.7rem .5rem;gap:5px}
+.iherob{display:none} /* shown on mobile below izone */
+
+/* GIF / image cards */
+.gif-wrap{width:100%;min-height:100px;flex:1;display:flex;align-items:center;justify-content:center;border-radius:8px;overflow:hidden;background:#f5f0e8}
+.gif-wrap img{max-width:100%;max-height:130px;border-radius:8px;object-fit:cover;display:block}
+.gif-loading{font-size:2.5rem;animation:pulse2 1s infinite}
+@keyframes pulse2{0%,100%{opacity:1}50%{opacity:.4}}
+.iemoji{font-size:3.5rem;line-height:1;padding:.3rem}
+.ilbl{font-size:.7rem;color:#aaa;font-family:'Kalam',cursive;text-align:center;flex-shrink:0}
+.ibrow{display:flex;gap:4px;justify-content:center;flex-wrap:wrap;padding:6px 12px;background:#fff;border-top:2px solid #f0e8d5}
+
+/* MOBILE OVERRIDES — stack sidebar on top as header bar */
+@media(max-width:640px){
+  #game,#igame{flex-direction:column;height:100dvh}
+  .sidebar{width:100%;flex-direction:row;align-items:center;padding:.4rem .8rem;gap:8px;min-height:0;overflow-x:auto;flex-shrink:0}
+  .slogo{display:none}
+  .twrap{margin:0;flex-shrink:0}
+  .twrap svg{width:44px;height:44px;viewBox:0 0 44 44}
+  .twrap .tnum{font-size:.85rem}
+  .rbadge{margin:0;flex-shrink:0}
+  .rbadge .rv{font-size:.78rem}
+  .slist{display:flex;flex-direction:row;gap:4px;flex:1;overflow-x:auto;align-items:center}
+  .slist .rl{display:none}
+  .srow{padding:3px 6px;min-width:0}
+  .snm{font-size:.68rem;max-width:50px}
+  .spt{font-size:.65rem}
+  .hpanel{display:none} /* hide on mobile */
+  .draw-hero-bar{display:flex !important;} /* show mobile hero bar */
+  .czone{flex-direction:column;padding:4px}
+  #dc{width:100% !important;height:auto !important;max-height:calc(100dvh - 300px)}
+  .tbar{padding:4px 8px;gap:4px;flex-wrap:nowrap;overflow-x:auto}
+  .tbtn{width:34px;height:34px;flex-shrink:0}
+  .cbtn{width:28px;height:28px;flex-shrink:0}
+  .szsl{width:50px}
+  .clrbtn,.undobtn{font-size:.68rem;padding:3px 8px}
+  .chat{height:55px}
+  .ginp{font-size:.85rem;padding:6px 10px}
+  .gbtn{font-size:.82rem;padding:6px 12px}
+  /* img game mobile */
+  .igame-body{flex-direction:column}
+  .izone{padding:6px;gap:6px;flex:1}
+  .icard{max-width:none;max-height:none}
+  .gif-wrap{min-height:80px}
+  .ihero{display:none}
+  .iherob{display:flex;flex-direction:row;align-items:center;gap:8px;padding:5px 12px;background:#fff;border-top:2px solid #f0e8d5;flex-shrink:0}
+  .ibrow{padding:5px 8px}
+  .itop{padding:4px 8px;min-height:32px}
+}
+
+/* ROUND END */
+#rend{align-items:center;justify-content:center;background:var(--ink);padding:2rem;text-align:center}
+.recard{max-width:460px;width:100%}
+.recard h2{font-size:1.7rem;font-weight:800;color:var(--saffron);margin-bottom:.2rem}
+.remov{font-family:'Kalam',cursive;color:#aaa;margin-bottom:1rem;font-size:.9rem}
+.remov span{color:#fff;font-weight:700}
+.stbl{background:rgba(255,255,255,.04);border-radius:14px;overflow:hidden;margin-bottom:1.2rem}
+.sr3{display:flex;align-items:center;gap:10px;padding:8px 12px;border-bottom:1px solid rgba(255,255,255,.04)}
+.sr3:last-child{border:none}
+.sr3 .rk{font-size:.95rem;width:24px}
+.sr3 .ra{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:800;color:#fff}
+.sr3 .rn{flex:1;font-weight:600;color:#fff;text-align:left;font-size:.85rem}
+.sr3 .rd{font-size:.7rem;color:var(--teal)}
+.sr3 .rp{font-size:.88rem;font-weight:800;color:var(--gold)}
+
+/* FINAL */
+#fin{align-items:center;justify-content:center;background:var(--ink);padding:2rem;text-align:center}
+.fcard{max-width:460px;width:100%}
+.trp{font-size:4rem;animation:bounce 1s infinite alternate}
+@keyframes bounce{from{transform:translateY(0)}to{transform:translateY(-10px)}}
+.fcard h2{font-size:1.9rem;font-weight:800;color:var(--gold);margin:.5rem 0}
+.winner{font-size:1.4rem;font-weight:800;color:#fff;margin-bottom:.5rem}
+.conf{display:flex;justify-content:center;gap:5px;margin:1rem 0 1.2rem;flex-wrap:wrap}
+.cd{width:8px;height:8px;border-radius:50%;animation:cf 1.5s infinite}
+@keyframes cf{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-8px) rotate(180deg)}}
+.flash{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:var(--ok);color:#fff;padding:.75rem 2.2rem;border-radius:50px;font-size:1.5rem;font-weight:800;z-index:999;pointer-events:none;animation:fa 1.8s forwards}
+@keyframes fa{0%{opacity:0;transform:translate(-50%,-50%) scale(.5)}20%{opacity:1;transform:translate(-50%,-50%) scale(1.1)}40%{transform:translate(-50%,-50%) scale(1)}75%{opacity:1}100%{opacity:0;transform:translate(-50%,-50%) scale(1.1)}}
+</style>
+</head>
+<body>
+
+<!-- HOME -->
+<div id="home" class="scr on">
+  <div class="logo">
+    <h1>🎬 Tollywood Party</h1>
+    <p>Draw · Guess · Play Together!</p>
+    <span class="badge">🇮🇳 Telugu Games · Online Multiplayer</span>
+  </div>
+  <div class="howto">
+    <strong>How to play:</strong> Host opens this page → Creates a room → Shares the <strong>4-letter code</strong> with friends → Friends open this page on their devices → Enter the code to join → Host clicks Start!
+  </div>
+  <div style="font-size:.78rem;color:#7a6a50;margin-bottom:.5rem;font-weight:600;text-transform:uppercase;letter-spacing:1px">Choose Game Mode</div>
+  <div class="mrow">
+    <button class="mbtn sel" id="mb-draw" onclick="pickMode('draw')"><span class="mi">🎨</span>Doodle &amp; Guess</button>
+    <button class="mbtn" id="mb-img" onclick="pickMode('img')"><span class="mi">🖼️</span>3 Pics Movie</button>
+    <button class="mbtn" id="mb-song" onclick="pickMode('song')"><span class="mi">🎵</span>3 Pics Song</button>
+  </div>
+  <div class="hgrid">
+    <div class="card">
+      <h2>🎮 Host a Room</h2>
+      <input class="inp" id="hname" placeholder="Your name..." maxlength="16">
+      <select class="inp" id="htime">
+        <option value="60">60 sec per turn</option>
+        <option value="90" selected>90 sec per turn</option>
+        <option value="120">120 sec per turn</option>
+      </select>
+      <select class="inp" id="hrounds">
+        <option value="2">2 rounds</option>
+        <option value="3" selected>3 rounds</option>
+        <option value="5">5 rounds</option>
+        <option value="7">7 rounds</option>
+        <option value="10">10 rounds</option>
+      </select>
+      <button class="btn btnp" id="hostBtn" onclick="hostRoom()">Create Room 🚀</button>
+      <div class="pstat" id="hostStat"></div>
+    </div>
+    <div class="card">
+      <h2>🔗 Join a Room</h2>
+      <input class="inp" id="jname" placeholder="Your name..." maxlength="16">
+      <input class="inp" id="jcode" placeholder="Room code..." maxlength="6"
+        style="text-transform:uppercase;font-size:1.3rem;letter-spacing:4px;text-align:center"
+        oninput="this.value=this.value.toUpperCase()">
+      <button class="btn btns" id="joinBtn" onclick="joinRoom()">Join Room →</button>
+      <div class="jerr" id="joinErr"></div>
+      <div id="linkJoinHint" style="display:none;text-align:center;font-size:.75rem;color:var(--ok);margin-top:4px;font-family:'Kalam',cursive">✓ Room code filled from invite link!</div>
+    </div>
+  </div>
+</div>
+
+<!-- LOBBY -->
+<div id="lobby" class="scr">
+  <div class="linner">
+    <div style="text-align:center;margin-bottom:.5rem"><span class="cstat ing" id="cstat">Connecting...</span></div>
+    <h2>🎬 Game Lobby</h2>
+    <div class="lsub" id="lsub">Waiting...</div>
+    <div class="mtag"><span id="modeTag">🎨 Doodle &amp; Guess</span></div>
+    <div class="codebox">
+      <div class="clbl">Room Code</div>
+      <div class="cval" id="codeDisp">----</div>
+      <div class="chint">Share the link below — friends join with one tap!</div>
+    </div>
+    <div class="share-box" id="shareBox">
+      <div class="share-lbl">🔗 Invite Link — tap to copy</div>
+      <div class="share-url" id="shareUrl" onclick="copyLink()">Generating link...</div>
+      <div class="share-btns">
+        <button class="sbtn sbtn-copy" id="copyBtn" onclick="copyLink()">📋 Copy Link</button>
+        <button class="sbtn sbtn-wa" onclick="shareWhatsApp()">💬 WhatsApp</button>
+      </div>
+    </div>
+    <div class="pgrid" id="pgrid"></div>
+    <div class="lset" id="lset" style="display:none">
+      <div class="sr2">
+        <div><label>Turn Time</label>
+          <select id="stime" onchange="hostBroadcastSettings()">
+            <option value="60">60 sec</option><option value="90" selected>90 sec</option><option value="120">120 sec</option>
+          </select></div>
+        <div><label>Rounds</label>
+          <select id="srounds" onchange="hostBroadcastSettings()">
+            <option value="2">2</option><option value="3" selected>3</option><option value="5">5</option><option value="7">7</option><option value="10">10</option>
+          </select></div>
+        <div style="grid-column:1/-1"><label>Clue Style (3 Pics &amp; Draw Hint)</label>
+          <select id="sclue" onchange="hostBroadcastSettings()">
+            <option value="gif">🎬 Animated GIFs</option>
+            <option value="emoji" selected>😊 Emojis</option>
+            <option value="image">🖼️ Static Images</option>
+          </select></div>
+      </div>
+    </div>
+    <div class="lstatus" id="lstatus">Waiting for players...</div>
+    <button class="btn btnp" id="startBtn" onclick="startGame()" disabled>▶ Start Game!</button>
+    <button class="btn btns" onclick="leaveLobby()" style="margin-top:8px">← Leave</button>
+  </div>
+</div>
+
+<!-- DRAW GAME -->
+<div id="game" class="scr">
+  <div class="sidebar">
+    <div class="slogo">🎬 Tollywood</div>
+    <div class="twrap">
+      <svg width="70" height="70" viewBox="0 0 70 70">
+        <circle cx="35" cy="35" r="29" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="6"/>
+        <circle id="tc" cx="35" cy="35" r="29" fill="none" stroke="#ff6b00" stroke-width="6"
+          stroke-dasharray="182" stroke-dashoffset="0" stroke-linecap="round"
+          style="transform:rotate(-90deg);transform-origin:35px 35px;transition:stroke-dashoffset 1s linear,stroke .5s"/>
+      </svg>
+      <div class="tnum" id="tnum">90</div>
+    </div>
+    <div class="rbadge"><div class="rl">Round</div><div class="rv" id="rdsp">1/3</div></div>
+    <div class="slist"><div class="rl">Scores</div><div id="slist"></div></div>
+  </div>
+  <div class="gmain">
+    <div id="dbar" class="dbar" style="display:none">
+      <span class="dsec">🔒 Only you →</span>
+      <span class="dtitle" id="dtitle"></span>
+      <span class="dsec">Draw! No writing!</span>
+    </div>
+    <div class="gtop">
+      <div class="dtag" id="dtag">🖌️ Drawing</div>
+      <div class="ritag" id="ritag">Turn 1</div>
+      <div class="btitle" id="btitle"></div>
+      <div class="hright">
+        <button class="skipbtn" id="skipBtn" onclick="skipTurn()" style="display:none">⏭ Skip</button>
+      </div>
+    </div>
+    <!-- Mobile hero hint bar for draw game (hidden on desktop) -->
+    <div class="draw-hero-bar" id="drawHeroBar">
+      <div class="hav" style="width:36px;height:36px;font-size:1.3rem;flex-shrink:0" id="dhavb">🎭</div>
+      <div style="min-width:0;flex:1">
+        <div style="font-size:.75rem;font-weight:800;color:var(--ink)" id="dhnmb">—</div>
+        <div style="font-size:.65rem;color:#b34400;font-family:'Kalam',cursive" id="dhhintb"></div>
+      </div>
+      <div style="font-size:.65rem;color:#aaa;font-family:'Kalam',cursive;flex-shrink:0" id="dwlenb"></div>
+    </div>
+    <div class="czone">
+      <canvas id="dc" width="600" height="370"></canvas>
+      <div class="hpanel">
+        <div class="hlbl">Hero / Lead</div>
+        <div class="hav" id="hav">🎭</div>
+        <div class="hnm" id="hnm">—</div>
+        <div style="font-size:.6rem;background:#fff4e6;color:#b34400;padding:2px 8px;border-radius:10px;font-weight:600">TOLLYWOOD</div>
+        <div class="wlen" id="wlen"></div>
+        <div class="hhint" id="hhint"></div>
+      </div>
+    </div>
+    <div class="tbar" id="tbar">
+      <div style="display:flex;gap:4px">
+        <button class="tbtn on" id="tpen" onclick="setTool('pen')">✏️</button>
+        <button class="tbtn" id="teras" onclick="setTool('eraser')">🧹</button>
+      </div>
+      <div id="pal" style="display:flex;gap:4px"></div>
+      <input type="range" class="szsl" id="szsl" min="2" max="28" value="5">
+      <button class="undobtn" onclick="undoStroke()">↩</button>
+      <button class="clrbtn" onclick="clearCanvas()">🗑</button>
+    </div>
+    <div class="gzone">
+      <div class="chat" id="gchat"></div>
+      <div class="grow">
+        <input class="ginp" id="ginp" placeholder="Type your guess..." maxlength="80" onkeydown="if(event.key==='Enter')submitGuess()">
+        <button class="gbtn" id="gbtn" onclick="submitGuess()">Guess!</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- IMG/SONG GAME -->
+<div id="igame" class="scr">
+  <div class="sidebar">
+    <div class="slogo" id="igLogo">🖼️ 3 Pics</div>
+    <div class="twrap">
+      <svg width="70" height="70" viewBox="0 0 70 70">
+        <circle cx="35" cy="35" r="29" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="6"/>
+        <circle id="itc" cx="35" cy="35" r="29" fill="none" stroke="#ff6b00" stroke-width="6"
+          stroke-dasharray="182" stroke-dashoffset="0" stroke-linecap="round"
+          style="transform:rotate(-90deg);transform-origin:35px 35px;transition:stroke-dashoffset 1s linear,stroke .5s"/>
+      </svg>
+      <div class="tnum" id="itnum">90</div>
+    </div>
+    <div class="rbadge"><div class="rl">Round</div><div class="rv" id="irdsp">1/3</div></div>
+    <div class="slist"><div class="rl">Scores</div><div id="islist"></div></div>
+  </div>
+  <div class="imain">
+    <div class="itop">
+      <div class="ritag" id="iritag">Turn 1</div>
+      <div style="font-size:.75rem;color:#888;font-family:'Kalam',cursive" id="igameHint">Guess from the 3 clues!</div>
+      <div class="hright"><button class="skipbtn" id="iskipBtn" onclick="skipTurn()" style="display:none">⏭ Skip</button></div>
+    </div>
+    <!-- Main content: 3 clues + hero hint panel side by side -->
+    <div class="igame-body">
+      <div class="izone" id="izone"></div>
+      <!-- Hero hint panel (desktop: right sidebar, mobile: hidden, shows in iherob below) -->
+      <div class="ihero" id="ihero">
+        <div class="hlbl">Hero / Lead</div>
+        <div class="hav" id="ihav">🎭</div>
+        <div class="hnm" id="ihnm">—</div>
+        <div style="font-size:.6rem;background:#fff4e6;color:#b34400;padding:2px 8px;border-radius:10px;font-weight:600" id="ilangTag">TOLLYWOOD</div>
+        <div class="wlen" id="iwlen"></div>
+        <div class="hhint" id="ihhint"></div>
+      </div>
+    </div>
+    <!-- Mobile hero hint bar (hidden on desktop) -->
+    <div class="iherob" id="iherob">
+      <div class="hav" style="width:44px;height:44px;font-size:1.5rem;flex-shrink:0" id="ihavb">🎭</div>
+      <div style="min-width:0">
+        <div style="font-size:.75rem;font-weight:800;color:var(--ink)" id="ihnmb">—</div>
+        <div style="font-size:.68rem;color:#b34400;font-family:'Kalam',cursive" id="ihhintb"></div>
+      </div>
+      <div style="margin-left:auto;font-size:.68rem;color:#aaa;font-family:'Kalam',cursive" id="iwlenb"></div>
+    </div>
+    <div class="ibrow" id="ibrow"></div>
+    <div class="gzone">
+      <div class="chat" id="ichat"></div>
+      <div class="grow">
+        <input class="ginp" id="iginp" placeholder="Type your guess..." maxlength="80" onkeydown="if(event.key==='Enter')submitGuess()">
+        <button class="gbtn" onclick="submitGuess()">Guess!</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ROUND END -->
+<div id="rend" class="scr">
+  <div class="recard">
+    <h2 id="retitle">Turn Over!</h2>
+    <div class="remov">Answer: <span id="remov"></span></div>
+    <div class="stbl" id="rescores"></div>
+    <button class="btn btnp" id="nextBtn" style="max-width:220px;margin:0 auto">Next →</button>
+  </div>
+</div>
+
+<!-- FINAL -->
+<div id="fin" class="scr">
+  <div class="fcard">
+    <div class="trp">🏆</div>
+    <h2>Game Over!</h2>
+    <div class="winner" id="fwinner"></div>
+    <div class="conf" id="fconf"></div>
+    <div class="stbl" id="fscores"></div>
+    <button class="btn btnp" onclick="restartGame()" style="max-width:220px;margin:1rem auto 0">🎬 Play Again!</button>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════
+// DATA — 301 movies + 300 songs
+// ═══════════════════════════════════════════
+const TELUGU_MOVIES = [
+  // hero, emoji, 3 image-clue emojis, hint
+  {t:"Baahubali",h:"Prabhas",e:"⚔️",imgs:["👑","🏔️","⚔️"],hint:"Epic warrior reclaims his throne"},
+  {t:"RRR",h:"Ram Charan & NTR",e:"🔥",imgs:["🪃","🐅","🔥"],hint:"Two freedom fighters in British era"},
+  {t:"Pushpa",h:"Allu Arjun",e:"🌹",imgs:["🌹","🪵","🚛"],hint:"Sandalwood smuggler rises to power"},
+  {t:"Magadheera",h:"Ram Charan",e:"🐉",imgs:["🐉","🏹","♻️"],hint:"Warrior reincarnated 400 years later"},
+  {t:"Pokiri",h:"Mahesh Babu",e:"🕵️",imgs:["🕵️","🔫","🃏"],hint:"Cop undercover in crime gang"},
+  {t:"Arjun Reddy",h:"Vijay Deverakonda",e:"💔",imgs:["💔","🍺","🩺"],hint:"Doctor spirals after heartbreak"},
+  {t:"Eega",h:"Nani",e:"🦟",imgs:["🦟","💥","👁️"],hint:"Man reincarnated as a housefly"},
+  {t:"Temper",h:"NTR Jr",e:"👮",imgs:["👮","🚗","💊"],hint:"Corrupt cop reforms after accident"},
+  {t:"Srimanthudu",h:"Mahesh Babu",e:"💰",imgs:["💰","🏘️","🌾"],hint:"Rich man develops a poor village"},
+  {t:"Race Gurram",h:"Allu Arjun",e:"🏎️",imgs:["🏎️","🤣","💪"],hint:"Carefree brother fights a don"},
+  {t:"Julayi",h:"Allu Arjun",e:"💻",imgs:["💻","🏦","🕵️"],hint:"Tech employee framed for cyber crime"},
+  {t:"Dhruva",h:"Ram Charan",e:"🎯",imgs:["🎯","🦾","🏥"],hint:"Elite cop takes down organ harvester"},
+  {t:"Bharat Ane Nenu",h:"Mahesh Babu",e:"🏛️",imgs:["🏛️","👔","⚖️"],hint:"Young man becomes AP CM"},
+  {t:"Maharshi",h:"Mahesh Babu",e:"🌾",imgs:["🌾","💼","✈️"],hint:"NRI returns to help farmers"},
+  {t:"Sarileru Neekevvaru",h:"Mahesh Babu",e:"🎖️",imgs:["🎖️","🔫","👨‍👧"],hint:"Army officer defends family"},
+  {t:"Akhil",h:"Akhil Akkineni",e:"⏱️",imgs:["⏱️","💊","🏋️"],hint:"Man gains immortality through locket"},
+  {t:"Gopala Gopala",h:"Venkatesh",e:"🙏",imgs:["🙏","☁️","🧘"],hint:"God comes to earth for devotee"},
+  {t:"Legend",h:"Balakrishna",e:"🏆",imgs:["🏆","🏠","👊"],hint:"Man runs hostel and fights don"},
+  {t:"Gautamiputra Satakarni",h:"Balakrishna",e:"👑",imgs:["👑","🏺","⚔️"],hint:"Biopic of 1st century king"},
+  {t:"Simha",h:"Balakrishna",e:"🦁",imgs:["🦁","💊","✈️"],hint:"Man fights drug mafia to save daughters"},
+  {t:"Gabbar Singh",h:"Pawan Kalyan",e:"👮",imgs:["👮","🐴","🌾"],hint:"Honest cop cleans corrupt town"},
+  {t:"Attarintiki Daredi",h:"Pawan Kalyan",e:"🏠",imgs:["🏠","💐","👴"],hint:"Man helps estranged mother reconnect"},
+  {t:"Janatha Garage",h:"NTR Jr",e:"🌳",imgs:["🌳","🚗","🏭"],hint:"Environmentalist fights land grabbers"},
+  {t:"Nannaku Prematho",h:"NTR Jr",e:"💼",imgs:["💼","🇬🇧","😡"],hint:"Son takes revenge for humiliated father"},
+  {t:"Aravinda Sametha",h:"NTR Jr",e:"🔫",imgs:["🔫","🌾","🤝"],hint:"Faction leader tries to give up violence"},
+  {t:"Jai Lava Kusa",h:"NTR Jr",e:"👬",imgs:["👬","🎭","🔀"],hint:"Triplets separated at birth"},
+  {t:"Vinaya Vidheya Rama",h:"Ram Charan",e:"👊",imgs:["👊","👬","🔥"],hint:"Man protects brothers relentlessly"},
+  {t:"Orange",h:"Ram Charan",e:"🍊",imgs:["🍊","💑","🎤"],hint:"Man realises love after marriage"},
+  {t:"Naayak",h:"Ram Charan",e:"🏛️",imgs:["🏛️","🧹","💡"],hint:"Man becomes CM to fight corruption"},
+  {t:"Bunny",h:"Allu Arjun",e:"🐇",imgs:["🐇","🏍️","😜"],hint:"Carefree boy falls for serious girl"},
+  {t:"Desamuduru",h:"Allu Arjun",e:"🗺️",imgs:["🗺️","🚂","💃"],hint:"Man searches for girl across India"},
+  {t:"Arya",h:"Allu Arjun",e:"🌹",imgs:["🌹","🤪","📚"],hint:"Eccentric boy pursues girl relentlessly"},
+  {t:"Happy",h:"Allu Arjun",e:"😊",imgs:["😊","🎓","💘"],hint:"College boy fights for his love"},
+  {t:"Badrinath",h:"Allu Arjun",e:"🏔️",imgs:["🏔️","🛕","⚔️"],hint:"Temple guardian falls for girl"},
+  {t:"Iddarammayilatho",h:"Allu Arjun",e:"👫",imgs:["👫","🏋️","🎸"],hint:"Man pretends to love two girls"},
+  {t:"Vakeel Saab",h:"Pawan Kalyan",e:"⚖️",imgs:["⚖️","👩","🏛️"],hint:"Retired lawyer defends four girls"},
+  {t:"Agnyaathavaasi",h:"Pawan Kalyan",e:"🕵️",imgs:["🕵️","🔍","💣"],hint:"Man uncovers truth about identity"},
+  {t:"Sardaar Gabbar Singh",h:"Pawan Kalyan",e:"🎖️",imgs:["🎖️","🐴","🌾"],hint:"Police officer fights village villains"},
+  {t:"Okkadu",h:"Mahesh Babu",e:"🥋",imgs:["🥋","🏃","🌺"],hint:"Kabaddi player protects a stranger"},
+  {t:"Ala Vaikunthapurramuloo",h:"Allu Arjun",e:"🔄",imgs:["🔄","👶","💰"],hint:"Wrong baby switched at birth"},
+  {t:"Mahanati",h:"Keerthy Suresh",e:"🎬",imgs:["🎬","🎭","💔"],hint:"Biopic of legendary actress Savitri"},
+  {t:"Jersey",h:"Nani",e:"🏏",imgs:["🏏","👕","👦"],hint:"Retired cricketer returns for son"},
+  {t:"Pellichoopulu",h:"Vijay Deverakonda",e:"💍",imgs:["💍","🚌","😂"],hint:"Arranged marriage leads to love"},
+  {t:"Geetha Govindam",h:"Vijay Deverakonda",e:"🚌",imgs:["🚌","😳","💃"],hint:"Boy accidentally touches girl on bus"},
+  {t:"Dear Comrade",h:"Vijay Deverakonda",e:"✊",imgs:["✊","🎓","🎾"],hint:"Student leader falls in love"},
+  {t:"Taxiwaala",h:"Vijay Deverakonda",e:"🚕",imgs:["🚕","👻","🔑"],hint:"Taxi driver haunted by ghost car"},
+  {t:"Fidaa",h:"Varun Tej",e:"💃",imgs:["💃","🌾","💘"],hint:"Telangana girl wins city boy heart"},
+  {t:"Uppena",h:"Panja Vaisshnav Tej",e:"🌊",imgs:["🌊","🎣","💔"],hint:"Love story across caste lines by sea"},
+  {t:"Shyam Singha Roy",h:"Nani",e:"♻️",imgs:["♻️","🎬","🌺"],hint:"Director discovers past life in Bengal"},
+  {t:"Ante Sundaraniki",h:"Nani",e:"💑",imgs:["💑","⛪","🕌"],hint:"Hindu-Christian families oppose love"},
+  {t:"Rangasthalam",h:"Ram Charan",e:"🔔",imgs:["🔔","🌾","👂"],hint:"Deaf man fights corrupt president"},
+  {t:"Vikramarkudu",h:"Ravi Teja",e:"👮",imgs:["👮","🔀","🌾"],hint:"Cop and criminal swap lives"},
+  {t:"Kick",h:"Ravi Teja",e:"🦵",imgs:["🦵","😎","🏆"],hint:"Thrill seeker saves village"},
+  {t:"Wanted",h:"Ravi Teja",e:"🎯",imgs:["🎯","🔫","💃"],hint:"Undercover cop falls for gangster girl"},
+  {t:"Mass",h:"Nagarjuna",e:"💥",imgs:["💥","🏘️","🌾"],hint:"Benevolent don defends village"},
+  {t:"Manmadhudu",h:"Nagarjuna",e:"💘",imgs:["💘","❌","😤"],hint:"Anti-love bachelor falls for woman"},
+  {t:"Bommarillu",h:"Siddharth",e:"🏠",imgs:["🏠","👨‍👦","🕊️"],hint:"Overprotected son craves independence"},
+  {t:"Ishq",h:"Nikhil Siddharth",e:"🎓",imgs:["🎓","🚗","😱"],hint:"Fun trip turns into deadly trap"},
+  {t:"Santosham",h:"Nagarjuna",e:"🏡",imgs:["🏡","👭","💔"],hint:"Man loves his best friends wife"},
+  {t:"Swamy Ra Ra",h:"Nikhil Siddharth",e:"🏃",imgs:["🏃","🔓","💍"],hint:"Con man and girl flee criminals"},
+  {t:"Karthikeya",h:"Nikhil Siddharth",e:"🔱",imgs:["🔱","🏛️","🔍"],hint:"Doctor solves mystery at ancient temple"},
+  {t:"Nuvvostanante Nenoddantana",h:"Siddharth",e:"💌",imgs:["💌","👨‍👧","🤝"],hint:"Man must win over girl's strict father"},
+  {t:"Dookudu",h:"Mahesh Babu",e:"🎯",imgs:["🎯","👮","👨‍👦"],hint:"Cop protects gangster to save father"},
+  {t:"Seethamma Vakitlo Sirimalle Chettu",h:"Mahesh Babu",e:"🌸",imgs:["🌸","👬","🏠"],hint:"Brothers compete for parents attention"},
+  {t:"1 Nenokkadine",h:"Mahesh Babu",e:"🧠",imgs:["🧠","🎸","🔍"],hint:"Rockstar searches for parents killers"},
+  {t:"Spyder",h:"Mahesh Babu",e:"🕸️",imgs:["🕸️","😢","🔍"],hint:"CBI agent feels others pain physically"},
+  {t:"Khaleja",h:"Mahesh Babu",e:"🚕",imgs:["🚕","☠️","🌾"],hint:"Taxi driver in a cursed village"},
+  {t:"Business Man",h:"Mahesh Babu",e:"💼",imgs:["💼","💰","❤️"],hint:"Crime lord son turns over new leaf"},
+  {t:"Devadas",h:"Nagarjuna",e:"🍺",imgs:["🍺","💔","🏥"],hint:"Heartbroken rich man helps poor doctor"},
+  {t:"Oopiri",h:"Nagarjuna",e:"🦽",imgs:["🦽","😂","🤝"],hint:"Paralyzed man bonds with caretaker"},
+  {t:"Sankranthiki Vasthunam",h:"Venkatesh",e:"🎊",imgs:["🎊","🕵️","💃"],hint:"CBI officer investigates at sankranti"},
+  {t:"F3 Fun and Frustration",h:"Venkatesh",e:"😅",imgs:["😅","💰","👰"],hint:"Two men marry rich girls for money"},
+  {t:"Drushyam",h:"Venkatesh",e:"📽️",imgs:["📽️","🎬","🚔"],hint:"Movie-obsessed man hides dark secret"},
+  {t:"Brochevarevarura",h:"Priyadarshi Pulikonda",e:"🏫",imgs:["🏫","🧠","🃏"],hint:"Students in philosophical battle with professor"},
+  {t:"Seetimaarr",h:"Gopichand Malineni",e:"🏐",imgs:["🏐","👩","❤️"],hint:"Rival kabaddi teams coach love story"},
+  {t:"Gang Leader",h:"Nani",e:"🎭",imgs:["🎭","👩‍👩‍👧","✊"],hint:"Writer helps five women take revenge"},
+  {t:"V",h:"Nani",e:"🖐️",imgs:["🖐️","🔪","👮"],hint:"Serial killer challenges a top cop"},
+  {t:"Dasara",h:"Nani",e:"⛏️",imgs:["⛏️","🌾","💔"],hint:"Coal mine worker fights for love"},
+  {t:"Hi Nanna",h:"Nani",e:"👨‍👧",imgs:["👨‍👧","🎨","❓"],hint:"Single father hides truth from daughter"},
+  {t:"Saripodhaa Sanivaaram",h:"Nani",e:"😤",imgs:["😤","📅","✊"],hint:"Man takes revenge only on Saturdays"},
+  {t:"C/O Kancharapalem",h:"Venkatesh Maha",e:"🏘️",imgs:["🏘️","💕","🌳"],hint:"Four love stories in one small town"},
+  {t:"Colour Photo",h:"Suhas",e:"📷",imgs:["📷","🎨","💔"],hint:"Inter-caste love in 1990s Andhra"},
+  {t:"Palasa 1978",h:"Rakshith",e:"🌾",imgs:["🌾","✊","🔪"],hint:"Caste war erupts in a small town"},
+  {t:"Evaru",h:"Adivi Sesh",e:"🔍",imgs:["🔍","🔫","❓"],hint:"Cop and suspect each claim innocence"},
+  {t:"HIT",h:"Vishwak Sen",e:"🔎",imgs:["🔎","🔐","😰"],hint:"Cop investigates girlfriend's case"},
+  {t:"Mallesham",h:"Priyadarshi Pulikonda",e:"🪡",imgs:["🪡","🏺","💡"],hint:"Weaver inventor saves his mother's pain"},
+  {t:"Virata Parvam",h:"Rana Daggubati",e:"✊",imgs:["✊","🌳","✍️"],hint:"Woman falls for Naxal leader's poetry"},
+  {t:"Naandhi",h:"Allari Naresh",e:"⚖️",imgs:["⚖️","🚔","😤"],hint:"Innocent man battles corrupt police"},
+  {t:"Kshanam",h:"Adivi Sesh",e:"👧",imgs:["👧","❓","🔦"],hint:"Man searches for missing daughter"},
+  {t:"Falaknuma Das",h:"Vishwak Sen",e:"🔪",imgs:["🔪","🕌","✊"],hint:"Old city boy avenges friend's death"},
+  {t:"Zombie Reddy",h:"Teja Sajja",e:"🧟",imgs:["🧟","🌾","🔫"],hint:"Zombies attack Rayalaseema village"},
+  {t:"Agent Sai Srinivasa Athreya",h:"Naveen Polishetty",e:"🕵️",imgs:["🕵️","🔍","😅"],hint:"Unemployed detective solves murder"},
+  {t:"Pushpaka Vimanam",h:"Anand Deverakonda",e:"✈️",imgs:["✈️","📷","😈"],hint:"Man tries to trap wife's secret lover"},
+  {t:"Karthikeya 2",h:"Nikhil Siddharth",e:"🔱",imgs:["🔱","🌊","🏺"],hint:"Man searches for secret of immortality"},
+  {t:"Check",h:"Nithiin",e:"♟️",imgs:["♟️","⛓️","🏆"],hint:"Death row prisoner becomes chess champion"},
+  {t:"Maestro",h:"Nithiin",e:"🎵",imgs:["🎵","👁️","🔍"],hint:"Blind musician suspected of murder"},
+  {t:"Wild Dog",h:"Nagarjuna",e:"🐕",imgs:["🐕","💣","🕵️"],hint:"NIA officer hunts serial bomber"},
+  {t:"Most Eligible Bachelor",h:"Akhil Akkineni",e:"💍",imgs:["💍","❌","💘"],hint:"Commitment-phobic man falls hard"},
+  {t:"Brochevarevaru Ra",h:"Sri Vishnu",e:"🃏",imgs:["🃏","🎓","🏆"],hint:"Genius vs genius in college duel"},
+  {t:"Middle Class Melodies",h:"Anand Deverakonda",e:"🍳",imgs:["🍳","🏙️","💰"],hint:"Small town boy opens restaurant in city"},
+  {t:"Uma Maheshwara Ugra Roopasya",h:"Satyadev Kancharana",e:"💪",imgs:["💪","😤","😡"],hint:"Meek man transforms after humiliation"},
+  {t:"Oke Oka Jeevitham",h:"Sharwanand",e:"⏰",imgs:["⏰","👨‍👧","😢"],hint:"Man travels back to meet late father"},
+  {t:"Ichata Vahanamulu Nilupuradu",h:"Suhas",e:"🚗",imgs:["🚗","🅿️","😤"],hint:"Two stories connected by parking dispute"},
+  {t:"Skanda",h:"Ram Pothineni",e:"🪃",imgs:["🪃","👨‍👦","✊"],hint:"Son protects his wronged father"},
+  {t:"Double iSmart",h:"Ram Pothineni",e:"🤖",imgs:["🤖","💉","💣"],hint:"Gangster gets criminal data chip in brain"},
+  {t:"Ramarao On Duty",h:"Ravi Teja",e:"📋",imgs:["📋","🌾","🔍"],hint:"Revenue officer fights land scam"},
+  {t:"Waltair Veerayya",h:"Chiranjeevi",e:"🚢",imgs:["🚢","💊","✊"],hint:"Port smuggler protects innocent man"},
+  {t:"Bhola Shankar",h:"Chiranjeevi",e:"👊",imgs:["👊","👩","🔫"],hint:"Overprotective brother fights don"},
+  {t:"Khaidi No 150",h:"Chiranjeevi",e:"⛓️",imgs:["⛓️","🌾","💊"],hint:"Man fights corrupt politician"},
+  {t:"Sye Raa Narasimha Reddy",h:"Chiranjeevi",e:"⚔️",imgs:["⚔️","🇮🇳","🔥"],hint:"First freedom fighter against British"},
+  {t:"GodFather",h:"Chiranjeevi",e:"🎩",imgs:["🎩","🏛️","🔫"],hint:"Political thriller following godfather"},
+  {t:"Bimbisara",h:"Nandamuri Kalyan Ram",e:"👑",imgs:["👑","⏰","🏥"],hint:"Ancient king time travels to modern era"},
+  {t:"Major",h:"Adivi Sesh",e:"🎖️",imgs:["🎖️","💣","🏨"],hint:"Biopic of 26/11 martyr Unnikrishnan"},
+  {t:"Hanu Man",h:"Teja Sajja",e:"🙏",imgs:["🙏","💎","🦸"],hint:"Ordinary man gets divine powers"},
+  {t:"Devara",h:"NTR Jr",e:"🌊",imgs:["🌊","😱","🔫"],hint:"Fearsome don legacy haunts next generation"},
+  {t:"Kalki 2898 AD",h:"Prabhas",e:"🔮",imgs:["🔮","🏙️","🛡️"],hint:"Futuristic avatar prophecy in 2898 AD"},
+  {t:"Pushpa 2 The Rule",h:"Allu Arjun",e:"🌹",imgs:["🌹","👊","🚔"],hint:"Smuggler takes on the entire system"},
+  {t:"Kushi",h:"Vijay Deverakonda",e:"😍",imgs:["😍","🚂","💑"],hint:"Couple falls in love during train journey"},
+  {t:"Guntur Kaaram",h:"Mahesh Babu",e:"🌶️",imgs:["🌶️","👩","❤️"],hint:"Son reconnects with estranged mother"},
+  {t:"Family Star",h:"Vijay Deverakonda",e:"⭐",imgs:["⭐","🏠","💰"],hint:"Middle class man vs rich girl worldviews"},
+  {t:"Anni Manchi Sakunamule",h:"Santosh Sobhan",e:"🐦",imgs:["🐦","💕","🌺"],hint:"Love story with bird omens and fate"},
+  {t:"Orey Bujjiga",h:"Raj Tarun",e:"👨‍👩‍👧",imgs:["👨‍👩‍👧","🎭","😂"],hint:"Man pretends to be a girl's brother"},
+  {t:"Malli Raava",h:"Sumanth",e:"💌",imgs:["💌","✈️","💔"],hint:"Old flames reunite after decades"},
+  {t:"Aranya",h:"Rana Daggubati",e:"🐘",imgs:["🐘","🌳","🔫"],hint:"Forest officer protects elephants"},
+  {t:"Bheeshma",h:"Nithiin",e:"🌿",imgs:["🌿","💊","✊"],hint:"Organic farmer vs pesticide company"},
+  {t:"Kanche",h:"Varun Tej",e:"⚔️",imgs:["⚔️","💑","🏹"],hint:"WWII soldier and a forbidden love"},
+  {t:"Awe",h:"Nithya Menen",e:"🧩",imgs:["🧩","🍽️","🔀"],hint:"Five strangers meet at a restaurant"},
+  {t:"Mathu Vadalara",h:"Sri Simha Koduri",e:"🎭",imgs:["🎭","🔍","😂"],hint:"Two actors caught in real crime"},
+  {t:"Pressure Cooker",h:"Sai Ronak",e:"🍲",imgs:["🍲","🏆","👨‍🍳"],hint:"Young cook dreams of winning competition"},
+  {t:"Disco Raja",h:"Ravi Teja",e:"🕺",imgs:["🕺","🧊","🧠"],hint:"Man revived from cryosleep has no memory"},
+  {t:"Khiladi",h:"Ravi Teja",e:"🎮",imgs:["🎮","🔀","😈"],hint:"Two men with same face swap by accident"},
+  {t:"Bheeshma Parvam",h:"Mammootty",e:"🔱",imgs:["🔱","🏘️","🔫"],hint:"Legendary criminal returns to settle scores"},
+  {t:"Tuck Jagadish",h:"Nani",e:"🌾",imgs:["🌾","🏠","⚖️"],hint:"Man returns home to save family farmland"},
+  {t:"Nenu Local",h:"Nani",e:"🚌",imgs:["🚌","🎓","💘"],hint:"Bus driver falls for college girl"},
+  {t:"Manmadhudu 2",h:"Nagarjuna",e:"💝",imgs:["💝","👴","💃"],hint:"Middle aged man finds love again"},
+  {t:"Devadas",h:"Nagarjuna",e:"🍺",imgs:["🍺","🌹","💊"],hint:"Heartbroken man helps poor doctor"},
+  {t:"Maaya",h:"Harshvardhan Rane",e:"👻",imgs:["👻","🏚️","💑"],hint:"Couple moves into a haunted house"},
+  {t:"Abhinetri",h:"Tamannah Bhatia",e:"🎬",imgs:["🎬","💃","👻"],hint:"Actress haunted by dancing spirit"},
+  {t:"Raju Gari Gadhi",h:"Ashwin Babu",e:"🏚️",imgs:["🏚️","👻","🔦"],hint:"Man haunted in ancestral bungalow"},
+  {t:"Chandramukhi",h:"Rajinikanth",e:"🕯️",imgs:["🕯️","🏰","💃"],hint:"Psychiatrist investigates haunted palace"},
+  {t:"Anukokunda Oka Roju",h:"Charmi Kaur",e:"😱",imgs:["😱","📅","🔍"],hint:"Girl wakes with no memory of yesterday"},
+  {t:"Jurassic Park",h:"Brahmanandam",e:"🦕",imgs:["🦕","😂","🌀"],hint:"Hapless man surrounded by endless troubles"},
+  {t:"Santosham",h:"Nagarjuna",e:"🏡",imgs:["🏡","💕","😢"],hint:"Man loves his best friend's wife"},
+  {t:"Dookudu",h:"Mahesh Babu",e:"🎯",imgs:["🎯","👨‍👦","😤"],hint:"Cop protects gangster to save father"},
+  {t:"Attarintiki Daredi",h:"Pawan Kalyan",e:"🏠",imgs:["🏠","🌹","💐"],hint:"Man helps estranged mother reconnect"},
+  {t:"Jalsa",h:"Pawan Kalyan",e:"🕺",imgs:["🕺","👩","💊"],hint:"Man sacrifices love to save a blind girl"},
+  {t:"Gabbar Singh",h:"Pawan Kalyan",e:"👮",imgs:["👮","🐎","🌾"],hint:"Honest cop cleans corrupt town"},
+  {t:"Puli",h:"Pawan Kalyan",e:"🐯",imgs:["🐯","🌾","💪"],hint:"Daring man fights against system"},
+  {t:"Katamarayudu",h:"Pawan Kalyan",e:"👊",imgs:["👊","👬","🥊"],hint:"Man protects brothers' honor"},
+  {t:"Makkhi",h:"Nani",e:"🦟",imgs:["🦟","👹","✊"],hint:"Fly takes revenge on villain"},
+  {t:"Nuvvu Nenu",h:"Uday Kiran",e:"💑",imgs:["💑","🏡","😊"],hint:"Simple village romance blossoms"},
+  {t:"Okkadunnadu",h:"Mohan Babu",e:"🏘️",imgs:["🏘️","✊","👨‍👧"],hint:"Single man fights for village"},
+  {t:"Simhadri",h:"NTR Jr",e:"🦁",imgs:["🦁","🏰","👘"],hint:"Servant warrior fights for royal family"},
+  {t:"Yamadonga",h:"NTR Jr",e:"😈",imgs:["😈","🏃","🎭"],hint:"Thief tricks Yama the god of death"},
+  {t:"Kantri",h:"NTR Jr",e:"🌾",imgs:["🌾","😂","💔"],hint:"Village boy with bad luck finds love"},
+  {t:"Brindavanam",h:"NTR Jr",e:"🌺",imgs:["🌺","👫","🏡"],hint:"Man pretends to be ex-boyfriend"},
+  {t:"Student No 1",h:"NTR Jr",e:"🎓",imgs:["🎓","💪","💘"],hint:"College student fights injustice"},
+  {t:"Adhurs",h:"NTR Jr",e:"🔀",imgs:["🔀","🏚️","👊"],hint:"Twins raised apart collide as adults"},
+  {t:"Oosaravelli",h:"NTR Jr",e:"🇳🇵",imgs:["🇳🇵","❤️","🔫"],hint:"Telugu boy falls for Nepali girl"},
+  {t:"Shakti",h:"NTR Jr",e:"💥",imgs:["💥","👊","😡"],hint:"Man takes on entire criminal empire"},
+  {t:"Nadigaiyar Thilagam",h:"Keerthy Suresh",e:"🎬",imgs:["🎬","💊","💔"],hint:"Biopic of Savitri's tragic life"},
+  {t:"Goodachari",h:"Adivi Sesh",e:"🕶️",imgs:["🕶️","💣","🏃"],hint:"Small town guy becomes RAW agent"},
+  {t:"Hit 2",h:"Adivi Sesh",e:"🔎",imgs:["🔎","🩸","🚔"],hint:"Cop investigates a gory serial killer"},
+  {t:"Vimanam",h:"Rahul Ramakrishna",e:"✈️",imgs:["✈️","💰","😢"],hint:"Poor man's dream of flying"},
+  {t:"Bangarraju",h:"Nagarjuna",e:"👻",imgs:["👻","💃","🎊"],hint:"Ghost grandpa helps grandson in love"},
+  {t:"F2 Fun and Frustration",h:"Venkatesh",e:"😤",imgs:["😤","👰","😂"],hint:"Two friends face marital chaos"},
+  {t:"Patas",h:"Kalyan Ram",e:"🐯",imgs:["🐯","😜","💰"],hint:"Carefree rich man fights a don"},
+  {t:"Pakka Commercial",h:"Gopichand",e:"💼",imgs:["💼","⚖️","💰"],hint:"Greedy lawyer has a change of heart"},
+  {t:"Krack",h:"Ravi Teja",e:"🔨",imgs:["🔨","👮","💊"],hint:"Ruthless cop demolishes drug ring"},
+  {t:"Eagle",h:"Ravi Teja",e:"🦅",imgs:["🦅","🌍","🕵️"],hint:"Global assassin with mysterious past"},
+  {t:"Tiger Nageswara Rao",h:"Ravi Teja",e:"🐯",imgs:["🐯","🏘️","💎"],hint:"Notorious thief in 1970s Andhra"},
+  {t:"Bro",h:"Pawan Kalyan",e:"🪞",imgs:["🪞","👼","😂"],hint:"Man gets second chance from angel"},
+  {t:"Ustaad Bhagat Singh",h:"Pawan Kalyan",e:"✊",imgs:["✊","🏛️","💡"],hint:"Revolutionary fights corrupt system"},
+  {t:"OG",h:"Pawan Kalyan",e:"👑",imgs:["👑","🌊","💪"],hint:"Original gangster fights for love"},
+  {t:"Mirapakay",h:"Ravi Teja",e:"🌶️",imgs:["🌶️","💊","😡"],hint:"Fiery man fights drug lords"},
+  {t:"Nela Ticket",h:"Ravi Teja",e:"🎟️",imgs:["🎟️","😂","💘"],hint:"Irresponsible man transforms for love"},
+  {t:"Balupu",h:"Ravi Teja",e:"💪",imgs:["💪","👧","😡"],hint:"Protective brother fights for sister"},
+  {t:"Raja The Great",h:"Ravi Teja",e:"👴",imgs:["👴","🎵","💘"],hint:"Blind man wins over girl's family"},
+  {t:"Kavacham",h:"Bellamkonda Sai Sreenivas",e:"🛡️",imgs:["🛡️","🧿","💕"],hint:"Man with divine shield fights evil"},
+  {t:"Saakshyam",h:"Bellamkonda Sai Sreenivas",e:"👁️",imgs:["👁️","👻","😱"],hint:"Man sees the dead and fights a ghost"},
+  {t:"Chatrapathi",h:"Prabhas",e:"⚓",imgs:["⚓","👩","💪"],hint:"Refugee fights coastal crime lord"},
+  {t:"Rebel",h:"Prabhas",e:"🥊",imgs:["🥊","🎓","❤️"],hint:"Student boxer falls for teacher's daughter"},
+  {t:"Mirchi",h:"Prabhas",e:"🌶️",imgs:["🌶️","🏰","💘"],hint:"Man uncovers secrets of haunted haveli"},
+  {t:"Darling",h:"Prabhas",e:"😱",imgs:["😱","💑","🏚️"],hint:"Couple faces supernatural terror"},
+  {t:"Raghavendra",h:"Balakrishna",e:"🏹",imgs:["🏹","⚔️","🕌"],hint:"Historical warrior fights injustice"},
+  {t:"Sarocharu",h:"Ravi Teja",e:"🎓",imgs:["🎓","📚","💘"],hint:"Professor falls for student's sister"},
+  {t:"Cameraman Ganga Tho Rambabu",h:"Pawan Kalyan",e:"📷",imgs:["📷","📺","💡"],hint:"Cameraman exposes corruption via media"},
+  {t:"Julayi",h:"Allu Arjun",e:"💻",imgs:["💻","🏦","😈"],hint:"Techie accidentally exposes bank fraud"},
+  {t:"Race Gurram",h:"Allu Arjun",e:"🏎️",imgs:["🏎️","😎","👊"],hint:"Carefree man fights gangster"},
+  {t:"Son of Satyamurthy",h:"Allu Arjun",e:"👨‍👦",imgs:["👨‍👦","💸","❤️"],hint:"Son honours dead father's debts"},
+  {t:"Duvvada Jagannadham",h:"Allu Arjun",e:"👨‍🍳",imgs:["👨‍🍳","🕵️","😂"],hint:"Cook is secretly an assassin"},
+  {t:"Ala Vaikunthapurramuloo",h:"Allu Arjun",e:"🔄",imgs:["🔄","🏠","💰"],hint:"Rich vs poor families get mixed up"},
+  {t:"Naa Peru Surya",h:"Allu Arjun",e:"☀️",imgs:["☀️","🎖️","😡"],hint:"Angry army man needs to control rage"},
+  {t:"Trivikram Srinivas Julayi",h:"Trivikram",e:"📝",imgs:["📝","💡","🎬"],hint:"Director's signature clever story"},
+  {t:"Naa Istam",h:"Ganesh",e:"😊",imgs:["😊","🏫","💘"],hint:"Shy boy pursues cheerful girl"},
+  {t:"Pelli Choopulu",h:"Ritu Varma",e:"🍳",imgs:["🍳","✈️","💍"],hint:"Two misfits discover unexpected bond"},
+  {t:"Ninnu Kori",h:"Nani",e:"💔",imgs:["💔","🎵","👶"],hint:"Divorced man wants wife back"},
+  {t:"Majili",h:"Naga Chaitanya",e:"🏏",imgs:["🏏","🍺","💘"],hint:"Cricketer heartbroken marries another"},
+  {t:"Love Story",h:"Naga Chaitanya",e:"🎓",imgs:["🎓","💃","❤️"],hint:"Poor couple fight caste differences"},
+  {t:"Thank You",h:"Naga Chaitanya",e:"🙏",imgs:["🙏","💼","❤️"],hint:"Selfish man rediscovers what matters"},
+  {t:"Bangarraju",h:"Naga Chaitanya",e:"💃",imgs:["💃","👻","🎊"],hint:"Ghost helps grandson find love"},
+  {t:"Rarandoi Veduka Chudham",h:"Naga Chaitanya",e:"💑",imgs:["💑","🏠","👴"],hint:"Families feud but children fall in love"},
+  {t:"Venkatadri Express",h:"Varun Sandesh",e:"🚂",imgs:["🚂","💘","👩‍👧"],hint:"Train journey love story"},
+  {t:"Lovely",h:"Aadi",e:"💕",imgs:["💕","🏫","😊"],hint:"College romance with social divide"},
+  {t:"Julai",h:"Allu Arjun",e:"🎯",imgs:["🎯","💻","🏦"],hint:"Carefree man unravels bank scam"},
+  {t:"Mogudu",h:"Gopichand",e:"👰",imgs:["👰","👊","💑"],hint:"Husband protects wife from a don"},
+  {t:"Julayi",h:"Trivikram",e:"✏️",imgs:["✏️","💡","😂"],hint:"Witty script with comic twists"},
+  {t:"Kotha Janta",h:"Allu Sirish",e:"🎓",imgs:["🎓","❤️","🌺"],hint:"College romance with fun twists"},
+  {t:"Subramanyam for Sale",h:"Harish Shankar",e:"🏷️",imgs:["🏷️","😂","💘"],hint:"Broke man's ridiculous love journey"},
+  {t:"Iddarammayilatho",h:"Allu Arjun",e:"🏋️",imgs:["🏋️","💃","🎸"],hint:"Man dates two women simultaneously"},
+  {t:"Naalo Okkadu",h:"Siddharth",e:"🪞",imgs:["🪞","😈","💘"],hint:"Shy man has bold alternate personality"},
+  {t:"Routine Love Story",h:"Sundeep Kishan",e:"📅",imgs:["📅","🏫","❤️"],hint:"Ordinary college romance done differently"},
+  {t:"Action Jackson",h:"Adivi Sesh",e:"💥",imgs:["💥","🥊","😎"],hint:"Hero fights for justice with style"},
+  {t:"Krishnashtami",h:"Sunil",e:"👮",imgs:["👮","😂","💊"],hint:"Comic cop fights drug menace"},
+  {t:"Maidan",h:"Nani",e:"⚽",imgs:["⚽","🏆","🌾"],hint:"Coach builds winning football team"},
+  {t:"Dasara",h:"Nani",e:"⛏️",imgs:["⛏️","💔","🔥"],hint:"Coal miner fights for justice and love"},
+  {t:"Sharwanand Malliswari",h:"Sharwanand",e:"💌",imgs:["💌","🏺","🎭"],hint:"Love story set against folk backdrop"},
+  {t:"Malli Raava",h:"Sumanth",e:"💌",imgs:["💌","✈️","🏥"],hint:"Old lovers reunite across continents"},
+  {t:"Shailaja Reddy Alludu",h:"Naga Chaitanya",e:"👩",imgs:["👩","😨","💑"],hint:"Man terrified of strict mother-in-law"},
+  {t:"Devadas",h:"Nani",e:"🍺",imgs:["🍺","🏥","🥊"],hint:"Two men bonded by heartbreak and fights"},
+  {t:"Gang Leader",h:"Masala Coffee",e:"✊",imgs:["✊","👩","📝"],hint:"Novelist helps five women get revenge"},
+  {t:"Tuck Jagadish",h:"Nani",e:"🌾",imgs:["🌾","🏡","⚖️"],hint:"Younger son returns to protect family land"},
+  {t:"Bheeshma",h:"Nithiin",e:"🌿",imgs:["🌿","🏢","💘"],hint:"Organic food company vs. evil corporation"},
+  {t:"Maestro",h:"Nithiin",e:"🎵",imgs:["🎵","👁️","🔐"],hint:"Blind musician involved in murder mystery"},
+  {t:"Check",h:"Nithiin",e:"♟️",imgs:["♟️","⛓️","📺"],hint:"Chess saves death row prisoner"},
+  {t:"Rang De",h:"Nithiin",e:"🎨",imgs:["🎨","💑","😠"],hint:"Childhood sweethearts with complications"},
+  {t:"Chal Mohan Ranga",h:"Nithiin",e:"😂",imgs:["😂","🏘️","❤️"],hint:"Fun-loving man wins girl's heart"},
+  {t:"Lie",h:"Nithiin",e:"🤥",imgs:["🤥","👩","😱"],hint:"Man's lies spiral into deadly consequences"},
+  {t:"A Aa",h:"Nithiin",e:"🏡",imgs:["🏡","🌧️","💘"],hint:"City girl falls for village boy"},
+  {t:"Courier Boy Kalyan",h:"Nithiin",e:"📦",imgs:["📦","🏍️","💘"],hint:"Delivery boy gets entangled in danger"},
+  {t:"Panjaa",h:"Pawan Kalyan",e:"🐾",imgs:["🐾","🌆","💊"],hint:"Man fights organized crime in city"},
+  {t:"Komaram Puli",h:"Pawan Kalyan",e:"🐆",imgs:["🐆","🌾","✊"],hint:"Forest officer protects tribal people"},
+  {t:"Teen Maar",h:"Pawan Kalyan",e:"📰",imgs:["📰","💪","😂"],hint:"Reporter exposes corruption with comic style"},
+  {t:"Bobby",h:"Mahesh Babu",e:"🤘",imgs:["🤘","🎸","💘"],hint:"Rock star fights a corrupt family"},
+  {t:"Athadu",h:"Mahesh Babu",e:"🎯",imgs:["🎯","🔫","🔀"],hint:"Assassin gets mistaken for someone else"},
+  {t:"Sainikudu",h:"Mahesh Babu",e:"🎖️",imgs:["🎖️","🕺","💘"],hint:"Army officer goes undercover"},
+  {t:"Pokiri",h:"Mahesh Babu",e:"🃏",imgs:["🃏","🔫","🕵️"],hint:"Underworld thug is actually a cop"},
+  {t:"Khaleja",h:"Mahesh Babu",e:"🚕",imgs:["🚕","🌾","🧿"],hint:"Taxi driver in village with dark secret"},
+  {t:"Dookudu",h:"Mahesh Babu",e:"💊",imgs:["💊","👮","👨‍👦"],hint:"Cop goes undercover to protect father"},
+  {t:"Businessman",h:"Mahesh Babu",e:"👔",imgs:["👔","💰","💘"],hint:"Crime lord's son reforms for love"},
+  {t:"Seethamma Vakitlo",h:"Mahesh Babu",e:"🌸",imgs:["🌸","👬","🎭"],hint:"Two brothers and their mother's love"},
+  {t:"Naayak",h:"Mahesh Babu",e:"🏛️",imgs:["🏛️","🧹","😤"],hint:"Accidental Chief Minister cleans system"},
+  {t:"Srimanthudu",h:"Mahesh Babu",e:"💰",imgs:["💰","🏘️","❤️"],hint:"Billionaire adopts a poor village"},
+  {t:"Brahmotsavam",h:"Mahesh Babu",e:"🏺",imgs:["🏺","👨‍👩‍👧","❤️"],hint:"Man navigates love and family bonds"},
+  {t:"Spyder",h:"Mahesh Babu",e:"🕸️",imgs:["🕸️","🔍","😢"],hint:"Cop feels others' pain and hunts sadist"},
+  {t:"Bharat Ane Nenu",h:"Mahesh Babu",e:"🏛️",imgs:["🏛️","📑","✊"],hint:"Young CM reforms the government"},
+  {t:"Maharshi",h:"Mahesh Babu",e:"🌾",imgs:["🌾","🎓","💔"],hint:"NRI returns to save dying farmers"},
+  {t:"Sarileru Neekevvaru",h:"Mahesh Babu",e:"🎖️",imgs:["🎖️","🌾","👨‍👧"],hint:"Army major defends family's honor"},
+  {t:"Sarkaru Vaari Paata",h:"Mahesh Babu",e:"💸",imgs:["💸","🏦","✊"],hint:"Lender fights corrupt banking system"},
+  {t:"Guntur Kaaram",h:"Mahesh Babu",e:"🌶️",imgs:["🌶️","👩","💔"],hint:"Son and estranged mother reconnect"},
+  {t:"Kalyan Ram Patas",h:"Kalyan Ram",e:"😜",imgs:["😜","💰","🤣"],hint:"Carefree NRI fights a gangster"},
+  {t:"Sye",h:"Nithin",e:"🏉",imgs:["🏉","💪","🎓"],hint:"Rugby player fights for team glory"},
+  {t:"Premisthe",h:"Uday Kiran",e:"💕",imgs:["💕","🏫","😊"],hint:"Sweet college romance"},
+  {t:"Nuvvu Nuvve",h:"Tarun",e:"💑",imgs:["💑","🌺","🎵"],hint:"Musical love story"},
+  {t:"Varsham",h:"Prabhas",e:"🌧️",imgs:["🌧️","💘","🤝"],hint:"Rainy season romance"},
+  {t:"Adavi Ramudu",h:"NTR Sr",e:"🌳",imgs:["🌳","🏹","👑"],hint:"Jungle hero fights injustice"},
+  {t:"Alluri Sitarama Raju",h:"Krishna",e:"✊",imgs:["✊","🌳","🇮🇳"],hint:"Biopic of tribal freedom fighter"},
+  {t:"Devudu Chesina Manushulu",h:"Ravi Teja",e:"👼",imgs:["👼","😂","💕"],hint:"God tests human nature comically"},
+  {t:"Mr Perfect",h:"Prabhas",e:"✅",imgs:["✅","💑","😤"],hint:"Perfectionist man learns to compromise"},
+  {t:"Ala Modalaindi",h:"Nani",e:"📱",imgs:["📱","😜","💕"],hint:"Couple connected by wrong number"},
+  {t:"Ye Maaya Chesave",h:"Naga Chaitanya",e:"🌙",imgs:["🌙","💑","🌧️"],hint:"Poignant love story with beautiful music"},
+  {t:"Padi Padi Leche Manasu",h:"Sharwanand",e:"💔",imgs:["💔","🌊","🎵"],hint:"Bittersweet long distance love"},
+  {t:"Premkatha Chitram",h:"Sudheer Babu",e:"📖",imgs:["📖","😂","💘"],hint:"Failed romance depicted as story"},
+  {t:"Nirmala Convent",h:"Roshan",e:"🏫",imgs:["🏫","🌺","👫"],hint:"School romance with family drama"},
+  {t:"Stalin",h:"Chiranjeevi",e:"👦",imgs:["👦","🙏","💪"],hint:"Man raised by foster parents fights for poor"},
+  {t:"Tagore",h:"Chiranjeevi",e:"🏛️",imgs:["🏛️","⚖️","💪"],hint:"Man fights corrupt government with grit"},
+  {t:"Indra",h:"Chiranjeevi",e:"👑",imgs:["👑","🔱","💪"],hint:"Powerful rural don with heart of gold"},
+  {t:"Shankar Dada Zindabad",h:"Chiranjeevi",e:"😂",imgs:["😂","👮","🎊"],hint:"Comedian becomes police informant"},
+  {t:"Uyyalawada Narasimha Reddy",h:"Chiranjeevi",e:"⚔️",imgs:["⚔️","🌾","🏹"],hint:"Pre-independence rebel leader"},
+  {t:"Brindavanam",h:"NTR Jr",e:"🌺",imgs:["🌺","👫","💕"],hint:"Boy poses as girl's ex to win her back"},
+  {t:"Oosaravelli",h:"NTR Jr",e:"🏔️",imgs:["🏔️","❤️","🇳🇵"],hint:"Indo-Nepal romance saga"},
+  {t:"Dammu",h:"NTR Jr",e:"💊",imgs:["💊","😡","💪"],hint:"Man fights drug menace with rage"},
+  {t:"Baadshah",h:"NTR Jr",e:"🕺",imgs:["🕺","💼","😜"],hint:"Undercover cop in stylish avatar"},
+  {t:"Rabhasa",h:"NTR Jr",e:"😎",imgs:["😎","💃","🏍️"],hint:"Youthful love with action twists"},
+  {t:"Surya vs Surya",h:"Mehreen",e:"☀️",imgs:["☀️","💊","💕"],hint:"Man allergic to sunlight falls for sun lover"},
+  {t:"Shatamanam Bhavati",h:"Sharwanand",e:"👨‍👧",imgs:["👨‍👧","🌺","💕"],hint:"Grandfather granddaughter bond heals family"},
+  {t:"Krishnarjuna Yuddham",h:"Nani",e:"🔀",imgs:["🔀","💊","😡"],hint:"Good and bad twins collide"},
+  {t:"Ninnu Kori",h:"Nani",e:"💔",imgs:["💔","🎵","👶"],hint:"Divorced couple rekindle love"},
+  {t:"Gentleman",h:"Nithiin",e:"🎩",imgs:["🎩","💼","💘"],hint:"City boy falls for village girl"},
+  {t:"Heart Attack",h:"Nithiin",e:"💗",imgs:["💗","🎓","😜"],hint:"Cheerful girl heals troubled boy"},
+  {t:"Aagadu",h:"Mahesh Babu",e:"👮",imgs:["👮","😂","🌾"],hint:"Cop uses humor to tackle crime"},
+  {t:"Sirivennela",h:"Various",e:"🌸",imgs:["🌸","🎵","💕"],hint:"Classic melodious love saga"},
+  {t:"Bhishma",h:"Nithiin",e:"🌿",imgs:["🌿","💼","💘"],hint:"Organic food company love story"},
+  {t:"Simhadri",h:"NTR Jr",e:"🦁",imgs:["🦁","🏰","👘"],hint:"Servant warrior fights for royal family"},
+  {t:"Yamadonga",h:"NTR Jr",e:"😈",imgs:["😈","🏃","🎭"],hint:"Thief tricks Yama the god of death"},
+  {t:"Sarocharu",h:"Ravi Teja",e:"🎓",imgs:["🎓","📚","💘"],hint:"Professor falls for student's sister"},
+  {t:"Lovers",h:"Sumanth",e:"🌹",imgs:["🌹","🎓","😢"],hint:"Classic campus love story"},
+  {t:"Kantri",h:"NTR Jr",e:"🌾",imgs:["🌾","😂","💔"],hint:"Village boy with bad luck finds love"},
+  {t:"Panja",h:"Pawan Kalyan",e:"✊",imgs:["✊","🌆","💊"],hint:"Street fighter battles drug racket"},
+  {t:"Teen Maar",h:"Pawan Kalyan",e:"📰",imgs:["📰","💪","😂"],hint:"Reporter exposes corruption with comic style"},
+  {t:"Bobby",h:"Mahesh Babu",e:"🤘",imgs:["🤘","🎸","💘"],hint:"Rock star fights a corrupt family"},
+  {t:"Athadu",h:"Mahesh Babu",e:"🎯",imgs:["🎯","🔫","🔀"],hint:"Assassin gets mistaken for someone else"},
+  {t:"Sainikudu",h:"Mahesh Babu",e:"🎖️",imgs:["🎖️","🕺","💘"],hint:"Army officer goes undercover"},
+  {t:"Brahmotsavam",h:"Mahesh Babu",e:"🏺",imgs:["🏺","👨‍👩‍👧","❤️"],hint:"Man navigates love and family bonds"},
+  {t:"Sarkaru Vaari Paata",h:"Mahesh Babu",e:"💸",imgs:["💸","🏦","✊"],hint:"Lender fights corrupt banking system"},
+  {t:"Gundello Godari",h:"Taapsee",e:"🌊",imgs:["🌊","🌾","💕"],hint:"Flood-time romance across communities"},
+  {t:"Katamarayudu",h:"Pawan Kalyan",e:"👊",imgs:["👊","👬","🥊"],hint:"Man protects brothers honor"},
+  {t:"Jalsa",h:"Pawan Kalyan",e:"🕺",imgs:["🕺","👩","💊"],hint:"Man sacrifices love to save a blind girl"},
+  {t:"Puli",h:"Pawan Kalyan",e:"🐯",imgs:["🐯","🌾","💪"],hint:"Daring man fights against system"},
+  {t:"Kerintha",h:"Sudheer Babu",e:"🎓",imgs:["🎓","💘","🌾"],hint:"Long distance campus romance"},
+  {t:"Routine Love Story",h:"Sundeep Kishan",e:"📅",imgs:["📅","🏫","❤️"],hint:"Ordinary college romance done differently"}
+];
+
+// ══════════════════════════════════════════════════════
+//  TELUGU SONGS — 300 entries (emoji clue sets)
+// ══════════════════════════════════════════════════════
+
+const TELUGU_SONGS = [
+  {t:"Naatu Naatu",h:"RRR",e:"🎵",imgs:["💃","🕺","🎶"],hint:"Oscar winning dance anthem from RRR"},
+  {t:"Pushpa Pushpa",h:"Pushpa 2",e:"🌹",imgs:["🌹","👑","🔥"],hint:"Title song of Pushpa 2 The Rule"},
+  {t:"Saami Saami",h:"Pushpa",e:"💃",imgs:["💃","🌹","🔥"],hint:"Rashmika's dance number from Pushpa"},
+  {t:"Srivalli",h:"Pushpa",e:"🌸",imgs:["🌸","💕","🌾"],hint:"Allu Arjun's romantic song from Pushpa"},
+  {t:"Oo Antava",h:"Pushpa",e:"😍",imgs:["😍","💃","🔥"],hint:"Samantha's item number from Pushpa"},
+  {t:"Nain Matakka",h:"Sarileru Neekevvaru",e:"👁️",imgs:["👁️","💃","🎶"],hint:"Peppy dance song from Sarileru Neekevvaru"},
+  {t:"Butta Bomma",h:"Ala Vaikunthapurramuloo",e:"🎀",imgs:["🎀","💃","🌸"],hint:"Sweet love song from Ala Vaikunthapurramuloo"},
+  {t:"Ramuloo Ramulaa",h:"Ala Vaikunthapurramuloo",e:"🎊",imgs:["🎊","🕺","💃"],hint:"Mass celebration song from Ala Vaikunthapurramuloo"},
+  {t:"Rowdy Baby",h:"Maari 2",e:"💪",imgs:["💪","💃","🏙️"],hint:"Dhanush Sai Pallavi mega-hit dance song"},
+  {t:"Buttabomma",h:"Ala Vaikunthapurramuloo",e:"🌺",imgs:["🌺","💘","😍"],hint:"Pooja Hegde's melodious song"},
+  {t:"Seeti Maar",h:"DJ Tillu",e:"🎺",imgs:["🎺","💃","🤩"],hint:"High energy item song from DJ Tillu"},
+  {t:"Ghungroo",h:"War",e:"🔔",imgs:["🔔","💃","✨"],hint:"Dance number with Hrithik and Vaani"},
+  {t:"Dhamaka",h:"Gulte",e:"🔊",imgs:["🔊","🎉","💥"],hint:"Party anthem from Telugu cinema"},
+  {t:"Jab Harry Met Sejal",h:"Seeti Maar",e:"🎵",imgs:["🎵","👫","💘"],hint:"Romantic number from Telugu film"},
+  {t:"Manasuna",h:"Arya",e:"💕",imgs:["💕","🎵","🌸"],hint:"Melodious love song from Arya"},
+  {t:"Arya Arya",h:"Arya",e:"🌹",imgs:["🌹","🎸","🤪"],hint:"Title song of Arya"},
+  {t:"Happy Happy",h:"Happy",e:"😊",imgs:["😊","🎓","🎵"],hint:"Fun college song from Happy"},
+  {t:"Bunny Bunny",h:"Bunny",e:"🐇",imgs:["🐇","😎","🎵"],hint:"Peppy title track from Bunny"},
+  {t:"Andamaina Anubhavam",h:"Jalsa",e:"🌅",imgs:["🌅","💑","🎵"],hint:"Beautiful melody from Jalsa"},
+  {t:"Jalsa Jalsa",h:"Jalsa",e:"🕺",imgs:["🕺","💃","🎊"],hint:"Celebration song from Jalsa"},
+  {t:"Oye Oye",h:"Oye",e:"😜",imgs:["😜","🎵","❤️"],hint:"Youth love song from Oye"},
+  {t:"Baddi Babu",h:"Badrinath",e:"🏔️",imgs:["🏔️","😂","🎵"],hint:"Comical song from Badrinath"},
+  {t:"Greeku Veerudu",h:"Greeku Veerudu",e:"🇬🇷",imgs:["🇬🇷","💪","🎵"],hint:"Title track of Greeku Veerudu"},
+  {t:"Poove Unakkaga",h:"Various",e:"🌺",imgs:["🌺","❤️","🎵"],hint:"Classic romantic number"},
+  {t:"Em Cheppanu",h:"Okkadu",e:"💬",imgs:["💬","💔","😢"],hint:"Heartfelt song from Okkadu"},
+  {t:"Bangaru Kodipetta",h:"Okkadu",e:"🐓",imgs:["🐓","💕","🎵"],hint:"Sentimental family song from Okkadu"},
+  {t:"Nuvve Nuvve",h:"Nuvve Nuvve",e:"💞",imgs:["💞","🎵","🏫"],hint:"Sweet title track of Nuvve Nuvve"},
+  {t:"Bommarillu",h:"Bommarillu",e:"🏠",imgs:["🏠","💘","🎵"],hint:"Title track of Bommarillu"},
+  {t:"Saroja Samaan Nikalo",h:"Bommarillu",e:"👘",imgs:["👘","😂","🎵"],hint:"Fun song from Bommarillu"},
+  {t:"Manasaara",h:"Manasaara",e:"💜",imgs:["💜","🎵","💑"],hint:"Romantic title song"},
+  {t:"Ye Maya Chesave",h:"Ye Maaya Chesave",e:"🌙",imgs:["🌙","💕","🎵"],hint:"Soulful title track of Ye Maaya Chesave"},
+  {t:"Emo Emo",h:"Ye Maaya Chesave",e:"💭",imgs:["💭","💔","🎵"],hint:"Melodious song from Ye Maaya Chesave"},
+  {t:"Geetha Govindamuney",h:"Geetha Govindam",e:"🌺",imgs:["🌺","💃","🎶"],hint:"Folk inspired title song"},
+  {t:"Inkem Inkem Inkem Kaavaale",h:"Geetha Govindam",e:"🌼",imgs:["🌼","💘","🎵"],hint:"Soulful love song from Geetha Govindam"},
+  {t:"Vachinde",h:"Fidaa",e:"💌",imgs:["💌","💃","🌺"],hint:"Romantic number from Fidaa"},
+  {t:"Entanaina",h:"Fidaa",e:"💕",imgs:["💕","🌾","🎵"],hint:"Folk-style love song from Fidaa"},
+  {t:"Nee Selavadugu",h:"Nenu Local",e:"💔",imgs:["💔","🚌","🎵"],hint:"Emotional song from Nenu Local"},
+  {t:"Brand New",h:"Nenu Local",e:"🆕",imgs:["🆕","😎","🎵"],hint:"Peppy intro song from Nenu Local"},
+  {t:"Choosi Chudangaane",h:"Majili",e:"👀",imgs:["👀","💔","🎵"],hint:"Soulful breakup song from Majili"},
+  {t:"Priyathama",h:"Majili",e:"🌸",imgs:["🌸","💑","🎵"],hint:"Sweet duet from Majili"},
+  {t:"Yem Pillo",h:"Dear Comrade",e:"✊",imgs:["✊","🎵","💔"],hint:"Energetic protest song from Dear Comrade"},
+  {t:"Angel Baby",h:"Dear Comrade",e:"👼",imgs:["👼","💞","🎵"],hint:"Romantic number from Dear Comrade"},
+  {t:"Kuri Kuri",h:"Taxiwaala",e:"🚕",imgs:["🚕","😜","🎵"],hint:"Fun intro song from Taxiwaala"},
+  {t:"Kalaga Kalaga",h:"Taxiwaala",e:"💭",imgs:["💭","😱","🎵"],hint:"Eerie song from Taxiwaala"},
+  {t:"Naalo Chilipi",h:"Jersey",e:"🏏",imgs:["🏏","💔","🎵"],hint:"Emotional cricketer song from Jersey"},
+  {t:"Yad Lagla",h:"Jersey",e:"❤️",imgs:["❤️","🏏","🎵"],hint:"Sentimental song from Jersey"},
+  {t:"Ye Mainaa",h:"Uppena",e:"🌊",imgs:["🌊","💕","🎵"],hint:"Soulful sea-side love song from Uppena"},
+  {t:"Nee Kannu Neeli Samudram",h:"Uppena",e:"🌊",imgs:["🌊","👁️","💙"],hint:"Poetic love song from Uppena"},
+  {t:"Bujji Bujji",h:"Shyam Singha Roy",e:"🌺",imgs:["🌺","💃","🎶"],hint:"Classical dance song from Shyam Singha Roy"},
+  {t:"Geetha Govindam",h:"Shyam Singha Roy",e:"🪷",imgs:["🪷","💃","📜"],hint:"Classical composition from Shyam Singha Roy"},
+  {t:"Kaadhal Theedhum",h:"Ante Sundaraniki",e:"💑",imgs:["💑","⛪","🕌"],hint:"Cross-religion love song"},
+  {t:"Sridevi",h:"Ante Sundaraniki",e:"👩",imgs:["👩","😂","🎵"],hint:"Fun party song from Ante Sundaraniki"},
+  {t:"Jai Balayya",h:"Akhanda",e:"🙏",imgs:["🙏","💥","🎵"],hint:"Mass fan anthem for Balakrishna"},
+  {t:"Samajavaragamana",h:"Ala Vaikunthapurramuloo",e:"🎼",imgs:["🎼","🌺","💕"],hint:"Classical melody from Ala Vaikunthapurramuloo"},
+  {t:"Tholi Tholi",h:"Rangasthalam",e:"🔔",imgs:["🔔","🌾","💕"],hint:"Folk love song from Rangasthalam"},
+  {t:"Yentamma",h:"Rangasthalam",e:"🌾",imgs:["🌾","💃","🎊"],hint:"Village celebration song"},
+  {t:"Jigelu Rani",h:"Rangasthalam",e:"💃",imgs:["💃","🔥","🎺"],hint:"Samantha's fiery dance number"},
+  {t:"Ramuloo Ramulaa",h:"Ala Vaikunthapurramuloo",e:"🎉",imgs:["🎉","🕺","🎊"],hint:"High energy mass song"},
+  {t:"Butta Bomma",h:"Ala Vaikunthapurramuloo",e:"🎀",imgs:["🎀","😍","🌸"],hint:"Cute melody from Ala Vaikunthapurramuloo"},
+  {t:"Thankyou Brahma",h:"Brahmastra",e:"✨",imgs:["✨","🔥","🎵"],hint:"Divine prayer song"},
+  {t:"Vaathi Coming",h:"Master",e:"🔥",imgs:["🔥","💪","🎵"],hint:"Vijay's powerful entry song"},
+  {t:"Nee Jathaga",h:"Yevadu",e:"💞",imgs:["💞","🎵","💑"],hint:"Romantic duet from Yevadu"},
+  {t:"Saradaga",h:"Oosaravelli",e:"🌧️",imgs:["🌧️","💕","🎵"],hint:"Melancholic rain song"},
+  {t:"Pareshanura",h:"Race Gurram",e:"😤",imgs:["😤","😂","🎵"],hint:"Comical song from Race Gurram"},
+  {t:"Lovely",h:"Race Gurram",e:"💕",imgs:["💕","🏎️","🎵"],hint:"Romantic duet from Race Gurram"},
+  {t:"Pandavulu Pandavulu",h:"Pandavulu Pandavulu Tummeda",e:"👬",imgs:["👬","💃","🎵"],hint:"Fun comedy song"},
+  {t:"Nuvve Nuvve Naa Maanasam",h:"Attarintiki Daredi",e:"💌",imgs:["💌","🏠","🎵"],hint:"Melodic love song"},
+  {t:"Dappu Dappu",h:"Attarintiki Daredi",e:"🥁",imgs:["🥁","🕺","🎊"],hint:"Folk celebration song"},
+  {t:"Kandireega",h:"Son of Satyamurthy",e:"🌸",imgs:["🌸","💕","🎵"],hint:"Romantic classical song"},
+  {t:"Po Po",h:"S/O Satyamurthy",e:"✈️",imgs:["✈️","💔","😢"],hint:"Heartfelt farewell song"},
+  {t:"Rabb Manneya",h:"S/O Satyamurthy",e:"🙏",imgs:["🙏","❤️","🎵"],hint:"Emotional family song"},
+  {t:"Kodi Kudu",h:"S/O Satyamurthy",e:"🐓",imgs:["🐓","💃","🎵"],hint:"Folk-style mass song"},
+  {t:"Badmaash",h:"Julayi",e:"😈",imgs:["😈","💃","🎵"],hint:"Groovy title number from Julayi"},
+  {t:"Seeti Maar",h:"DJ",e:"🎺",imgs:["🎺","💃","🎛️"],hint:"DJ-style peppy number"},
+  {t:"Chal Mohan Ranga",h:"Chal Mohan Ranga",e:"😂",imgs:["😂","🏘️","💃"],hint:"Fun title track from the film"},
+  {t:"Raa Raa Krishnayya",h:"Various",e:"🌺",imgs:["🌺","🥁","🎶"],hint:"Traditional devotional folk song"},
+  {t:"Choopultho Golata",h:"Arjun Reddy",e:"😏",imgs:["😏","💘","🎵"],hint:"Romantic tension song from Arjun Reddy"},
+  {t:"Aagipo",h:"Arjun Reddy",e:"💔",imgs:["💔","🍺","🎵"],hint:"Heartbreak song from Arjun Reddy"},
+  {t:"Ye Maina",h:"Uppena",e:"🌊",imgs:["🌊","🎵","💕"],hint:"Love by the sea"},
+  {t:"Intha Mounam",h:"Manmadhudu",e:"🤫",imgs:["🤫","💔","🎵"],hint:"Silent heartbreak melody"},
+  {t:"Ammadu Let's do",h:"Agnyaathavaasi",e:"💃",imgs:["💃","🌍","🎵"],hint:"Groovy party song"},
+  {t:"Itlu Mee",h:"Agnyaathavaasi",e:"💌",imgs:["💌","💞","🎵"],hint:"Romantic letter song"},
+  {t:"Kaaka Kaaka",h:"Ghajini",e:"🦜",imgs:["🦜","💔","🎵"],hint:"Melancholic love song"},
+  {t:"Yedho Ondrodu",h:"Various",e:"💭",imgs:["💭","🎵","💔"],hint:"Soulful longing melody"},
+  {t:"Naalo Maranam",h:"Temper",e:"💊",imgs:["💊","😤","🎵"],hint:"Intense mass song from Temper"},
+  {t:"Naayakudu Title",h:"Naayak",e:"🏛️",imgs:["🏛️","💥","🎵"],hint:"Powerful title track of Naayak"},
+  {t:"Rangamma Mangamma",h:"Attarintiki Daredi",e:"💃",imgs:["💃","🎊","🥁"],hint:"Festive folk song"},
+  {t:"Dandaalayyaa",h:"Baahubali",e:"⚔️",imgs:["⚔️","🏺","🙏"],hint:"Devotional war song from Baahubali"},
+  {t:"Manohari",h:"Baahubali",e:"💃",imgs:["💃","🏺","✨"],hint:"Dance number from Baahubali"},
+  {t:"Pacha Bottesina",h:"RRR",e:"🌿",imgs:["🌿","🔥","🎵"],hint:"Intense song from RRR"},
+  {t:"Komuram Bheemudo",h:"RRR",e:"✊",imgs:["✊","🌳","🔥"],hint:"NTR's powerful song from RRR"},
+  {t:"Sholay",h:"Pushpa",e:"🌹",imgs:["🌹","🔥","😡"],hint:"Action packed song from Pushpa"},
+  {t:"Eyy Bidda Ye",h:"Pushpa 2",e:"🌹",imgs:["🌹","👊","🎵"],hint:"Mass number from Pushpa 2"},
+  {t:"Kissik",h:"Devara",e:"🌊",imgs:["🌊","💋","🎵"],hint:"Sensuous song from Devara"},
+  {t:"Chuttamalle",h:"Devara",e:"🌹",imgs:["🌹","💃","💕"],hint:"Romantic song from Devara"},
+  {t:"Urvasi Urvasi",h:"Various",e:"💃",imgs:["💃","✨","🎶"],hint:"Classic item song"},
+  {t:"Thangamey",h:"Naanum Rowdy Dhaan",e:"🌟",imgs:["🌟","💕","🎵"],hint:"Sid Sriram's emotional melody"},
+  {t:"Manasunna Maata",h:"Baahubali 2",e:"⚔️",imgs:["⚔️","💕","🎵"],hint:"Love song from Baahubali 2"},
+  {t:"Avunu Valliddaru Istapaddaru",h:"AVVI",e:"💑",imgs:["💑","😂","🎵"],hint:"Situational comedy love song"},
+  {t:"Andhalu Podanu",h:"Mirchi",e:"🌶️",imgs:["🌶️","💃","🎵"],hint:"Peppy number from Mirchi"},
+  {t:"Ninnukori Motaadaka",h:"Geetha Govindam",e:"🌺",imgs:["🌺","😢","🎵"],hint:"Emotional breakup song from Geetha Govindam"},
+  {t:"Ye Kaadhu Priya",h:"Ninnu Kori",e:"💌",imgs:["💌","💔","🎵"],hint:"Soulful song from Ninnu Kori"},
+  {t:"Padipoya",h:"Mr. Majnu",e:"😍",imgs:["😍","💘","🎵"],hint:"Romantic song from Mr. Majnu"},
+  {t:"Vachaadayyo Saami",h:"RRR",e:"🌊",imgs:["🌊","🎶","🔥"],hint:"Dramatic mass entry song from RRR"},
+  {t:"Hawa Hawa",h:"Sahoo",e:"🌬️",imgs:["🌬️","💃","🎵"],hint:"Dance number from Saaho"},
+  {t:"Psycho Saiyaan",h:"Sahoo",e:"🤪",imgs:["🤪","💥","🎵"],hint:"Intense song from Saaho"},
+  {t:"Antha Mee Valla",h:"Kalki 2898 AD",e:"🔮",imgs:["🔮","🌆","🎵"],hint:"Song from futuristic epic Kalki"},
+  {t:"Nivaasi",h:"Kalki 2898 AD",e:"✨",imgs:["✨","🛕","🎵"],hint:"Spiritual song from Kalki 2898 AD"},
+  {t:"Thandanana",h:"Vikramarkudu",e:"👮",imgs:["👮","💃","🎵"],hint:"Mass entry theme from Vikramarkudu"},
+  {t:"Yedalo Undedo",h:"Fidaa",e:"💕",imgs:["💕","🌾","🎵"],hint:"Telangana folk love song from Fidaa"},
+  {t:"Kanulanu Taakey",h:"Mahanati",e:"🎬",imgs:["🎬","💔","🎵"],hint:"Emotional song from Mahanati"},
+  {t:"Choope Choopu",h:"Mahanati",e:"👁️",imgs:["👁️","💞","🎵"],hint:"Classic melody from Mahanati"},
+  {t:"Ee Vela",h:"Pellichoopulu",e:"💍",imgs:["💍","😊","🎵"],hint:"Breezy love song from Pellichoopulu"},
+  {t:"Kannarae",h:"Pellichoopulu",e:"🌟",imgs:["🌟","💕","🎵"],hint:"Melodious number from Pellichoopulu"},
+  {t:"Pothe Poyindhi Manasu",h:"Geetha Govindam",e:"💔",imgs:["💔","🚌","🎵"],hint:"Sad separation song from Geetha Govindam"},
+  {t:"Koyilamma",h:"Rangasthalam",e:"🐦",imgs:["🐦","🌾","🎵"],hint:"Chirpy folk song from Rangasthalam"},
+  {t:"Saranga Dariya",h:"Love Story",e:"🌊",imgs:["🌊","💃","🎶"],hint:"Sai Pallavi's viral folk dance song"},
+  {t:"Dhim Tana",h:"Love Story",e:"💃",imgs:["💃","❤️","🎊"],hint:"Celebratory song from Love Story"},
+  {t:"Haha Hihi",h:"Ante Sundaraniki",e:"😂",imgs:["😂","💑","🎵"],hint:"Fun couple comedy song"},
+  {t:"Saiyyan",h:"Ante Sundaraniki",e:"💑",imgs:["💑","💕","🎵"],hint:"Sentimental couple song"},
+  {t:"Kaala Kaala",h:"Dasara",e:"🖤",imgs:["🖤","⛏️","🎵"],hint:"Intense mass song from Dasara"},
+  {t:"Dhoom Dhaam",h:"Dasara",e:"💥",imgs:["💥","🌾","🎵"],hint:"High energy number from Dasara"},
+  {t:"Nope",h:"Hi Nanna",e:"👨‍👧",imgs:["👨‍👧","🎨","🎵"],hint:"Sweet father-daughter song from Hi Nanna"},
+  {t:"Mavi Mava",h:"Hi Nanna",e:"🌸",imgs:["🌸","💕","🎵"],hint:"Romantic song from Hi Nanna"},
+  {t:"Saturday Sunday",h:"Saripodhaa Sanivaaram",e:"📅",imgs:["📅","💃","🎵"],hint:"Peppy song from Saripodhaa Sanivaaram"},
+  {t:"Taa Taa Taa",h:"Saripodhaa Sanivaaram",e:"😤",imgs:["😤","💥","🎵"],hint:"Mass battle song"},
+  {t:"Kalusukovalani",h:"Tuck Jagadish",e:"🌾",imgs:["🌾","💕","🎵"],hint:"Sweet melody from Tuck Jagadish"},
+  {t:"Manasaina",h:"Shyam Singha Roy",e:"♻️",imgs:["♻️","💕","🎵"],hint:"Melodious love song from Shyam Singha Roy"},
+  {t:"Erra Cheera",h:"Shyam Singha Roy",e:"🔴",imgs:["🔴","💃","🎵"],hint:"Classical dance song from Shyam Singha Roy"},
+  {t:"Laila O Laila",h:"Businessman",e:"💃",imgs:["💃","💰","🎵"],hint:"Groovy item number from Businessman"},
+  {t:"Pilla Raa",h:"RX 100",e:"💌",imgs:["💌","😡","🎵"],hint:"Emotional song from RX 100"},
+  {t:"Nela Nela",h:"Akhil",e:"🌙",imgs:["🌙","💕","🎵"],hint:"Romantic night song from Akhil"},
+  {t:"Aye Khuda",h:"Gabbar Singh",e:"🙏",imgs:["🙏","💕","🎵"],hint:"Soulful melody from Gabbar Singh"},
+  {t:"Bavagaru Bagunnara",h:"Various",e:"💑",imgs:["💑","😊","🎵"],hint:"Classic Telugu romantic number"},
+  {t:"Oka Laila Kosam",h:"Oka Laila Kosam",e:"🌺",imgs:["🌺","💘","🎵"],hint:"Sweet title track from the film"},
+  {t:"Anaganaga",h:"Mahanati",e:"🌟",imgs:["🌟","🎭","🎵"],hint:"Poetic song from Mahanati"},
+  {t:"Chatapataku",h:"Srimanthudu",e:"💰",imgs:["💰","💃","🎊"],hint:"Celebratory number from Srimanthudu"},
+  {t:"Nuvvu Nuvvu",h:"Srimanthudu",e:"💕",imgs:["💕","🌸","🎵"],hint:"Romantic song from Srimanthudu"},
+  {t:"Kanasundham",h:"Various",e:"💭",imgs:["💭","🌙","🎵"],hint:"Dreamy classic melody"},
+  {t:"Ey Ey Ey",h:"Spyder",e:"🕸️",imgs:["🕸️","💃","🎵"],hint:"Dance number from Spyder"},
+  {t:"Aathaduko",h:"Maharshi",e:"🌾",imgs:["🌾","🙏","🎵"],hint:"Mass anthem from Maharshi"},
+  {t:"Ismart",h:"iSmart Shankar",e:"🤖",imgs:["🤖","💃","🎵"],hint:"Catchy title song from iSmart Shankar"},
+  {t:"Kuri Kuri",h:"Taxiwaala",e:"🚕",imgs:["🚕","🎵","😜"],hint:"Quirky intro from Taxiwaala"},
+  {t:"Laali",h:"Arya 2",e:"🌸",imgs:["🌸","👶","🎵"],hint:"Melodious lullaby from Arya 2"},
+  {t:"Yentha Sakkagunnave",h:"Geetha Govindam",e:"🌻",imgs:["🌻","💕","🎵"],hint:"Sai Pallavi's mesmerizing song"},
+  {t:"Priyathama",h:"Attarintiki Daredi",e:"💌",imgs:["💌","❤️","🎵"],hint:"Sentimental love song from Attarintiki Daredi"},
+  {t:"Panche Kattukunte",h:"Attarintiki Daredi",e:"🎀",imgs:["🎀","💃","🎊"],hint:"Wedding celebration song"},
+  {t:"Pawan Rocks",h:"Badrinath",e:"🏔️",imgs:["🏔️","💪","🎵"],hint:"Mass fanfare number from Badrinath"},
+  {t:"Crazy Feeling",h:"Alludu Seenu",e:"🤪",imgs:["🤪","💕","🎵"],hint:"Fun youth number from Alludu Seenu"},
+  {t:"Ee Abbayi",h:"Bharat Ane Nenu",e:"😎",imgs:["😎","🏛️","🎵"],hint:"Character intro song from Bharat Ane Nenu"},
+  {t:"Nuvvem Maya",h:"Dookudu",e:"🌸",imgs:["🌸","💕","🎵"],hint:"Sweet romantic from Dookudu"},
+  {t:"Aha Na Pellanta",h:"Dookudu",e:"💍",imgs:["💍","😂","🎵"],hint:"Comic marriage song from Dookudu"},
+  {t:"Kotha Bangaru Lokam",h:"Kotha Bangaru Lokam",e:"🌟",imgs:["🌟","💕","🎵"],hint:"Beautiful title track of the film"},
+  {t:"Ye Ide Prema",h:"Various",e:"💘",imgs:["💘","🎵","🌙"],hint:"Eternal romance classic"},
+  {t:"Maro Charitra",h:"Maro Charitra",e:"❤️",imgs:["❤️","🌧️","🎵"],hint:"Classic evergreen love song"},
+  {t:"Anthahpuram",h:"Various",e:"🏰",imgs:["🏰","💕","🎵"],hint:"Melodious old classic Telugu song"},
+  {t:"Sankranthi",h:"Various",e:"🎊",imgs:["🎊","🌾","🥁"],hint:"Festive folk celebration song"},
+  {t:"Gelusukunnanu",h:"Agnyaathavaasi",e:"🌍",imgs:["🌍","💃","🎵"],hint:"Upbeat international number"},
+  {t:"Oo Baava",h:"Sarileru Neekevvaru",e:"😤",imgs:["😤","😂","🎵"],hint:"Fun rivalry song from Sarileru Neekevvaru"},
+  {t:"Mind Block",h:"Sarileru Neekevvaru",e:"🧠",imgs:["🧠","🕺","🎵"],hint:"Dance number from Sarileru Neekevvaru"},
+  {t:"Butta Bomma",h:"Ala Vaikunthapurramuloo",e:"🎀",imgs:["🎀","❤️","🌼"],hint:"Pooja Hegde's sweet melody"},
+  {t:"Unnadhokate Zindagi",h:"Race Gurram",e:"🎉",imgs:["🎉","😎","🎵"],hint:"Carefree life song from Race Gurram"},
+  {t:"Evvade",h:"Julayi",e:"❓",imgs:["❓","🕵️","🎵"],hint:"Mysterious intro song from Julayi"},
+  {t:"Dhee Ante Dhee",h:"Dhee",e:"💃",imgs:["💃","🔥","🎵"],hint:"Dance challenge song"},
+  {t:"Aa Ante Amalapuram",h:"Arya 2",e:"🌺",imgs:["🌺","💃","🎵"],hint:"Viral folk dance number"},
+  {t:"Current Teeyakunda",h:"Dookudu",e:"⚡",imgs:["⚡","💃","🎵"],hint:"Electric item number from Dookudu"},
+  {t:"Bangaram",h:"Bangaram",e:"🌟",imgs:["🌟","💕","🌺"],hint:"Classic romance from Bangaram"},
+  {t:"Maguva Maguva",h:"Vakeel Saab",e:"⚖️",imgs:["⚖️","👩","🎵"],hint:"Women empowerment anthem from Vakeel Saab"},
+  {t:"Nee Navvu",h:"Various",e:"😊",imgs:["😊","💕","🎵"],hint:"Classic smile dedicated love song"},
+  {t:"Chinnari Papalu",h:"Various",e:"👶",imgs:["👶","🌸","🎵"],hint:"Classic lullaby song"},
+  {t:"Raa Raa",h:"Simhadri",e:"🦁",imgs:["🦁","💪","🎵"],hint:"Mass entry number from Simhadri"},
+  {t:"Sigge Ledu",h:"Yamadonga",e:"😜",imgs:["😜","😈","🎵"],hint:"No-shame comedy song from Yamadonga"},
+  {t:"Oye Oye",h:"Oye",e:"😜",imgs:["😜","❤️","🎓"],hint:"College flirt song from Oye"},
+  {t:"Iddarammayilatho",h:"Iddarammayilatho",e:"👫",imgs:["👫","🏋️","🎵"],hint:"Title track from Iddarammayilatho"},
+  {t:"Loukyam",h:"Loukyam",e:"😂",imgs:["😂","💃","🎵"],hint:"Comical situational song from Loukyam"},
+  {t:"Nakaithe Nachindi",h:"Nakaithe Nachindi",e:"💕",imgs:["💕","😂","🎵"],hint:"Fun love song from the film"},
+  {t:"Guvva Gorinka",h:"Seethamma Vakitlo",e:"🐦",imgs:["🐦","💕","🎵"],hint:"Romantic duet from Seethamma Vakitlo"},
+  {t:"Kaaney Kaaney",h:"Nannaku Prematho",e:"👁️",imgs:["👁️","💞","🎵"],hint:"Melodious love song from Nannaku Prematho"},
+  {t:"Rey Vachinde",h:"Nannaku Prematho",e:"💼",imgs:["💼","😡","🎵"],hint:"Intense revenge number from Nannaku Prematho"},
+  {t:"Mallipoo",h:"Various",e:"🌸",imgs:["🌸","💐","🎵"],hint:"Classic jasmine-themed love melody"},
+  {t:"Nannu Dochukunduvate",h:"Nannu Dochukunduvate",e:"💘",imgs:["💘","🎵","🌹"],hint:"Title track from classic romantic film"},
+  {t:"Oka Laila Kosam",h:"Oka Laila Kosam",e:"🌺",imgs:["🌺","🚂","💕"],hint:"Train journey love theme"},
+  {t:"Ye Manase",h:"Okkadu",e:"💔",imgs:["💔","🌧️","🎵"],hint:"Rain-drenched heartbreak melody from Okkadu"},
+  {t:"Idhe Idhe",h:"Tuck Jagadish",e:"🌾",imgs:["🌾","💕","🌸"],hint:"Simple village love number"},
+  {t:"Nuvvunte Naakuundi",h:"Greeku Veerudu",e:"💕",imgs:["💕","🇬🇷","🎵"],hint:"Romantic song from Greeku Veerudu"},
+  {t:"Taalitha Kumum",h:"Janatha Garage",e:"🌳",imgs:["🌳","🙏","🎵"],hint:"Devotional styled number from Janatha Garage"},
+  {t:"Nenu Saitam",h:"Aravinda Sametha",e:"🔫",imgs:["🔫","💔","🎵"],hint:"Emotional confession from Aravinda Sametha"},
+  {t:"Nivedhyam",h:"Shyam Singha Roy",e:"🪷",imgs:["🪷","🙏","🎵"],hint:"Devotional folk number from Shyam Singha Roy"},
+  {t:"Manasuna",h:"Arya",e:"💕",imgs:["💕","🌹","🎵"],hint:"Soulful opening number from Arya"},
+  {t:"Kanulunu Taakey",h:"Nuvvostanante Nenoddantana",e:"👁️",imgs:["👁️","❤️","🎵"],hint:"Classic romantic melody"},
+  {t:"Sundari Neevanti",h:"Various",e:"🌸",imgs:["🌸","❤️","🎵"],hint:"Classic evergreen love ballad"},
+  {t:"Nachavule",h:"Nachavule",e:"💃",imgs:["💃","😜","🎵"],hint:"Fun dance number from the film"},
+  {t:"Ninne Ninne",h:"Om",e:"💫",imgs:["💫","💕","🎵"],hint:"Melodious song from Om"},
+  {t:"Kaadhal Kaadhal",h:"Various",e:"❤️",imgs:["❤️","🌺","🎵"],hint:"Tamil influenced Telugu love duet"},
+  {t:"Jilukayya",h:"Julai",e:"💃",imgs:["💃","🎊","🎵"],hint:"Folk dance number from Julai"},
+  {t:"Aadi Lakshmini",h:"Various",e:"🙏",imgs:["🙏","🌺","🎵"],hint:"Devotional goddess song"},
+  {t:"Koti Koti Aasalu",h:"Brindavanam",e:"🌺",imgs:["🌺","👫","🎵"],hint:"Romantic duet from Brindavanam"},
+  {t:"Chinni Chinni",h:"Various",e:"✨",imgs:["✨","💕","🎵"],hint:"Sweet classic Telugu ballad"},
+  {t:"Mallelu Vaanalo",h:"Various",e:"🌸",imgs:["🌸","🌧️","🎵"],hint:"Classic rain and flowers melody"},
+  {t:"Adiga Adiga",h:"Ye Maaya Chesave",e:"🌙",imgs:["🌙","💕","🎵"],hint:"Sid Sriram's beautiful melody"},
+  {t:"Pehle Bhi Main",h:"Various",e:"💭",imgs:["💭","❤️","🎵"],hint:"Haunting love melody"},
+  {t:"Oo Kodathara",h:"Devadas",e:"🍺",imgs:["🍺","😜","🎵"],hint:"Fun number from Devadas"},
+  {t:"Blockbuster",h:"Sarileru Neekevvaru",e:"🎬",imgs:["🎬","💥","🎵"],hint:"Mass number from Sarileru Neekevvaru"},
+  {t:"Tella Cheera",h:"Various",e:"🤍",imgs:["🤍","💃","🎵"],hint:"Traditional white-saree love song"},
+  {t:"Toli Parichayam",h:"Various",e:"🤝",imgs:["🤝","💕","🎵"],hint:"First meeting love song"},
+  {t:"Oka Maru",h:"Various",e:"💌",imgs:["💌","💔","🎵"],hint:"Emotional letter-writing love song"},
+  {t:"Neeli Neeli Aakasam",h:"30 Rojullo",e:"🌀",imgs:["🌀","💕","🎵"],hint:"Soulful sky-themed melody"},
+  {t:"Arere Arere",h:"Businessman",e:"💰",imgs:["💰","😎","🎵"],hint:"Mass swag song from Businessman"},
+  {t:"Pellaina Kosam",h:"Various",e:"👰",imgs:["👰","💒","🎵"],hint:"Classic wedding love song"},
+  {t:"Yekkada Yekkada",h:"Alludu Seenu",e:"❓",imgs:["❓","💕","🎵"],hint:"Searching for love song"},
+  {t:"Aaviri",h:"Various",e:"💨",imgs:["💨","💔","🎵"],hint:"Emotional song about feeling empty"},
+  {t:"Evarikoosam",h:"Various",e:"💭",imgs:["💭","❤️","🎵"],hint:"Classic longing melody"},
+  {t:"Chinnado",h:"Various",e:"👦",imgs:["👦","🌸","🎵"],hint:"Classic Telugu love ballad"},
+  {t:"Kothaga Kothaga",h:"Ye Maaya Chesave",e:"✨",imgs:["✨","💘","🎵"],hint:"Fresh new love from Ye Maaya Chesave"},
+  {t:"Navvuta Navvuta",h:"Various",e:"😊",imgs:["😊","💕","🎵"],hint:"Happy smiling love song"},
+  {t:"Yamaho Yamaho",h:"Various",e:"🌊",imgs:["🌊","💔","🎵"],hint:"Heartbreak by the water"},
+  {t:"Manchi Manasulu",h:"Various",e:"💚",imgs:["💚","🌿","🎵"],hint:"Classic pure hearts melody"},
+  {t:"Darialo",h:"Various",e:"🛤️",imgs:["🛤️","💕","🎵"],hint:"Journey of love song"},
+  {t:"Snehithuda",h:"Okkadu",e:"👬",imgs:["👬","😢","🎵"],hint:"Friendship melody from Okkadu"},
+  {t:"Kallalona",h:"Gharana Mogudu",e:"👀",imgs:["👀","💕","🎵"],hint:"Classic eyes-meeting love song"},
+  {t:"Pranama",h:"Various",e:"🙇",imgs:["🙇","❤️","🎵"],hint:"Devotion-style love ballad"},
+  {t:"Adiga Adiga",h:"Ye Maaya Chesave",e:"🎶",imgs:["🎶","💕","🌙"],hint:"Soulful Sid Sriram composition"},
+  {t:"Vachindamma",h:"Janatha Garage",e:"🌳",imgs:["🌳","👶","🎵"],hint:"Lullaby from Janatha Garage"},
+  {t:"Pattu Pata",h:"Various",e:"🧵",imgs:["🧵","💕","🎵"],hint:"Silk-weave themed melody"},
+  {t:"Manasunna Maata",h:"Baahubali 2",e:"💕",imgs:["💕","⚔️","🌺"],hint:"Love between warriors in Baahubali 2"},
+  {t:"Gundello Godari",h:"Gundello Godari",e:"🌊",imgs:["🌊","💕","🎵"],hint:"Flood time love melody"},
+  {t:"Mallamma",h:"RRR",e:"🌺",imgs:["🌺","💃","🎶"],hint:"Folk dance number from RRR"},
+  {t:"Dosti",h:"RRR",e:"👬",imgs:["👬","🤝","🎵"],hint:"Friendship theme from RRR"},
+  {t:"Etthara Jenda",h:"RRR",e:"🚩",imgs:["🚩","💪","🎵"],hint:"Patriotic anthem from RRR"},
+  {t:"Natu Natu",h:"RRR",e:"🕺",imgs:["🕺","💃","🎶"],hint:"Oscar winning dance song"},
+  {t:"Kanakam Kana",h:"Devara",e:"🌊",imgs:["🌊","💃","🎵"],hint:"Dance song from Devara"},
+  {t:"Waqt Ne Kiya",h:"Various",e:"⏰",imgs:["⏰","💔","🎵"],hint:"Classic time and love melody"},
+  {t:"Enno Ratruloo",h:"Ante Sundaraniki",e:"🌙",imgs:["🌙","💕","🎵"],hint:"Romantic night song"},
+  {t:"Ye Manishi",h:"Various",e:"👤",imgs:["👤","❤️","🎵"],hint:"Classic identity love song"},
+  {t:"Pillagadu Pillaga",h:"Various",e:"👶",imgs:["👶","😂","🎵"],hint:"Comedy child song"},
+  {t:"Pilla Vinave",h:"Various",e:"📢",imgs:["📢","💕","🎵"],hint:"Call to lover song"},
+  {t:"Swasa Kaasey",h:"Various",e:"💨",imgs:["💨","💕","🎵"],hint:"Breathless love melody"},
+  {t:"Nene Raju Nene Mantri",h:"Nene Raju Nene Mantri",e:"🏛️",imgs:["🏛️","💪","🎵"],hint:"Power song from the film"},
+  {t:"Evvare Evvare",h:"Various",e:"🤷",imgs:["🤷","💕","🎵"],hint:"Searching for love song"},
+  {t:"Pempudu",h:"Various",e:"🙏",imgs:["🙏","👨‍👧","🎵"],hint:"Raising children love song"},
+  {t:"Nee Swaasalo",h:"Various",e:"💨",imgs:["💨","💕","🎵"],hint:"Breathing in love melody"},
+  {t:"Kammani Ee Prema",h:"Various",e:"🍯",imgs:["🍯","💕","🎵"],hint:"Sweet love song"},
+  {t:"Cheli Song",h:"Various",e:"👭",imgs:["👭","❤️","🎵"],hint:"Friendship and love melody"},
+  {t:"Oka Laila Kosam",h:"Various",e:"🌺",imgs:["🌺","🚂","🎵"],hint:"One girl love journey"},
+  {t:"Neeve Neeve",h:"Various",e:"💞",imgs:["💞","🎵","🌙"],hint:"You and only you love melody"},
+  {t:"Iddaram Iddaram",h:"Various",e:"👫",imgs:["👫","💕","🎵"],hint:"Together forever duet"},
+  {t:"Preme Preme",h:"Various",e:"❤️",imgs:["❤️","🌺","🎵"],hint:"Love is everything melody"},
+  {t:"Ye Manasaa",h:"Various",e:"💭",imgs:["💭","💔","🎵"],hint:"Longing heart melody"},
+  {t:"Kallu Moosinda",h:"Various",e:"👁️",imgs:["👁️","💕","🎵"],hint:"Eyes closed in love"},
+  {t:"Okey Oka Chance",h:"Various",e:"🎲",imgs:["🎲","💕","🎵"],hint:"One chance at love"},
+  {t:"Ye Cheligaadu",h:"Various",e:"👦",imgs:["👦","💘","🎵"],hint:"Which friend stole my heart"},
+  {t:"Adavi Ramudu Theme",h:"Adavi Ramudu",e:"🌳",imgs:["🌳","🏹","🎵"],hint:"Jungle hero theme song"},
+  {t:"Kondaveeti Donga",h:"Kondaveeti Donga",e:"🏔️",imgs:["🏔️","🔫","🎵"],hint:"Hill thief action theme"},
+  {t:"Bobbili Puli",h:"Bobbili Puli",e:"🐆",imgs:["🐆","🌾","🎵"],hint:"Rural lion-hearted hero theme"},
+  {t:"Mutyala Muggu",h:"Mutyala Muggu",e:"💎",imgs:["💎","🌸","🎵"],hint:"Pearls decorated melody"},
+  {t:"Chanda Mama",h:"Various",e:"🌙",imgs:["🌙","👶","🎵"],hint:"Classic moon lullaby"},
+  {t:"Ammaku Muddulu",h:"Various",e:"👩",imgs:["👩","🙏","🎵"],hint:"Devotion to mother song"},
+  {t:"Navvula Puvvula",h:"Various",e:"🌸",imgs:["🌸","😊","🎵"],hint:"Smiling flowers melody"},
+  {t:"Paluke Bangaramayena",h:"Various",e:"💬",imgs:["💬","🌟","🎵"],hint:"Classic golden words song"},
+  {t:"Omkar Praanadeswar",h:"Various",e:"🕉️",imgs:["🕉️","🌺","🎵"],hint:"Devotional classical song"},
+  {t:"Jagadambo",h:"Various",e:"🌺",imgs:["🌺","🙏","🎵"],hint:"Goddess praise devotional"},
+  {t:"Karthika Deepam",h:"Various",e:"🕯️",imgs:["🕯️","🙏","🎵"],hint:"Festival light devotional"},
+  {t:"Bangaru Kodi Petta",h:"Okkadu",e:"🐓",imgs:["🐓","👨‍👩‍👧","🎵"],hint:"Loving family folk song from Okkadu"},
+  {t:"Bammara",h:"Various",e:"🐝",imgs:["🐝","💃","🎵"],hint:"Folk bee dance song"},
+  {t:"Oorvasi Oorvasi",h:"Various",e:"💃",imgs:["💃","✨","🎵"],hint:"Celestial dance item number"},
+  {t:"Payanam",h:"Various",e:"✈️",imgs:["✈️","💕","🎵"],hint:"Journey of love song"},
+  {t:"Teluguvari Tema",h:"Various",e:"🌟",imgs:["🌟","🇮🇳","🎵"],hint:"Telugu pride anthem"},
+  {t:"Jai Ho",h:"Various",e:"🙌",imgs:["🙌","🌾","🎵"],hint:"Victory and celebration song"},
+  {t:"Muddugare Yashoda",h:"Various",e:"👶",imgs:["👶","🙏","🎵"],hint:"Lord Krishna lullaby"},
+  {t:"Gopi Gopi",h:"Various",e:"🌺",imgs:["🌺","🎊","🎵"],hint:"Festive joyful number"},
+  {t:"Nuvvunte Na Jeevitam",h:"Various",e:"🌟",imgs:["🌟","💕","🎵"],hint:"You are my life melody"},
+  {t:"Naa Hrudayam",h:"Various",e:"💓",imgs:["💓","🎵","🌺"],hint:"My heart belongs to you"},
+  {t:"Premante",h:"Various",e:"❤️",imgs:["❤️","🌹","🎵"],hint:"What is love Telugu melody"},
+  {t:"Tholipremalo",h:"Various",e:"💕",imgs:["💕","🌸","🎵"],hint:"First love melody"},
+  {t:"Kannetirani",h:"Various",e:"😢",imgs:["😢","💔","🎵"],hint:"Tears of separation melody"},
+  {t:"Vacchi Saree",h:"Various",e:"👘",imgs:["👘","💃","🎵"],hint:"Beautiful saree song"},
+  {t:"Swapnala",h:"Various",e:"💭",imgs:["💭","🌙","🎵"],hint:"Dream world love song"},
+  {t:"Inthandham",h:"Various",e:"🏡",imgs:["🏡","👨‍👩‍👧","🎵"],hint:"Home and family melody"},
+  {t:"Vennelalo",h:"Various",e:"🌙",imgs:["🌙","💕","🎵"],hint:"Moonlight romance duet"},
+  {t:"Poola Rangadu",h:"Various",e:"🌸",imgs:["🌸","🎊","🎵"],hint:"Flower festival song"},
+  {t:"Naa Jathaga",h:"Various",e:"💑",imgs:["💑","❤️","🎵"],hint:"Together forever melody"},
+  {t:"Vinave Vinave",h:"Various",e:"👂",imgs:["👂","💕","🎵"],hint:"Listen to me love song"},
+  {t:"Nenu Saitam",h:"Aravinda Sametha",e:"💔",imgs:["💔","🌹","🎵"],hint:"Heart wrenching confession song"},
+  {t:"Naadaan Parindey",h:"Various",e:"🦜",imgs:["🦜","🌙","🎵"],hint:"Free bird love melody"},
+  {t:"Choopultho",h:"Various",e:"👀",imgs:["👀","💘","🎵"],hint:"Eyes speaking love"},
+  {t:"Devuda Devuda",h:"Various",e:"🙏",imgs:["🙏","😢","🎵"],hint:"Praying in heartbreak"},
+  {t:"Nuvvu Nuvvu",h:"Srimanthudu",e:"🌹",imgs:["🌹","💕","🎵"],hint:"You and you only song from Srimanthudu"},
+  {t:"Dil Dhadakne Do",h:"Various",e:"💓",imgs:["💓","🌊","🎵"],hint:"Heart beats racing melody"},
+  {t:"Oye Oye",h:"Oye",e:"😜",imgs:["😜","🎵","❤️"],hint:"College love comedy number"},
+  {t:"Anthahpuram",h:"Various",e:"🏰",imgs:["🏰","💕","🎵"],hint:"Inner palace love song"},
+  {t:"Ela Ela",h:"Various",e:"🤷",imgs:["🤷","💕","🎵"],hint:"How how did I fall in love"},
+  {t:"Ra Ra Krishnayya",h:"Various",e:"🌺",imgs:["🌺","🥁","🎶"],hint:"Folk devotional celebration song"},
+  {t:"Pelliki Mundu",h:"Various",e:"💍",imgs:["💍","💃","🎵"],hint:"Pre wedding celebration song"},
+  {t:"Gummadi Gummadi",h:"Various",e:"🎃",imgs:["🎃","😂","🎵"],hint:"Comedy folk song"},
+  {t:"Pachi Bottesina",h:"Various",e:"🌿",imgs:["🌿","💕","🎵"],hint:"Green nature love melody"},
+
+  {t:"Inthandham",h:"Various",e:"🏡",imgs:["🏡","👨‍👩‍👧","🎵"],hint:"Home and family Telugu melody"},
+  {t:"Pempudu",h:"Various",e:"🙏",imgs:["🙏","👨‍👧","🎵"],hint:"Raising children love song"},
+  {t:"Kanakam Kana",h:"Devara",e:"💛",imgs:["💛","💃","🎵"],hint:"Gold-themed dance from Devara"},
+  {t:"Dosti",h:"RRR",e:"👬",imgs:["👬","🤝","🎵"],hint:"Brotherhood song from RRR"},
+  {t:"Etthara Jenda",h:"RRR",e:"🚩",imgs:["🚩","✊","🎵"],hint:"Patriotic flag song from RRR"}
+];
+</script>
+<script src="https://cdn.jsdelivr.net/npm/peerjs@1.5.4/dist/peerjs.min.js" async
+  onload="window._peerReady=true;console.log('PeerJS loaded')"
+  onerror="window._peerErr=true;console.warn('PeerJS failed to load')">
+</script>
+<script>
+// ═══════════════════════════════════════════
+// GAME LOGIC — runs immediately, no PeerJS dependency for UI
+// ═══════════════════════════════════════════
+
+// ── MODE SELECTION (works with zero dependencies) ──
+let gameMode = 'draw';
+function pickMode(m) {
+  gameMode = m;
+  ['draw','img','song'].forEach(id => {
+    const b = document.getElementById('mb-' + id);
+    if (b) b.className = 'mbtn' + (id === m ? ' sel' : '');
+  });
+}
+
+// ── SCREEN SWITCHING ──
+function showScr(id) {
+  document.querySelectorAll('.scr').forEach(s => s.classList.remove('on'));
+  const el = document.getElementById(id);
+  if (el) el.classList.add('on');
+}
+
+// ── CONSTANTS ──
+const COLORS = ['#1a1207','#e53935','#ff6b00','#ffd600','#43a047','#00897b','#1e88e5','#8e24aa','#f06292','#ffffff'];
+const AVC = ['#e53935','#ff6b00','#43a047','#1e88e5','#8e24aa','#00897b','#f06292','#ffd600','#00bcd4','#ff5722'];
+const MEDALS = ['🥇','🥈','🥉','4️⃣','5️⃣','6️⃣','7️⃣','8️⃣','9️⃣','🔟'];
+const MLABELS = {draw:'🎨 Doodle & Guess', img:'🖼️ 3 Pics Movie', song:'🎵 3 Pics Song'};
+
+// ── STATE ──
+let peer=null, conns=[], myId='', myName='', isHost=false;
+let roomCode='', players=[], scores={}, settings={};
+let currentRound=0, currentTurnInRound=0, totalRounds=3;
+let currentDrawer='', currentItem=null;
+let timerInt=null, timeLeft=90, totalTime=90;
+let guessedSet=new Set(), roundScores={}, revealedIdx=new Set();
+let moviePool=[], songPool=[], usedItems=new Set();
+let droppedScores={}; // remembers scores of disconnected players
+let tool='pen', bColor='#1a1207', bSize=5;
+let painting=false, lx=0, ly=0, strokes=[], curStroke=[];
+let amDrawing=false, turnSent=false;
+
+// ── SHARE LINK ──
+function getShareUrl() {
+  const base = window.location.href.split('?')[0].split('#')[0];
+  return base + '?join=' + roomCode;
+}
+
+function updateShareLink() {
+  const url = getShareUrl();
+  const el = document.getElementById('shareUrl');
+  if (!el) return;
+  if (url.startsWith('file://')) {
+    el.textContent = 'Host this file online to get a shareable link (see How to Play)';
+    el.style.color = '#f5a623';
+    document.getElementById('shareBox').querySelector('.share-lbl').textContent = 
+      '⚠️ Running locally — upload to GitHub Pages for a shareable link';
+  } else {
+    el.textContent = url;
+    el.style.color = '';
+  }
+}
+
+function copyLink() {
+  const url = getShareUrl();
+  const btn = document.getElementById('copyBtn');
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(url).then(() => {
+      if (btn) { btn.textContent = '✅ Copied!'; btn.className = 'sbtn sbtn-copy copy-done'; }
+      setTimeout(() => { if (btn) { btn.textContent = '📋 Copy Link'; btn.className = 'sbtn sbtn-copy'; } }, 2500);
+    }).catch(() => fallbackCopy(url));
+  } else {
+    fallbackCopy(url);
+  }
+}
+
+function fallbackCopy(url) {
+  const ta = document.createElement('textarea');
+  ta.value = url; ta.style.position = 'fixed'; ta.style.opacity = '0';
+  document.body.appendChild(ta); ta.select();
+  try {
+    document.execCommand('copy');
+    const btn = document.getElementById('copyBtn');
+    if (btn) { btn.textContent = '✅ Copied!'; btn.className = 'sbtn sbtn-copy copy-done'; }
+    setTimeout(() => { if (btn) { btn.textContent = '📋 Copy Link'; btn.className = 'sbtn sbtn-copy'; } }, 2500);
+  } catch(e) { alert('Copy this link: ' + url); }
+  document.body.removeChild(ta);
+}
+
+function shareWhatsApp() {
+  const url = getShareUrl();
+  const msg = '🎬 Join my Tollywood Party game! Click the link to play: ' + url;
+  window.open('https://wa.me/?text=' + encodeURIComponent(msg), '_blank');
+}
+
+// ── URL PARAM — auto-fill room code from invite link ──
+function checkUrlParams() {
+  const params = new URLSearchParams(window.location.search);
+  const joinCode = params.get('join');
+  if (joinCode) {
+    // Auto-fill the code and scroll join card into view
+    const codeEl = document.getElementById('jcode');
+    if (codeEl) {
+      codeEl.value = joinCode.toUpperCase();
+      // Show the hint
+      const hint = document.getElementById('linkJoinHint');
+      if (hint) hint.style.display = 'block';
+      // Focus on name field
+      setTimeout(() => {
+        const nameEl = document.getElementById('jname');
+        if (nameEl) nameEl.focus();
+      }, 300);
+    }
+    // Check sessionStorage for saved name (for auto-rejoin)
+    const savedName = sessionStorage.getItem('tpg_name');
+    if (savedName) {
+      const nameEl = document.getElementById('jname');
+      if (nameEl) nameEl.value = savedName;
+    }
+    // Clean URL without reloading
+    window.history.replaceState({}, '', window.location.pathname + '?join=' + joinCode.toUpperCase());
+  }
+}
+
+// ── PEER HELPERS ──
+function waitForPeer(cb) {
+  if (window._peerReady && typeof Peer !== 'undefined') { cb(); return; }
+  if (window._peerErr) { alert('Could not load connection library. Check internet and refresh.'); return; }
+  let tries = 0;
+  const t = setInterval(() => {
+    tries++;
+    if (typeof Peer !== 'undefined') { clearInterval(t); cb(); return; }
+    if (tries > 30) { clearInterval(t); alert('Connection library not loaded yet. Please wait and try again.'); }
+  }, 200);
+}
+
+function genCode() { return Math.random().toString(36).substr(2,4).toUpperCase(); }
+
+function broadcast(data, skip=null) {
+  conns.forEach(c => { try { if (c !== skip && c.open) c.send(data); } catch(e){} });
+}
+function sendHost(data) { try { if (conns[0]?.open) conns[0].send(data); } catch(e){} }
+
+// ── HOST ROOM ──
+function hostRoom() {
+  const name = document.getElementById('hname').value.trim();
+  if (!name) { alert('Enter your name!'); return; }
+  const btn = document.getElementById('hostBtn');
+  btn.disabled = true; btn.textContent = 'Loading...';
+  document.getElementById('hostStat').textContent = 'Loading connection library...';
+  waitForPeer(() => {
+    btn.textContent = 'Connecting...';
+    document.getElementById('hostStat').textContent = 'Creating room...';
+    myName = name; isHost = true;
+    roomCode = genCode();
+    settings = {
+      time: parseInt(document.getElementById('htime').value),
+      rounds: parseInt(document.getElementById('hrounds').value),
+      mode: gameMode,
+      clueStyle: 'emoji'
+    };
+    if (peer && !peer.destroyed) { try { peer.destroy(); } catch(e){} }
+    peer = new Peer('tw-' + roomCode, { debug: 0 });
+    peer.on('open', id => {
+      myId = id;
+      players = [{ name, id, isHost: true }];
+      scores[name] = 0;
+      showScr('lobby');
+      document.getElementById('codeDisp').textContent = roomCode;
+      updateShareLink();
+      document.getElementById('lset').style.display = 'block';
+      document.getElementById('modeTag').textContent = MLABELS[gameMode];
+      setCS('ok', '✓ Room ready');
+      document.getElementById('startBtn').disabled = false;
+      renderLobby();
+      setLS('Share the code! Waiting for players...');
+      btn.disabled = false; btn.textContent = 'Create Room 🚀';
+      document.getElementById('hostStat').textContent = '';
+    });
+    peer.on('connection', conn => {
+      conn.on('open', () => {
+        if (players.length >= 10) { conn.send({ type: 'full' }); conn.close(); return; }
+        conns.push(conn);
+        conn.on('data', d => onData(d, conn));
+        conn.on('close', () => onDisconnect(conn));
+      });
+    });
+    peer.on('error', e => {
+      if (e.type === 'unavailable-id') { roomCode = genCode(); peer.destroy(); hostRoom(); }
+      else { btn.disabled = false; btn.textContent = 'Create Room 🚀'; document.getElementById('hostStat').textContent = 'Error: ' + e.type; }
+    });
+  });
+}
+
+
+// ── SESSION RESTORE — auto rejoin if page refreshed during game ──
+function checkSessionRejoin() {
+  const savedName = sessionStorage.getItem('tpg_name');
+  const savedCode = sessionStorage.getItem('tpg_code');
+  // Also check URL param
+  const params = new URLSearchParams(window.location.search);
+  const urlCode = params.get('join');
+  const code = savedCode || urlCode;
+  if (savedName && code) {
+    // Pre-fill fields
+    const jname = document.getElementById('jname');
+    const jcode = document.getElementById('jcode');
+    if (jname) jname.value = savedName;
+    if (jcode) jcode.value = code.toUpperCase();
+    const hint = document.getElementById('linkJoinHint');
+    if (hint) hint.style.display = 'block';
+  }
+}
+
+// Auto-rejoin when connection drops during game
+function autoRejoin(attempt) {
+  attempt = attempt || 1;
+  if (attempt > 5) { alert('Could not reconnect. Please rejoin manually.'); showScr('home'); return; }
+  addChat('', 'sys', 'Reconnecting... attempt ' + attempt, 'both');
+  try { if (peer && !peer.destroyed) peer.destroy(); } catch(e) {}
+  peer = new Peer(undefined, { debug: 0 });
+  peer.on('open', id => {
+    myId = id;
+    const h = peer.connect('tw-' + roomCode, { reliable: true });
+    h.on('open', () => {
+      conns = [h];
+      h.send({ type: 'join', name: myName, id });
+      h.on('data', d => onData(d, h));
+      h.on('close', () => {
+        const gameActive = ['game','igame','rend'].some(id => document.getElementById(id).classList.contains('on'));
+        if (gameActive && myName && roomCode) setTimeout(() => autoRejoin(attempt + 1), 3000);
+        else { showScr('home'); }
+      });
+      addChat('', 'sys', 'Reconnected!', 'both');
+    });
+    h.on('error', () => setTimeout(() => autoRejoin(attempt + 1), 3000));
+  });
+  peer.on('error', () => setTimeout(() => autoRejoin(attempt + 1), 3000));
+}
+
+// ── JOIN ROOM ──
+function joinRoom() {
+  const name = document.getElementById('jname').value.trim();
+  const code = document.getElementById('jcode').value.trim().toUpperCase();
+  if (!name) { alert('Enter your name!'); return; }
+  if (code.length < 4) { setJE('Enter 4-letter room code'); return; }
+  const btn = document.getElementById('joinBtn');
+  btn.disabled = true; setJE('Loading...');
+  waitForPeer(() => {
+    setJE('Connecting...');
+    myName = name; isHost = false; roomCode = code;
+    sessionStorage.setItem('tpg_name', name);
+    sessionStorage.setItem('tpg_code', code);
+    if (peer && !peer.destroyed) { try { peer.destroy(); } catch(e){} }
+    peer = new Peer(undefined, { debug: 0 });
+    peer.on('open', id => {
+      myId = id;
+      const h = peer.connect('tw-' + code, { reliable: true });
+      h.on('open', () => {
+        conns = [h];
+        h.send({ type: 'join', name, id });
+        h.on('data', d => onData(d, h));
+        h.on('close', () => {
+          // Try auto-rejoin if game was active
+          const gameActive = ['game','igame','rend'].some(id => document.getElementById(id).classList.contains('on'));
+          if (gameActive && myName && roomCode) {
+            addChat('', 'sys', 'Connection lost. Reconnecting...', 'both');
+            setTimeout(() => autoRejoin(), 2000);
+          } else {
+            alert('Host disconnected');
+            showScr('home');
+          }
+        });
+        showScr('lobby');
+        document.getElementById('codeDisp').textContent = code;
+        setCS('ok', '✓ Connected');
+        setLS('Waiting for host to start...');
+        setJE('');
+        btn.disabled = false;
+      });
+      h.on('error', () => { btn.disabled = false; setJE('Cannot connect. Check the code!'); });
+    });
+    peer.on('error', e => { btn.disabled = false; setJE('Error: ' + e.type); });
+  });
+}
+
+// ── DATA HANDLER ──
+function onData(data, conn) {
+  const d = (typeof data === 'string') ? JSON.parse(data) : data;
+  if (!d || !d.type) return;
+  switch(d.type) {
+    case 'join': onJoin(d, conn); break;
+    case 'plist': onPList(d); break;
+    case 'rejoin': onRejoin(d); break;
+    case 'settings': onSettings(d); break;
+    case 'start': onStart(d); break;
+    case 'draw': onRDraw(d); break;
+    case 'clear': clearCanvas(true); break;
+    case 'undo': onRUndo(d); break;
+    case 'guess': onRGuess(d); break;
+    case 'correct': onCorrect(d); break;
+    case 'turnEnd': onTurnEnd(d); break;
+    case 'reveal': onReveal(d); break;
+    case 'tsync': if (!isHost) { timeLeft = d.t; updateTimer(); updateITimer(); } break;
+    case 'full': alert('Room is full!'); showScr('home'); break;
+  }
+}
+
+function onJoin(d, conn) {
+  if (!isHost) return;
+  // Check if this is a rejoin (same name as someone who dropped)
+  const isRejoin = droppedScores.hasOwnProperty(d.name);
+  const gameActive = document.getElementById('game').classList.contains('on') ||
+                     document.getElementById('igame').classList.contains('on') ||
+                     document.getElementById('rend').classList.contains('on');
+  if (!isRejoin && players.length >= 10) { conn.send({ type: 'full' }); return; }
+  if (!conns.includes(conn)) conns.push(conn);
+  players.push({ name: d.name, id: d.id, conn });
+  // Restore old score if rejoining, else start at 0
+  scores[d.name] = isRejoin ? (droppedScores[d.name] || 0) : 0;
+  if (isRejoin) delete droppedScores[d.name];
+  const pl = players.map(p => ({ name: p.name, id: p.id, isHost: p.isHost }));
+  conn.send({ type: 'plist', players: pl, settings });
+  broadcast({ type: 'plist', players: pl, settings }, conn);
+  if (isRejoin && gameActive) {
+    // Send current game state so they can rejoin mid-game
+    addChat('', 'sys', d.name + ' rejoined!', 'both');
+    conn.send({
+      type: 'rejoin',
+      players: pl, settings, scores,
+      currentRound, currentTurnInRound, totalRounds,
+      currentDrawer, currentItem, gameMode,
+      timeLeft, revealedIdx: [...revealedIdx]
+    });
+  }
+  renderLobby();
+  renderScores();
+  setLS(players.length + ' players.');
+  document.getElementById('startBtn').disabled = players.length < 2;
+}
+
+function onRejoin(d) {
+  // Restore full game state after reconnecting mid-game
+  players = d.players; settings = d.settings;
+  Object.assign(scores, d.scores);
+  currentRound = d.currentRound; currentTurnInRound = d.currentTurnInRound;
+  totalRounds = d.totalRounds; currentDrawer = d.currentDrawer;
+  currentItem = d.currentItem; gameMode = d.gameMode;
+  timeLeft = d.timeLeft || settings.time || 90;
+  totalTime = settings.time || 90;
+  // Restore revealed letters
+  revealedIdx = new Set(d.revealedIdx || []);
+  addChat('', 'sys', 'You rejoined the game!', 'both');
+  if (gameMode === 'draw') initDraw({ ...d, item: currentItem, drawer: currentDrawer, round: currentRound, turnInRound: currentTurnInRound, totalRounds, scores, gameMode, timeLeft });
+  else initImg({ ...d, item: currentItem, drawer: currentDrawer, round: currentRound, turnInRound: currentTurnInRound, totalRounds, scores, gameMode, timeLeft });
+}
+
+function onPList(d) {
+  players = d.players;
+  if (d.settings) { settings = d.settings; gameMode = d.settings.mode || 'draw'; }
+  players.forEach(p => { if (scores[p.name] === undefined) scores[p.name] = 0; });
+  renderLobby();
+  document.getElementById('modeTag').textContent = MLABELS[gameMode] || '';
+}
+
+function onSettings(d) {
+  settings = d.settings; gameMode = d.settings.mode || gameMode;
+  document.getElementById('modeTag').textContent = MLABELS[gameMode] || '';
+}
+
+function onDisconnect(conn) {
+  if (!isHost) return;
+  const idx = players.findIndex(p => p.conn === conn);
+  if (idx !== -1) {
+    const p = players[idx];
+    // Save score in case they rejoin
+    droppedScores[p.name] = scores[p.name] || 0;
+    addChat('', 'sys', p.name + ' left the game', 'both');
+    // Remove from players array completely
+    players.splice(idx, 1);
+    delete scores[p.name];
+  }
+  conns = conns.filter(c => c !== conn);
+  // Broadcast updated player list to remaining players
+  const pl = players.map(p => ({ name: p.name, id: p.id, isHost: p.isHost }));
+  broadcast({ type: 'plist', players: pl, settings });
+  renderLobby();
+  renderScores();
+}
+
+function leaveLobby() {
+  if (peer) peer.destroy();
+  players = []; scores = {}; conns = [];
+  sessionStorage.removeItem('tpg_name');
+  sessionStorage.removeItem('tpg_code');
+  showScr('home');
+}
+
+function hostBroadcastSettings() {
+  if (!isHost) return;
+  settings = {
+    time: parseInt(document.getElementById('stime').value),
+    rounds: parseInt(document.getElementById('srounds').value),
+    mode: gameMode,
+    clueStyle: document.getElementById('sclue').value
+  };
+  broadcast({ type: 'settings', settings });
+}
+
+// ── QUEUES ──
+function buildQueues() {
+  moviePool = [...TELUGU_MOVIES].sort(() => Math.random() - .5);
+  songPool = [...TELUGU_SONGS].sort(() => Math.random() - .5);
+  usedItems.clear();
+}
+
+function getItem() {
+  const pool = gameMode === 'song' ? songPool : moviePool;
+  const avail = pool.filter(m => !usedItems.has(m.t));
+  const p = avail.length ? avail : pool;
+  const m = p[Math.floor(Math.random() * p.length)];
+  usedItems.add(m.t); return m;
+}
+
+// ── START ──
+function startGame() {
+  if (!isHost) return;
+  hostBroadcastSettings();
+  buildQueues();
+  currentRound = 0; currentTurnInRound = 0;
+  players.forEach(p => { scores[p.name] = 0; });
+  currentDrawer = players[0].name;
+  totalRounds = settings.rounds || 3;
+  currentItem = getItem();
+  const data = {
+    type: 'start', settings,
+    players: players.map(p => ({ name: p.name, id: p.id, isHost: p.isHost })),
+    item: currentItem, drawer: currentDrawer,
+    round: currentRound, turnInRound: 0,
+    totalRounds, scores, gameMode
+  };
+  broadcast(data);
+  onStart(data);
+}
+
+function onStart(d) {
+  settings = d.settings; players = d.players; currentItem = d.item;
+  currentDrawer = d.drawer; currentRound = d.round || 0;
+  currentTurnInRound = d.turnInRound || 0; totalRounds = d.totalRounds;
+  gameMode = d.gameMode || settings.mode || 'draw';
+  if (d.scores) Object.assign(scores, d.scores);
+  else players.forEach(p => { if (scores[p.name] === undefined) scores[p.name] = 0; });
+  if (gameMode === 'draw') initDraw(d);
+  else initImg(d);
+}
+
+// ── DRAW SCREEN ──
+function initDraw(d) {
+  turnSent = false; amDrawing = (myName === d.drawer);
+  showScr('game');
+  clearCanvas(true); strokes = [];
+  guessedSet.clear(); roundScores = {}; revealedIdx.clear();
+  timeLeft = d.timeLeft || settings.time || 90; totalTime = settings.time || 90;
+
+  const turnNum = currentRound * players.length + currentTurnInRound + 1;
+  const totalTurns = totalRounds * players.length;
+  document.getElementById('rdsp').textContent = 'Round ' + (currentRound + 1) + '/' + totalRounds;
+  document.getElementById('ritag').textContent = 'Turn ' + turnNum + '/' + totalTurns;
+  document.getElementById('dtag').textContent = '🖌️ ' + d.drawer + ' draws';
+
+  const clueStyle = settings.clueStyle || 'emoji';
+  renderHeroClue(d.item, 'hav', clueStyle);
+  renderHeroClue(d.item, 'dhavb', clueStyle);
+  setEl('hnm', d.item.h || '—');
+  setEl('wlen', d.item.t.split(' ').map(w => w.length + 'L').join(' · '));
+  setEl('hhint', d.item.hint || '');
+  // Mobile hero bar for draw game
+  setEl('dhnmb', d.item.h || '—');
+  setEl('dhhintb', d.item.hint || '');
+  setEl('dwlenb', d.item.t.split(' ').map(w => w.length + 'L').join(' · '));
+
+  renderBlank(d.item.t, document.getElementById('btitle'));
+  document.getElementById('dbar').style.display = amDrawing ? 'flex' : 'none';
+  document.getElementById('dtitle').textContent = amDrawing ? d.item.t : '';
+
+  const cv = document.getElementById('dc');
+  cv.className = amDrawing ? '' : 'nodraw';
+  document.getElementById('tbar').style.opacity = amDrawing ? '1' : '0.35';
+  document.getElementById('tbar').style.pointerEvents = amDrawing ? 'auto' : 'none';
+  document.getElementById('skipBtn').style.display = amDrawing ? 'inline-block' : 'none';
+  document.getElementById('ginp').disabled = amDrawing;
+  document.getElementById('gbtn').disabled = amDrawing;
+  document.getElementById('ginp').placeholder = amDrawing ? 'You are drawing!' : 'Type your guess...';
+  document.getElementById('gchat').innerHTML = '';
+  addChat('', 'sys', d.drawer + ' is drawing! Guess now...', 'draw');
+  renderScores();
+  if (isHost) startTimer(); else updateTimer();
+}
+
+// ── IMG SCREEN ──
+function initImg(d) {
+  turnSent = false;
+  showScr('igame');
+  guessedSet.clear(); roundScores = {}; revealedIdx.clear();
+  timeLeft = d.timeLeft || settings.time || 90; totalTime = settings.time || 90;
+
+  const turnNum = currentRound * players.length + currentTurnInRound + 1;
+  const totalTurns = totalRounds * players.length;
+  document.getElementById('irdsp').textContent = 'Round ' + (currentRound + 1) + '/' + totalRounds;
+  document.getElementById('iritag').textContent = 'Turn ' + turnNum + '/' + totalTurns;
+  document.getElementById('igLogo').textContent = gameMode === 'song' ? '🎵 Song' : '🖼️ Movie';
+  document.getElementById('igameHint').textContent = gameMode === 'song' ? 'Guess the Telugu song!' : 'Guess the Telugu movie!';
+  document.getElementById('iskipBtn').style.display = isHost ? 'inline-block' : 'none';
+
+  // Populate hero hint panel (desktop sidebar)
+  const hero = d.item.h || '—';
+  const hint = d.item.hint || '';
+  const wlen = d.item.t.split(' ').map(w => w.length + 'L').join(' · ');
+  setEl('ihnm', hero); setEl('iwlen', wlen); setEl('ihhint', hint);
+  // Mobile hero bar
+  setEl('ihnmb', hero); setEl('ihhintb', hint); setEl('iwlenb', wlen);
+  // Load hero clue image
+  const clueStyle = settings.clueStyle || 'emoji';
+  renderHeroClue(d.item, 'ihav', clueStyle);
+  renderHeroClue(d.item, 'ihavb', clueStyle);
+
+  // Render 3 clue cards
+  const zone = document.getElementById('izone');
+  renderClueCards(zone, d.item, clueStyle);
+
+  renderBlank(d.item.t, document.getElementById('ibrow'), 'ilb');
+  document.getElementById('ichat').innerHTML = '';
+  addChat('', 'sys', gameMode === 'song' ? 'Guess the song! Hero: ' + hero : 'Guess the movie! Hero: ' + hero, 'img');
+  renderScores();
+  if (isHost) startITimer(); else updateITimer();
+}
+
+function setEl(id, text) { const e = document.getElementById(id); if (e) e.textContent = text; }
+
+// ── BLANK TITLE ──
+function renderBlank(title, container, prefix) {
+  const pfx = prefix || 'lb';
+  container.innerHTML = '';
+  title.split(' ').forEach((word, wi, arr) => {
+    word.split('').forEach((ch, ci) => {
+      const idx = arr.slice(0, wi).reduce((a, w) => a + w.length, 0) + ci;
+      const b = document.createElement('div');
+      b.className = 'lbox' + (revealedIdx.has(idx) ? ' rev' : '');
+      b.id = pfx + idx;
+      b.textContent = revealedIdx.has(idx) ? ch : '';
+      container.appendChild(b);
+    });
+    if (wi < arr.length - 1) {
+      const s = document.createElement('div'); s.className = 'lbox sp'; container.appendChild(s);
+    }
+  });
+}
+
+function revealLetter() {
+  if (!currentItem || !isHost) return;
+  const flat = currentItem.t.replace(/ /g, '');
+  const unrev = [...Array(flat.length).keys()].filter(i => !revealedIdx.has(i));
+  if (!unrev.length) return;
+  const idx = unrev[Math.floor(Math.random() * unrev.length)];
+  doReveal(idx);
+}
+
+// In final 10 seconds: reveal ALL letters except exactly 2 random unrevealed letters
+function revealMostLetters() {
+  if (!currentItem || !isHost) return;
+  const flat = currentItem.t.replace(/ /g, '');
+  const total = flat.length;
+  // Get all currently unrevealed letter indices
+  const unrev = [...Array(total).keys()].filter(i => !revealedIdx.has(i));
+  if (unrev.length <= 2) return; // already mostly revealed
+  // Pick 2 random indices to KEEP hidden
+  const keepA = unrev[Math.floor(Math.random() * unrev.length)];
+  let keepB;
+  do { keepB = unrev[Math.floor(Math.random() * unrev.length)]; } while (keepB === keepA);
+  const keep = new Set([keepA, keepB]);
+  // Reveal everything except those 2
+  unrev.forEach(idx => {
+    if (!keep.has(idx)) doReveal(idx);
+  });
+}
+
+function doReveal(idx) {
+  revealedIdx.add(idx);
+  const words = currentItem.t.split(' ');
+  let flat = ''; words.forEach(w => flat += w);
+  const ch = flat[idx];
+  applyReveal(idx, ch);
+  broadcast({ type: 'reveal', idx, ch });
+}
+
+function applyReveal(idx, ch) {
+  const b = document.getElementById('lb' + idx);
+  if (b) { b.textContent = ch; b.classList.add('rev'); }
+  // Also update ibrow (img/song game blank title)
+  const b2 = document.getElementById('ilb' + idx);
+  if (b2) { b2.textContent = ch; b2.classList.add('rev'); }
+}
+
+function onReveal(d) {
+  revealedIdx.add(d.idx);
+  applyReveal(d.idx, d.ch);
+}
+
+// ── TIMERS ──
+function startTimer() {
+  clearInterval(timerInt);
+  updateTimer();
+  const ri = Math.max(1, Math.floor(totalTime / 5));
+  let bigRevealDone = false;
+  timerInt = setInterval(() => {
+    timeLeft--;
+    updateTimer();
+    broadcast({ type: 'tsync', t: timeLeft });
+    // Final 10 seconds: reveal all except 2 words (once)
+    if (timeLeft === 10 && !bigRevealDone) {
+      bigRevealDone = true;
+      revealMostLetters();
+    } else if (timeLeft > 10 && timeLeft % ri === 0) {
+      revealLetter();
+    }
+    if (timeLeft <= 0) { clearInterval(timerInt); endTurn(); }
+  }, 1000);
+}
+
+function startITimer() {
+  clearInterval(timerInt);
+  updateITimer();
+  const ri = Math.max(1, Math.floor(totalTime / 5));
+  let bigRevealDone = false;
+  timerInt = setInterval(() => {
+    timeLeft--;
+    updateITimer();
+    broadcast({ type: 'tsync', t: timeLeft });
+    if (timeLeft === 10 && !bigRevealDone) {
+      bigRevealDone = true;
+      revealMostLetters();
+    } else if (timeLeft > 10 && timeLeft % ri === 0) {
+      revealLetter();
+    }
+    if (timeLeft <= 0) { clearInterval(timerInt); endTurn(); }
+  }, 1000);
+}
+
+function updateTimer() {
+  const n = document.getElementById('tnum'); const c = document.getElementById('tc');
+  if (!n || !c) return;
+  n.textContent = timeLeft;
+  const p = timeLeft / totalTime;
+  c.style.strokeDashoffset = 182 * (1 - p);
+  c.style.stroke = p > .5 ? '#ff6b00' : p > .25 ? '#ffd600' : '#e53935';
+}
+
+function updateITimer() {
+  const n = document.getElementById('itnum'); const c = document.getElementById('itc');
+  if (!n || !c) return;
+  n.textContent = timeLeft;
+  const p = timeLeft / totalTime;
+  c.style.strokeDashoffset = 182 * (1 - p);
+  c.style.stroke = p > .5 ? '#ff6b00' : p > .25 ? '#ffd600' : '#e53935';
+}
+
+// ── CANVAS ──
+const cv = document.getElementById('dc');
+const ctx = cv.getContext('2d');
+ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, cv.width, cv.height);
+
+function gPos(e) {
+  const r = cv.getBoundingClientRect();
+  const sx = cv.width / r.width, sy = cv.height / r.height;
+  const s = e.touches ? e.touches[0] : e;
+  return { x: (s.clientX - r.left) * sx, y: (s.clientY - r.top) * sy };
+}
+function dLine(x1, y1, x2, y2, col, sz, era) {
+  ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2);
+  ctx.strokeStyle = era ? '#fff' : col; ctx.lineWidth = era ? sz * 3 : sz;
+  ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.stroke();
+}
+
+cv.addEventListener('mousedown', e => { if (!amDrawing) return; painting = true; const p = gPos(e); lx = p.x; ly = p.y; curStroke = [{ x: p.x, y: p.y }]; });
+cv.addEventListener('mousemove', e => {
+  if (!amDrawing || !painting) return;
+  const p = gPos(e); dLine(lx, ly, p.x, p.y, bColor, bSize, tool === 'eraser');
+  broadcast({ type: 'draw', x1: lx, y1: ly, x2: p.x, y2: p.y, col: bColor, sz: bSize, era: tool === 'eraser' });
+  lx = p.x; ly = p.y; curStroke.push({ x: p.x, y: p.y });
+});
+cv.addEventListener('mouseup', () => { if (painting) { painting = false; strokes.push({ pts: [...curStroke], col: bColor, sz: bSize, era: tool === 'eraser' }); curStroke = []; } });
+cv.addEventListener('mouseleave', () => { if (painting) { painting = false; strokes.push({ pts: [...curStroke], col: bColor, sz: bSize, era: tool === 'eraser' }); curStroke = []; } });
+cv.addEventListener('touchstart', e => { e.preventDefault(); if (!amDrawing) return; painting = true; const p = gPos(e); lx = p.x; ly = p.y; curStroke = [{ x: p.x, y: p.y }]; }, { passive: false });
+cv.addEventListener('touchmove', e => {
+  e.preventDefault(); if (!amDrawing || !painting) return;
+  const p = gPos(e); dLine(lx, ly, p.x, p.y, bColor, bSize, tool === 'eraser');
+  broadcast({ type: 'draw', x1: lx, y1: ly, x2: p.x, y2: p.y, col: bColor, sz: bSize, era: tool === 'eraser' });
+  lx = p.x; ly = p.y; curStroke.push({ x: p.x, y: p.y });
+}, { passive: false });
+cv.addEventListener('touchend', () => { if (painting) { painting = false; strokes.push({ pts: [...curStroke], col: bColor, sz: bSize, era: tool === 'eraser' }); curStroke = []; } });
+
+function onRDraw(d) { dLine(d.x1, d.y1, d.x2, d.y2, d.col, d.sz, d.era); }
+function clearCanvas(silent) {
+  ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, cv.width, cv.height); strokes = [];
+  if (!silent && isHost) broadcast({ type: 'clear' });
+}
+function undoStroke() {
+  if (!strokes.length) return; strokes.pop();
+  ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, cv.width, cv.height);
+  strokes.forEach(s => { for (let i = 1; i < s.pts.length; i++) dLine(s.pts[i-1].x, s.pts[i-1].y, s.pts[i].x, s.pts[i].y, s.col, s.sz, s.era); });
+  broadcast({ type: 'undo', strokes });
+}
+function onRUndo(d) {
+  strokes = d.strokes;
+  ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, cv.width, cv.height);
+  strokes.forEach(s => { for (let i = 1; i < s.pts.length; i++) dLine(s.pts[i-1].x, s.pts[i-1].y, s.pts[i].x, s.pts[i].y, s.col, s.sz, s.era); });
+}
+
+function setTool(t) {
+  tool = t;
+  document.getElementById('tpen').className = 'tbtn' + (t === 'pen' ? ' on' : '');
+  document.getElementById('teras').className = 'tbtn' + (t === 'eraser' ? ' on' : '');
+}
+function setColor(c, el) {
+  bColor = c;
+  document.querySelectorAll('.cbtn').forEach(b => b.classList.remove('on'));
+  el.classList.add('on'); setTool('pen');
+}
+document.getElementById('szsl').addEventListener('input', e => { bSize = +e.target.value; });
+
+function buildPalette() {
+  document.getElementById('pal').innerHTML = COLORS.map((c, i) =>
+    `<div class="cbtn ${i===0?'on':''}" style="background:${c};${c==='#ffffff'?'border:2px solid #ccc':''};" onclick="setColor('${c}',this)"></div>`
+  ).join('');
+}
+buildPalette();
+// Init: check URL params and session on load
+(function init() {
+  checkUrlParams();
+  checkSessionRejoin();
+})();
+
+// ── GUESSING ──
+function levenshtein(a, b) {
+  const m = a.length, n = b.length;
+  const dp = Array.from({length:m+1},(_,i)=>Array.from({length:n+1},(_,j)=>i===0?j:j===0?i:0));
+  for(let i=1;i<=m;i++) for(let j=1;j<=n;j++) dp[i][j]=a[i-1]===b[j-1]?dp[i-1][j-1]:1+Math.min(dp[i-1][j],dp[i][j-1],dp[i-1][j-1]);
+  return dp[m][n];
+}
+
+function evalGuess(guess, title) {
+  const g = guess.toLowerCase().replace(/[^a-z0-9 ]/g,'').trim();
+  const t = title.toLowerCase().replace(/[^a-z0-9 ]/g,'').trim();
+  if (g === t) return { m: 'exact' };
+  const dist = levenshtein(g, t);
+  const pct = 1 - dist / Math.max(g.length, t.length, 1);
+  if (pct >= 0.75 && dist <= 5) return { m: 'close', dist };
+  if (pct >= 0.55) return { m: 'near', dist };
+  return { m: 'no' };
+}
+
+function skipTurn() { if (isHost) { clearInterval(timerInt); endTurn(); } }
+
+function submitGuess() {
+  const isImg = gameMode !== 'draw';
+  const inp = document.getElementById(isImg ? 'iginp' : 'ginp');
+  const guess = inp.value.trim();
+  if (!guess) return;
+  if (!isImg && amDrawing) { addChat('', 'sys', 'Drawer cannot guess!', 'draw'); return; }
+  inp.value = '';
+  if (guessedSet.has(myName)) { addChat('', 'sys', 'Already guessed!', gameMode); return; }
+  const ev = evalGuess(guess, currentItem.t);
+  if (isHost) { processGuess(myName, guess, ev); broadcast({ type: 'guess', sender: myName, guess, ev, gm: gameMode }); }
+  else { sendHost({ type: 'guess', sender: myName, guess, ev, gm: gameMode }); showGuessChat(myName, guess, ev, gameMode); }
+}
+
+function onRGuess(d) {
+  if (isHost) { processGuess(d.sender, d.guess, d.ev); broadcast({ type: 'guess', sender: d.sender, guess: d.guess, ev: d.ev, gm: d.gm }); }
+  else { showGuessChat(d.sender, d.guess, d.ev, d.gm); if (d.ev.m === 'exact') showFlash('🎉 ' + d.sender + ' got it!'); else if (d.ev.m === 'close') showFlash('🔥 ' + d.sender + ': ' + d.ev.dist + ' letters off!'); }
+}
+
+function showGuessChat(name, guess, ev, gm) {
+  if (ev.m === 'exact') addChat(name, 'ok', '🎉 Guessed it!', gm);  // hide actual answer
+  else if (ev.m === 'close') addChat(name, 'near', '🔥 So close! — ' + ev.dist + ' letter' + (ev.dist>1?'s':'') + ' off!', gm);
+  else if (ev.m === 'near') addChat(name, 'near', '🌡️ Getting warm! — ' + ev.dist + ' away...', gm);
+  else addChat(name, 'normal', guess, gm);
+}
+
+function processGuess(name, guess, ev) {
+  if (ev.m === 'no') { addChat(name, 'normal', guess, gameMode); return; }
+  if (ev.m === 'near') { addChat(name, 'near', '🌡️ ' + guess + ' — ' + ev.dist + ' away...', gameMode); return; }
+  if (ev.m === 'close') { addChat(name, 'near', '🔥 ' + guess + ' — ' + ev.dist + ' letter' + (ev.dist>1?'s':'') + ' off! Try again!', gameMode); showFlash('🔥 ' + name + ': ' + ev.dist + ' letters off!'); return; }
+  if (guessedSet.has(name)) return;
+  guessedSet.add(name);
+  const pts = Math.max(10, Math.round(timeLeft / totalTime * 100));
+  roundScores[name] = (roundScores[name] || 0) + pts;
+  scores[name] = (scores[name] || 0) + pts;
+  if (gameMode === 'draw') { const dp = Math.round(pts * .4); roundScores[currentDrawer] = (roundScores[currentDrawer]||0)+dp; scores[currentDrawer]=(scores[currentDrawer]||0)+dp; }
+  addChat(name, 'ok', '🎉 Guessed it! +' + pts + ' pts', gameMode);
+  showFlash('🎉 ' + name + ' got it!');
+  broadcast({ type: 'correct', name, pts, scores, roundScores });
+  renderScores();
+  const guessers = players.filter(p => gameMode !== 'draw' || p.name !== currentDrawer);
+  if (guessedSet.size >= guessers.length) { clearInterval(timerInt); setTimeout(endTurn, 800); }
+}
+
+function onCorrect(d) {
+  guessedSet.add(d.name); Object.assign(scores, d.scores); roundScores = d.roundScores;
+  renderScores(); showFlash('🎉 ' + d.name + ' got it!');
+  addChat(d.name, 'ok', '🎉 Guessed it! +' + d.pts + ' pts', gameMode);
+}
+
+// ── END TURN ──
+function endTurn() {
+  if (!isHost || turnSent) return;
+  turnSent = true; clearInterval(timerInt);
+  currentTurnInRound++;
+  const cycleComplete = currentTurnInRound >= players.length;
+  if (cycleComplete) { currentRound++; currentTurnInRound = 0; }
+  const isLast = currentRound >= totalRounds;
+  const drawerIdx = (players.findIndex(p => p.name === currentDrawer) + 1) % players.length;
+  const nextDrawer = players[drawerIdx].name;
+  const nextItem = isLast ? null : getItem();
+  const data = { type: 'turnEnd', item: currentItem, scores, roundScores, nextDrawer, nextItem, cycleComplete, isLast, currentRound, currentTurnInRound, totalRounds, gameMode };
+  broadcast(data); onTurnEnd(data);
+}
+
+function onTurnEnd(d) {
+  clearInterval(timerInt); turnSent = false;
+  currentItem = d.item; Object.assign(scores, d.scores); roundScores = d.roundScores;
+  gameMode = d.gameMode || gameMode;
+  document.getElementById('retitle').textContent = d.isLast ? '🎉 Game Over!' : d.cycleComplete ? '✅ Round Complete!' : '⏱ Turn Over!';
+  document.getElementById('remov').textContent = d.item.t;
+  const sorted = [...players].sort((a, b) => (scores[b.name]||0) - (scores[a.name]||0));
+  document.getElementById('rescores').innerHTML = sorted.map((p, i) => `
+    <div class="sr3">
+      <span class="rk">${MEDALS[i]}</span>
+      <div class="ra" style="background:${AVC[players.findIndex(x=>x.name===p.name)%AVC.length]}">${p.name.slice(0,2).toUpperCase()}</div>
+      <div class="rn">${p.name}</div>
+      <div class="rd">+${roundScores[p.name]||0}</div>
+      <div class="rp">${scores[p.name]||0}</div>
+    </div>`).join('');
+  const nb = document.getElementById('nextBtn');
+  nb.textContent = d.isLast ? '🏆 Results!' : d.cycleComplete ? '▶ Round ' + (d.currentRound+1) + ' →' : '▶ Next Turn →';
+  nb.onclick = d.isLast ? showFinal : () => {
+    if (!isHost) return;
+    currentDrawer = d.nextDrawer; currentItem = d.nextItem;
+    currentRound = d.currentRound; currentTurnInRound = d.currentTurnInRound;
+    const sd = { type: 'start', settings, players: players.map(p => ({name:p.name,id:p.id,isHost:p.isHost})), item: d.nextItem, drawer: d.nextDrawer, round: d.currentRound, turnInRound: d.currentTurnInRound, totalRounds, scores, gameMode };
+    broadcast(sd); onStart(sd);
+  };
+  showScr('rend');
+}
+
+// ── FINAL ──
+function showFinal() {
+  clearInterval(timerInt);
+  const sorted = [...players].sort((a, b) => (scores[b.name]||0) - (scores[a.name]||0));
+  document.getElementById('fwinner').textContent = '🎊 ' + (sorted[0]?.name||'') + ' Wins!';
+  const cols = ['#ff6b00','#ffd600','#43a047','#e53935','#1e88e5','#8e24aa'];
+  document.getElementById('fconf').innerHTML = Array.from({length:12},(_,i)=>`<div class="cd" style="background:${cols[i%6]};animation-delay:${i*.1}s"></div>`).join('');
+  document.getElementById('fscores').innerHTML = sorted.map((p, i) => `
+    <div class="sr3">
+      <span class="rk">${MEDALS[i]}</span>
+      <div class="ra" style="background:${AVC[players.findIndex(x=>x.name===p.name)%AVC.length]}">${p.name.slice(0,2).toUpperCase()}</div>
+      <div class="rn" style="font-weight:${i===0?'800':'600'}">${p.name}</div>
+      <div class="rp">${scores[p.name]||0} pts</div>
+    </div>`).join('');
+  showScr('fin');
+}
+
+function restartGame() {
+  if (peer) peer.destroy(); players=[]; scores={}; conns=[];
+  document.getElementById('hostBtn').disabled=false;
+  document.getElementById('hostBtn').textContent='Create Room 🚀';
+  showScr('home');
+}
+
+// ── UI HELPERS ──
+function setCS(cls, txt) { const e=document.getElementById('cstat'); if(e){e.className='cstat '+cls;e.textContent=txt;} }
+function setLS(txt) { const e=document.getElementById('lstatus'); if(e) e.textContent=txt; }
+function setJE(txt) { const e=document.getElementById('joinErr'); if(e) e.textContent=txt; }
+
+function renderLobby() {
+  const g = document.getElementById('pgrid'); if (!g) return;
+  g.innerHTML = '';
+  players.forEach((p, i) => {
+    const d = document.createElement('div');
+    d.className = 'ptile' + (p.isHost ? ' host' : '');
+    d.innerHTML = `<div class="pav" style="background:${AVC[i%AVC.length]}">${p.name.slice(0,2).toUpperCase()}</div><div class="pnm">${p.name}</div><div class="pbd">${p.isHost?'👑 HOST':''}</div>`;
+    g.appendChild(d);
+  });
+  for (let i = players.length; i < Math.min(10, players.length + 3); i++) {
+    const d = document.createElement('div'); d.className='etile'; d.innerHTML='<p>Waiting...</p>'; g.appendChild(d);
+  }
+}
+
+function renderScores() {
+  const sorted = [...players].sort((a, b) => (scores[b.name]||0) - (scores[a.name]||0));
+  const html = sorted.map((p, i) => `
+    <div class="srow ${p.name===currentDrawer&&gameMode==='draw'?'drawing':guessedSet.has(p.name)?'correct':''}">
+      <div class="sav" style="background:${AVC[players.findIndex(x=>x.name===p.name)%AVC.length]}">${p.name.slice(0,2).toUpperCase()}</div>
+      <div class="snm">${p.name}</div>
+      <div class="sic">${p.name===currentDrawer&&gameMode==='draw'?'✏️':guessedSet.has(p.name)?'✅':''}</div>
+      <div class="spt">${scores[p.name]||0}</div>
+    </div>`).join('');
+  ['slist','islist'].forEach(id => { const e=document.getElementById(id); if(e) e.innerHTML=html; });
+}
+
+function addChat(name, type, text, gm) {
+  const id = (gm==='draw'||gm==='both') ? 'gchat' : 'ichat';
+  const addTo = id => { const b=document.getElementById(id); if(!b) return; const d=document.createElement('div'); d.className='cm '+type; d.innerHTML=name?`<span class="cn">${name}:</span> ${text}`:text; b.appendChild(d); b.scrollTop=b.scrollHeight; };
+  addTo(id);
+  if (gm === 'both') { addTo('gchat'); addTo('ichat'); }
+}
+
+function showFlash(txt) {
+  const e = document.createElement('div'); e.className='flash'; e.textContent=txt;
+  document.body.appendChild(e); setTimeout(()=>e.remove(), 1800);
+}
+
+// ── CLUE RENDERING (supports gif / emoji / image) ──
+
+function renderClueCards(zone, item, style) {
+  const clues = item.imgs || ['❓','❓','❓'];
+  const queries = buildGifQueries(item);
+  zone.innerHTML = clues.map((em, i) =>
+    `<div class="icard" id="icard${i}">
+      <div class="gif-wrap" id="gif${i}">
+        <div class="gif-loading">⌛</div>
+      </div>
+      <div class="ilbl">Clue ${i+1}</div>
+    </div>`
+  ).join('');
+  setTimeout(() => {
+    clues.forEach((em, i) => {
+      const el = document.getElementById('gif' + i);
+      if (!el) return;
+      if (style === 'emoji') {
+        el.innerHTML = `<div style="font-size:4rem;padding:.5rem;line-height:1">${em}</div>`;
+      } else if (style === 'gif') {
+        loadGif(queries[i], 'gif' + i);
+      } else if (style === 'image') {
+        loadStaticImage(queries[i], 'gif' + i, em);
+      }
+    });
+  }, 50);
+}
+
+function renderHeroClue(item, elementId, style) {
+  const el = document.getElementById(elementId);
+  if (!el) return;
+  el.innerHTML = '';
+  el.style.backgroundImage = '';
+  el.style.backgroundSize = '';
+  if (style === 'emoji') {
+    el.textContent = item.e || '🎭';
+  } else if (style === 'gif') {
+    const query = item.h && item.h !== 'Various' ? item.h + ' actor india' : item.t + ' tollywood';
+    const loadEl = document.createElement('div');
+    loadEl.style.cssText = 'width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:1.5rem';
+    loadEl.textContent = '⌛';
+    el.appendChild(loadEl);
+    loadGifToEl(query, el);
+  } else if (style === 'image') {
+    const query = item.h && item.h !== 'Various' ? item.h + ' actor india' : item.t + ' tollywood';
+    loadStaticImage(query, elementId, item.e || '🎭');
+  }
+}
+
+function loadGifToEl(query, el) {
+  el.textContent = '⌛';
+  const cleanQ = encodeURIComponent(query.replace(/[^\w\s]/g,'').trim().substring(0,50));
+  const apiKey = 'dc6zaTOxFJmzC';
+  fetch(`https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${cleanQ}&limit=5&rating=g`, {mode:'cors'})
+    .then(r => { if(!r.ok) throw new Error(r.status); return r.json(); })
+    .then(data => {
+      if (!data.data || !data.data.length) throw new Error('no results');
+      const gif = data.data[Math.floor(Math.random() * Math.min(3, data.data.length))];
+      const gifUrl = gif.images.fixed_height_small ? gif.images.fixed_height_small.url : gif.images.fixed_height.url;
+      el.innerHTML = `<img src="${gifUrl}" style="width:100%;height:100%;object-fit:cover;border-radius:50%" alt="${query}">`;
+    })
+    .catch(() => { el.textContent = '🎭'; });
+}
+
+function loadStaticImage(query, wrapperId, fallbackEmoji) {
+  const el = document.getElementById(wrapperId);
+  if (!el) return;
+  // Use Unsplash free source images
+  const unsplashUrl = `https://source.unsplash.com/200x200/?${encodeURIComponent(query.split(' ').slice(0,2).join(','))}`;
+  const img = document.createElement('img');
+  img.style.cssText = 'max-width:100%;max-height:150px;border-radius:10px;object-fit:cover';
+  img.alt = query;
+  img.onload = () => { el.innerHTML = ''; el.appendChild(img); };
+  img.onerror = () => { el.innerHTML = `<div style="font-size:3.5rem;padding:.5rem">${fallbackEmoji}</div>`; };
+  img.src = unsplashUrl;
+  // Show loading state
+  el.innerHTML = `<div style="font-size:3.5rem;padding:.5rem">⌛</div>`;
+}
+
+
+// ── GIF LOADING ──
+function buildGifQueries(item) {
+  // Build 3 search queries: 1 from each image emoji hint + context
+  const title = item.t;
+  const emojis = item.imgs || ['❓','❓','❓'];
+  const emojiMeanings = {
+    '⚔️':'sword fight action','🔥':'fire explosion','🌹':'flower red rose',
+    '🐉':'dragon fantasy','🕵️':'detective spy','💔':'broken heart sad',
+    '🦟':'fly insect mosquito','👮':'police cop','💰':'money rich wealth',
+    '🏎️':'car racing speed','💻':'computer technology','👨‍👦':'father son family',
+    '🎯':'target aim mission','🏛️':'parliament government building','🌾':'farm village',
+    '🎖️':'army medal military','🎓':'college university education','🌺':'flower dance',
+    '🚌':'bus transport travel','💃':'dance performance','✊':'fight revolution',
+    '🚕':'taxi cab driver','🏏':'cricket sport bat','🔱':'temple divine god',
+    '💍':'wedding ring marriage','🌊':'sea ocean waves','♻️':'reincarnation past',
+    '🔔':'bell village president','👊':'fight punch action','🍊':'orange fruit',
+    '🐇':'bunny rabbit carefree','🗺️':'travel map journey','🌿':'organic nature',
+    '🏔️':'mountain temple divine','⏱️':'immortality time locket','🙏':'prayer devotion god',
+    '🏆':'trophy winner champion','👑':'king crown royal','🦁':'lion beast power',
+    '💃':'dance performance stage','🎬':'film movie cinema','🔱':'shiva divine power',
+    '🎵':'music song melody','👁️':'eye witness mystery','🔍':'detective investigation',
+    '🎀':'cute sweet love','🎊':'celebration festival','🔄':'swap exchange identity',
+    '⚡':'lightning superpower storm','🌙':'night romance moonlight','💕':'love romance sweet',
+    '🎸':'rock music guitar','🤡':'comedy funny joker','🤰':'pregnant woman mystery',
+    '🏠':'home family house','👨‍👩‍👧':'family together love','🛕':'temple ancient india',
+    '🌸':'flower love romance','🏡':'village home simple','💌':'love letter romance',
+    '🌳':'forest nature tree','🔫':'gun action crime','🕶️':'sunglasses spy cool',
+    '💣':'bomb explosion military','🥋':'martial arts kabaddi','🧩':'mystery puzzle twist',
+    '🍽️':'restaurant food dining','👻':'ghost horror haunted','🏚️':'haunted house old',
+    '🕯️':'candle dark palace mystery','😱':'shock horror scary','💥':'explosion action fight',
+    '🦽':'wheelchair disability care','😅':'comedy humor funny','📽️':'movie cinema projection',
+    '🏫':'college school fight','🧠':'brain intelligence genius','🃏':'card trick clever',
+    '🏐':'volleyball sports kabaddi','🎭':'drama theater disguise','🖐️':'hand mystery thriller',
+    '⛏️':'mining coal village','👨‍👧':'father daughter single','😤':'anger revenge action',
+  };
+  return emojis.map((em, i) => {
+    const meaning = emojiMeanings[em] || (title + ' movie scene');
+    if (i === 0) return title + ' tollywood movie';
+    if (i === 1) return meaning + ' india';
+    return title + ' ' + meaning;
+  });
+}
+
+function loadGif(query, elementId) {
+  const el = document.getElementById(elementId);
+  if (!el) return;
+  el.innerHTML = '<div style="font-size:2.5rem;padding:.5rem">⌛</div>';
+  const cleanQ = encodeURIComponent(query.replace(/[^\w\s]/g,'').trim().substring(0,50));
+  const apiKey = 'dc6zaTOxFJmzC';
+  fetch('https://api.giphy.com/v1/gifs/search?api_key=' + apiKey + '&q=' + cleanQ + '&limit=10&rating=g', {mode:'cors'})
+    .then(r => { if(!r.ok) throw new Error(r.status); return r.json(); })
+    .then(data => {
+      if (!data.data || !data.data.length) throw new Error('no results');
+      const gif = data.data[Math.floor(Math.random() * Math.min(5, data.data.length))];
+      const gifUrl = gif.images.downsized_medium ? gif.images.downsized_medium.url : gif.images.fixed_height.url;
+      const img = new Image();
+      img.onload = () => { el.innerHTML = ''; el.appendChild(img); };
+      img.onerror = () => { el.innerHTML = '<div class="iemoji">' + getEmojiForQuery(query) + '</div>'; };
+      img.src = gifUrl;
+      img.style.cssText = 'max-width:100%;max-height:140px;border-radius:8px;object-fit:cover;display:block';
+      img.alt = query;
+    })
+    .catch(() => {
+      el.innerHTML = '<div class="iemoji">' + getEmojiForQuery(query) + '</div>';
+    });
+}
+
+function loadHeroGif(movieTitle, heroName, elementId) {
+  const el = document.getElementById(elementId);
+  if (!el) return;
+  el.textContent = ''; // clear emoji
+  const query = heroName && heroName !== 'Various' ? heroName + ' actor bollywood' : movieTitle + ' tollywood';
+  const apiKey = 'dc6zaTOxFJmzC';
+  const url = `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${encodeURIComponent(query)}&limit=5&rating=g`;
+  fetch(url)
+    .then(r => r.json())
+    .then(data => {
+      const gifs = data.data;
+      if (!gifs || !gifs.length) { el.textContent = '🎭'; return; }
+      const gif = gifs[Math.floor(Math.random() * gifs.length)];
+      const gifUrl = gif.images.fixed_height_small.url;
+      el.style.backgroundImage = `url('${gifUrl}')`;
+      el.style.backgroundSize = 'cover';
+      el.style.backgroundPosition = 'center';
+      el.innerHTML = '';
+    })
+    .catch(() => { el.textContent = '🎭'; });
+}
+
+function getEmojiForQuery(query) {
+  const q = query.toLowerCase();
+  if (q.includes('fire') || q.includes('explosion')) return '🔥';
+  if (q.includes('love') || q.includes('romance')) return '💕';
+  if (q.includes('fight') || q.includes('action')) return '💥';
+  if (q.includes('dance')) return '💃';
+  if (q.includes('music') || q.includes('song')) return '🎵';
+  if (q.includes('ghost') || q.includes('horror')) return '👻';
+  if (q.includes('police') || q.includes('cop')) return '👮';
+  return '🎬';
+}
+
+</script>
+
+</body>
+</html>
