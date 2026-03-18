@@ -95,6 +95,8 @@ body{font-family:'Baloo 2',cursive;background:var(--paper);color:var(--ink);min-
 .rbadge .rl{font-size:.58rem;letter-spacing:2px;color:#555;text-transform:uppercase}
 .rbadge .rv{font-size:.95rem;font-weight:800;color:var(--gold)}
 .slist{flex:1;overflow-y:auto}
+.leave-btn{width:100%;margin-top:8px;padding:6px;border-radius:8px;border:1px solid rgba(255,80,80,.3);background:rgba(255,80,80,.1);color:#ff6b6b;font-family:'Baloo 2',cursive;font-size:.75rem;font-weight:700;cursor:pointer;transition:all .15s;flex-shrink:0}
+.leave-btn:hover{background:rgba(255,80,80,.25);border-color:rgba(255,80,80,.6)}
 .slist .rl{font-size:.58rem;letter-spacing:2px;color:#555;text-transform:uppercase;margin-bottom:5px}
 .srow{display:flex;align-items:center;gap:6px;padding:5px 6px;border-radius:8px;margin-bottom:3px}
 .srow.drawing{background:rgba(255,107,0,.15);border:1px solid rgba(255,107,0,.3)}
@@ -102,6 +104,11 @@ body{font-family:'Baloo 2',cursive;background:var(--paper);color:var(--ink);min-
 .sav{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:800;color:#fff;flex-shrink:0}
 .snm{font-size:.75rem;font-weight:600;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .spt{font-size:.7rem;font-weight:800;color:var(--gold)}
+.skick{font-size:.65rem;color:#ff6b6b;cursor:pointer;padding:1px 4px;border-radius:4px;opacity:.7;flex-shrink:0}
+.skick:hover{opacity:1;background:rgba(255,80,80,.2)}
+.pkick{position:absolute;top:3px;right:3px;font-size:.65rem;color:#ff6b6b;cursor:pointer;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(255,80,80,.15)}
+.pkick:hover{background:rgba(255,80,80,.4)}
+.ptile{position:relative}
 .sic{font-size:.6rem}
 .dtag{background:var(--saffron);color:#fff;padding:2px 10px;border-radius:50px;font-size:.7rem;font-weight:700}
 .ritag{background:#f0f4ff;color:var(--sky);padding:2px 10px;border-radius:50px;font-size:.7rem;font-weight:700}
@@ -191,6 +198,7 @@ body{font-family:'Baloo 2',cursive;background:var(--paper);color:var(--ink);min-
   .rbadge .rv{font-size:.78rem}
   .slist{display:flex;flex-direction:row;gap:4px;flex:1;overflow-x:auto;align-items:center}
   .slist .rl{display:none}
+  .leave-btn{margin-top:0;padding:4px 8px;font-size:.7rem;flex-shrink:0;width:auto}
   .srow{padding:3px 6px;min-width:0}
   .snm{font-size:.68rem;max-width:50px}
   .spt{font-size:.65rem}
@@ -356,6 +364,7 @@ body{font-family:'Baloo 2',cursive;background:var(--paper);color:var(--ink);min-
     </div>
     <div class="rbadge"><div class="rl">Round</div><div class="rv" id="rdsp">1/3</div></div>
     <div class="slist"><div class="rl">Scores</div><div id="slist"></div></div>
+    <button class="leave-btn" onclick="confirmLeave()">🚪 Leave</button>
   </div>
   <div class="gmain">
     <div id="dbar" class="dbar" style="display:none">
@@ -426,6 +435,7 @@ body{font-family:'Baloo 2',cursive;background:var(--paper);color:var(--ink);min-
     </div>
     <div class="rbadge"><div class="rl">Round</div><div class="rv" id="irdsp">1/3</div></div>
     <div class="slist"><div class="rl">Scores</div><div id="islist"></div></div>
+    <button class="leave-btn" onclick="confirmLeave()">🚪 Leave</button>
   </div>
   <div class="imain">
     <div class="itop">
@@ -473,6 +483,7 @@ body{font-family:'Baloo 2',cursive;background:var(--paper);color:var(--ink);min-
     <div class="remov">Answer: <span id="remov"></span></div>
     <div class="stbl" id="rescores"></div>
     <button class="btn btnp" id="nextBtn" style="max-width:220px;margin:0 auto">Next →</button>
+    <button class="btn btns" onclick="confirmLeave()" style="max-width:220px;margin:6px auto 0;font-size:.8rem">🚪 Leave Game</button>
   </div>
 </div>
 
@@ -484,7 +495,11 @@ body{font-family:'Baloo 2',cursive;background:var(--paper);color:var(--ink);min-
     <div class="winner" id="fwinner"></div>
     <div class="conf" id="fconf"></div>
     <div class="stbl" id="fscores"></div>
-    <button class="btn btnp" onclick="restartGame()" style="max-width:220px;margin:1rem auto 0">🎬 Play Again!</button>
+    <div style="display:flex;flex-direction:column;gap:8px;max-width:280px;margin:1rem auto 0">
+      <button class="btn btnp" id="playAgainBtn" onclick="restartGame()">🎬 Play Again!</button>
+      <button class="btn btns" onclick="goHome()">🏠 Leave Room</button>
+      <div id="playAgainNote" style="font-size:.75rem;color:#888;text-align:center;font-family:'Kalam',cursive"></div>
+    </div>
   </div>
 </div>
 
@@ -1139,6 +1154,7 @@ const MLABELS = {draw:'🎨 Doodle & Guess', img:'🖼️ 3 Pics Movie', song:'�
 
 // ── STATE ──
 let peer=null, conns=[], myId='', myName='', isHost=false;
+let intentionalLeave=false;
 let roomCode='', players=[], scores={}, settings={};
 let currentRound=0, currentTurnInRound=0, totalRounds=3;
 let currentDrawer='', currentItem=null;
@@ -1290,11 +1306,33 @@ function hostRoom() {
     peer.on('connection', conn => {
       conn.on('open', () => {
         if (players.length >= 10) { conn.send({ type: 'full' }); conn.close(); return; }
-        conns.push(conn);
+        if (!conns.includes(conn)) conns.push(conn);
         conn.on('data', d => onData(d, conn));
-        conn.on('close', () => onDisconnect(conn));
+        conn.on('close', () => {
+          // Remove from conns immediately
+          conns = conns.filter(c => c !== conn);
+          // Find player by conn reference OR peer ID
+          const p = players.find(pl => pl.conn === conn || pl.id === conn.peer);
+          if (p) {
+            console.log('[conn.close] removing player:', p.name);
+            removePlayer(p.name, p.name + ' left');
+          }
+        });
       });
     });
+    // Heartbeat: check all players every 3 seconds
+    setInterval(() => {
+      if (!isHost) return;
+      const now = Date.now();
+      [...players].forEach(p => {
+        if (p.isHost) return;
+        // If no ping in 6 seconds, player is gone
+        if (p.lastPing && (now - p.lastPing) > 6000) {
+          console.log('[heartbeat] removing inactive player:', p.name);
+          removePlayer(p.name, p.name + ' left');
+        }
+      });
+    }, 3000);
     peer.on('error', e => {
       if (e.type === 'unavailable-id') { roomCode = genCode(); peer.destroy(); hostRoom(); }
       else { btn.disabled = false; btn.textContent = 'Create Room 🚀'; document.getElementById('hostStat').textContent = 'Error: ' + e.type; }
@@ -1370,8 +1408,12 @@ function joinRoom() {
         conns = [h];
         h.send({ type: 'join', name, id });
         h.on('data', d => onData(d, h));
+        // Send heartbeat ping every 2 seconds so host knows we're alive
+        setInterval(() => {
+          if (h.open) h.send({ type: 'ping', name });
+        }, 2000);
         h.on('close', () => {
-          // Try auto-rejoin if game was active
+          if (intentionalLeave) return; // player chose to leave, ignore close
           const gameActive = ['game','igame','rend'].some(id => document.getElementById(id).classList.contains('on'));
           if (gameActive && myName && roomCode) {
             addChat('', 'sys', 'Connection lost. Reconnecting...', 'both');
@@ -1412,8 +1454,33 @@ function onData(data, conn) {
     case 'turnEnd': onTurnEnd(d); break;
     case 'reveal': onReveal(d); break;
     case 'tsync': if (!isHost) { timeLeft = d.t; updateTimer(); updateITimer(); } break;
+    case 'ping':
+      if (isHost) {
+        const pp = players.find(p => p.name === d.name);
+        if (pp) pp.lastPing = Date.now();
+      }
+      break;
     case 'full': alert('Room is full!'); showScr('home'); break;
+    case 'playerLeft': onPlayerLeft(d); break;
+    case 'kicked': alert('You were removed from the game by the host.'); goHome(); break;
+    case 'playAgain': onPlayAgain(d); break;
+    case 'leave': onPlayerLeave(d); break;
+    case 'hostLeft': alert('Host left the game.'); goHome(); break;
   }
+}
+
+
+// ── MERGE CONN REFS (host only) ──
+// After receiving player list from broadcast (which strips .conn),
+// restore .conn references from existing conns array
+function mergeConnRefs() {
+  if (!isHost) return;
+  players.forEach(p => {
+    // Always re-sync conn reference
+    const matchConn = conns.find(conn => conn.peer === p.id);
+    if (matchConn) p.conn = matchConn;
+  });
+  console.log('[mergeConnRefs] players:', players.map(p => p.name + ':' + p.id + ':conn=' + !!p.conn));
 }
 
 function onJoin(d, conn) {
@@ -1425,7 +1492,7 @@ function onJoin(d, conn) {
                      document.getElementById('rend').classList.contains('on');
   if (!isRejoin && players.length >= 10) { conn.send({ type: 'full' }); return; }
   if (!conns.includes(conn)) conns.push(conn);
-  players.push({ name: d.name, id: d.id, conn });
+  players.push({ name: d.name, id: d.id, conn, lastPing: Date.now() });
   // Restore old score if rejoining, else start at 0
   scores[d.name] = isRejoin ? (droppedScores[d.name] || 0) : 0;
   if (isRejoin) delete droppedScores[d.name];
@@ -1465,11 +1532,40 @@ function onRejoin(d) {
   else initImg({ ...d, item: currentItem, drawer: currentDrawer, round: currentRound, turnInRound: currentTurnInRound, totalRounds, scores, gameMode, timeLeft });
 }
 
+function onPlayAgain(d) {
+  // Non-host: host said play again — reset and go to lobby
+  if (d.players) players = d.players;
+  if (d.settings) { settings = d.settings; gameMode = d.settings.mode || 'draw'; }
+  players.forEach(p => { scores[p.name] = 0; });
+  goToLobby();
+}
+
+function onPlayerLeft(d) {
+  players = players.filter(p => p.name !== d.name);
+  delete scores[d.name];
+  guessedSet.delete(d.name);
+  addChat('', 'sys', d.name + ' left', 'both');
+  renderLobby();
+  renderScores();
+  // If the leaving player was shown as drawer, clear that tag
+  if (d.name === currentDrawer) {
+    const dt = document.getElementById('dtag');
+    if (dt) dt.textContent = '⏭ Skipping...';
+    const rt = document.getElementById('ritag');
+    if (rt) rt.textContent = 'Turn skipped';
+  }
+}
+
 function onPList(d) {
+  if (isHost) return; // host manages its own players array directly
   players = d.players;
   if (d.settings) { settings = d.settings; gameMode = d.settings.mode || 'draw'; }
   players.forEach(p => { if (scores[p.name] === undefined) scores[p.name] = 0; });
+  Object.keys(scores).forEach(name => {
+    if (!players.find(p => p.name === name)) delete scores[name];
+  });
   renderLobby();
+  renderScores();
   document.getElementById('modeTag').textContent = MLABELS[gameMode] || '';
 }
 
@@ -1478,31 +1574,94 @@ function onSettings(d) {
   document.getElementById('modeTag').textContent = MLABELS[gameMode] || '';
 }
 
-function onDisconnect(conn) {
+
+// ── REMOVE PLAYER (host only) ──
+// Called on disconnect, voluntary leave, or kick
+// Broadcasts 'playerLeft' so every client updates their own arrays
+function removePlayer(name, reason) {
   if (!isHost) return;
-  const idx = players.findIndex(p => p.conn === conn);
-  if (idx !== -1) {
-    const p = players[idx];
-    // Save score in case they rejoin
-    droppedScores[p.name] = scores[p.name] || 0;
-    addChat('', 'sys', p.name + ' left the game', 'both');
-    // Remove from players array completely
-    players.splice(idx, 1);
-    delete scores[p.name];
-  }
-  conns = conns.filter(c => c !== conn);
-  // Broadcast updated player list to remaining players
-  const pl = players.map(p => ({ name: p.name, id: p.id, isHost: p.isHost }));
-  broadcast({ type: 'plist', players: pl, settings });
+  // Idempotent: do nothing if player already removed
+  console.log('[removePlayer] name:', name, 'exists:', !!players.find(p => p.name === name));
+  if (!players.find(p => p.name === name)) return;
+  droppedScores[name] = scores[name] || 0;
+  players = players.filter(p => p.name !== name);
+  delete scores[name];
+  guessedSet.delete(name); // remove from guessed set too
+  addChat('', 'sys', reason || name + ' left', 'both');
+  broadcast({ type: 'playerLeft', name });
   renderLobby();
   renderScores();
+  const sb = document.getElementById('startBtn');
+  if (sb) sb.disabled = players.length < 2;
+  // If the leaving player was the drawer, auto-skip the turn
+  const gameActive = ['game','igame'].some(id => {
+    const el = document.getElementById(id);
+    return el && el.classList.contains('on');
+  });
+  if (gameActive && name === currentDrawer) {
+    addChat('', 'sys', 'Drawer left — skipping turn!', 'both');
+    setTimeout(() => { if (isHost) { clearInterval(timerInt); endTurn(); } }, 1000);
+  }
+  // If no players left or only host remains, end game
+  if (players.length < 2 && gameActive) {
+    addChat('', 'sys', 'Not enough players. Game paused.', 'both');
+    clearInterval(timerInt);
+  }
+}
+
+// ── KICK PLAYER (host only) ──
+function kickPlayer(name) {
+  if (!isHost) return;
+  if (!confirm('Kick ' + name + ' from the game?')) return;
+  // Find their connection and close it
+  const p = players.find(pl => pl.name === name);
+  if (p && p.conn) {
+    try { p.conn.send({ type: 'kicked', name }); } catch(e){}
+    setTimeout(() => { try { p.conn.close(); } catch(e){} }, 200);
+  }
+  removePlayer(name, name + ' was kicked by host');
+}
+
+function onPlayerLeave(d) {
+  if (!isHost) return;
+  console.log('[onPlayerLeave] received leave from:', d.name);
+  removePlayer(d.name, d.name + ' left');
+}
+
+function onDisconnect(conn) {
+  if (!isHost) return;
+  conns = conns.filter(c => c !== conn);
+  // Match by peer ID — reliable, no object reference issues
+  const peerId = conn.peer;
+  const p = players.find(pl => pl.id === peerId || (pl.conn && pl.conn === conn));
+  console.log('[disconnect] peerId:', peerId, 'found player:', p ? p.name : 'none', 'players:', players.map(x=>x.name+':'+x.id));
+  if (p) removePlayer(p.name, p.name + ' left');
 }
 
 function leaveLobby() {
-  if (peer) peer.destroy();
-  players = []; scores = {}; conns = [];
+  clearInterval(timerInt);
+  intentionalLeave = true; // prevent auto-rejoin on close
+  if (isHost) {
+    broadcast({ type: 'hostLeft' });
+  } else {
+    try {
+      if (conns[0]?.open) {
+        conns[0].send({ type: 'leave', name: myName });
+        conns[0].close();
+      }
+    } catch(e) {}
+  }
+  doLeave();
+}
+
+function doLeave() {
+  if (peer && !peer.destroyed) { try { peer.destroy(); } catch(e){} }
+  players = []; scores = {}; conns = []; droppedScores = {};
+  isHost = false; myName = ''; roomCode = ''; intentionalLeave = false;
   sessionStorage.removeItem('tpg_name');
   sessionStorage.removeItem('tpg_code');
+  document.getElementById('hostBtn').disabled = false;
+  document.getElementById('hostBtn').textContent = 'Create Room 🚀';
   showScr('home');
 }
 
@@ -1560,6 +1719,7 @@ function onStart(d) {
   gameMode = d.gameMode || settings.mode || 'draw';
   if (d.scores) Object.assign(scores, d.scores);
   else players.forEach(p => { if (scores[p.name] === undefined) scores[p.name] = 0; });
+  mergeConnRefs(); // restore .conn refs lost during broadcast serialisation
   if (gameMode === 'draw') initDraw(d);
   else initImg(d);
 }
@@ -1977,12 +2137,70 @@ function showFinal() {
       <div class="rp">${scores[p.name]||0} pts</div>
     </div>`).join('');
   showScr('fin');
+  // Show appropriate message
+  const note = document.getElementById('playAgainNote');
+  const btn = document.getElementById('playAgainBtn');
+  if (note && btn) {
+    if (isHost) {
+      note.textContent = 'Click Play Again to restart with same players!';
+      btn.disabled = false;
+    } else {
+      note.textContent = 'Waiting for host to start a new game...';
+      btn.disabled = true; btn.style.opacity = '.4';
+    }
+  }
 }
 
 function restartGame() {
-  if (peer) peer.destroy(); players=[]; scores={}; conns=[];
-  document.getElementById('hostBtn').disabled=false;
-  document.getElementById('hostBtn').textContent='Create Room 🚀';
+  clearInterval(timerInt);
+  if (isHost) {
+    // Reset scores for all current players
+    players.forEach(p => { scores[p.name] = 0; });
+    currentRound = 0; currentTurnInRound = 0;
+    droppedScores = {};
+    // Broadcast play-again to all players so they also go to lobby
+    broadcast({ type: 'playAgain', players: players.map(p => ({ name: p.name, id: p.id, isHost: p.isHost })), settings });
+    // Host goes to lobby
+    goToLobby();
+  }
+  // Non-host: wait for host broadcast (handled in onData)
+}
+
+function goToLobby() {
+  // Reset game state but keep room/players intact
+  currentRound = 0; currentTurnInRound = 0;
+  currentItem = null; currentDrawer = '';
+  guessedSet.clear(); roundScores = {}; revealedIdx.clear();
+  showScr('lobby');
+  document.getElementById('codeDisp').textContent = roomCode;
+  if (isHost) {
+    updateShareLink();
+    document.getElementById('lset').style.display = 'block';
+    document.getElementById('startBtn').disabled = players.length < 2;
+    setCS('ok', '✓ Room ready');
+    setLS('Same room! Ready to play again — click Start!');
+  } else {
+    setCS('ok', '✓ Connected');
+    setLS('Waiting for host to start again...');
+  }
+  document.getElementById('modeTag').textContent = MLABELS[gameMode] || '';
+  renderLobby();
+}
+
+function confirmLeave() {
+  const msg = isHost
+    ? 'You are the host! Leaving will end the game for everyone. Are you sure?'
+    : 'Leave the game? Your score will be lost.';
+  if (confirm(msg)) leaveLobby();
+}
+
+function goHome() {
+  if (peer) peer.destroy();
+  players = []; scores = {}; conns = []; droppedScores = {};
+  sessionStorage.removeItem('tpg_name');
+  sessionStorage.removeItem('tpg_code');
+  document.getElementById('hostBtn').disabled = false;
+  document.getElementById('hostBtn').textContent = 'Create Room 🚀';
   showScr('home');
 }
 
@@ -1997,7 +2215,10 @@ function renderLobby() {
   players.forEach((p, i) => {
     const d = document.createElement('div');
     d.className = 'ptile' + (p.isHost ? ' host' : '');
-    d.innerHTML = `<div class="pav" style="background:${AVC[i%AVC.length]}">${p.name.slice(0,2).toUpperCase()}</div><div class="pnm">${p.name}</div><div class="pbd">${p.isHost?'👑 HOST':''}</div>`;
+    const kickBtn = (isHost && !p.isHost)
+      ? `<div class="pkick" onclick="kickPlayer('${p.name.replace(/'/g,"\'")}')">✕</div>`
+      : '';
+    d.innerHTML = `<div class="pav" style="background:${AVC[i%AVC.length]}">${p.name.slice(0,2).toUpperCase()}</div><div class="pnm">${p.name}</div><div class="pbd">${p.isHost?'👑 HOST':''}</div>${kickBtn}`;
     g.appendChild(d);
   });
   for (let i = players.length; i < Math.min(10, players.length + 3); i++) {
@@ -2007,21 +2228,41 @@ function renderLobby() {
 
 function renderScores() {
   const sorted = [...players].sort((a, b) => (scores[b.name]||0) - (scores[a.name]||0));
-  const html = sorted.map((p, i) => `
-    <div class="srow ${p.name===currentDrawer&&gameMode==='draw'?'drawing':guessedSet.has(p.name)?'correct':''}">
+  const html = sorted.map((p, i) => {
+    const isDrawing = p.name===currentDrawer && gameMode==='draw';
+    const isCorrect = guessedSet.has(p.name);
+    const kickBtn = (isHost && !p.isHost)
+      ? `<div class="skick" onclick="kickPlayer('${p.name.replace(/'/g,"\'")}')">✕</div>`
+      : '';
+    return `<div class="srow ${isDrawing?'drawing':isCorrect?'correct':''}">
       <div class="sav" style="background:${AVC[players.findIndex(x=>x.name===p.name)%AVC.length]}">${p.name.slice(0,2).toUpperCase()}</div>
       <div class="snm">${p.name}</div>
-      <div class="sic">${p.name===currentDrawer&&gameMode==='draw'?'✏️':guessedSet.has(p.name)?'✅':''}</div>
+      <div class="sic">${isDrawing?'✏️':isCorrect?'✅':''}</div>
       <div class="spt">${scores[p.name]||0}</div>
-    </div>`).join('');
+      ${kickBtn}
+    </div>`;
+  }).join('');
   ['slist','islist'].forEach(id => { const e=document.getElementById(id); if(e) e.innerHTML=html; });
 }
 
 function addChat(name, type, text, gm) {
-  const id = (gm==='draw'||gm==='both') ? 'gchat' : 'ichat';
-  const addTo = id => { const b=document.getElementById(id); if(!b) return; const d=document.createElement('div'); d.className='cm '+type; d.innerHTML=name?`<span class="cn">${name}:</span> ${text}`:text; b.appendChild(d); b.scrollTop=b.scrollHeight; };
-  addTo(id);
-  if (gm === 'both') { addTo('gchat'); addTo('ichat'); }
+  const addTo = id => {
+    const b = document.getElementById(id);
+    if (!b) return;
+    const d = document.createElement('div');
+    d.className = 'cm ' + type;
+    d.innerHTML = name ? `<span class="cn">${name}:</span> ${text}` : text;
+    b.appendChild(d);
+    b.scrollTop = b.scrollHeight;
+  };
+  if (gm === 'both') {
+    addTo('gchat');
+    addTo('ichat');
+  } else if (gm === 'img' || gm === 'song') {
+    addTo('ichat');
+  } else {
+    addTo('gchat');
+  }
 }
 
 function showFlash(txt) {
